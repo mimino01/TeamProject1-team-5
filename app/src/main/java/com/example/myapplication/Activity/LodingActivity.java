@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 public class LodingActivity extends AppCompatActivity {
     TextView sign;
@@ -19,7 +21,7 @@ public class LodingActivity extends AppCompatActivity {
         sign = findViewById(R.id.textView);
 
         sign.setOnClickListener(view -> {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         });
     }
