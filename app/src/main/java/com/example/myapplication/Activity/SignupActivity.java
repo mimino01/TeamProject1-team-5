@@ -1,7 +1,7 @@
 package com.example.myapplication.Activity;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -10,16 +10,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.option.Option;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
-    Option option;
-    EditText password, reviewPassword, name, id;
+    EditText password, reviewPassword, name, id, phoneNumber;
     RadioGroup gender_group;
     boolean gender;
     Button checker, submit;
-    String correct, phoneNumber;
+    String correct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +31,10 @@ public class SignupActivity extends AppCompatActivity {
         id = findViewById(R.id.editID);
         gender_group = findViewById(R.id.radioGroup);
         submit = findViewById(R.id.buttonSubmit);
-        phoneNumber = findViewById(R.id.editPhoneNumber).toString();
+        phoneNumber = findViewById(R.id.editPhoneNumber);
         correct = "일치";
+        Bundle bundle = new Bundle();
+
 
         checker.setOnClickListener(view -> {
             if (password.getText().toString().equals(reviewPassword.getText().toString())) {
@@ -59,12 +59,21 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         submit.setOnClickListener(view -> {
-//            switch (0) {
-//                case name.getText().toString().length():
-//            }
-            if (checker.getText().toString().equals(correct)) {
-                option.setOption(name.getText().toString(), id.getText().toString(), password.getText().toString(), gender, phoneNumber);
-                Log.i(TAG, "submit: " + option.getOption());
+            if (3 > name.getText().toString().length()) {
+                Toast.makeText(getApplicationContext(), "이름은 2자 이상 적어주세요",Toast.LENGTH_LONG).show();
+            } else if (5 > id.getText().toString().length() || id.getText().toString().length() > 15) {
+                Toast.makeText(getApplicationContext(), "아이디는 최소 6자 최대 14자 입니다",Toast.LENGTH_LONG).show();
+            } else if (5 > password.getText().toString().length() || password.getText().toString().length() > 15) {
+                Toast.makeText(getApplicationContext(), "비밀번호는 최소 6자 최대 14자 입니다",Toast.LENGTH_LONG).show();
+            } else if (11 != phoneNumber.getText().toString().length()) {
+                Toast.makeText(getApplicationContext(), "전화번호는 - 없이 적어주세요",Toast.LENGTH_LONG).show();
+            } else if (checker.getText().toString().equals(correct)) {
+                bundle.putInt("PhoneNumber", Integer.parseInt(phoneNumber.getText().toString()));
+                bundle.putString("Name", name.getText().toString());
+                bundle.putString("ID", id.getText().toString());
+                bundle.putString("Password", password.getText().toString());
+                bundle.putBoolean("Gender", gender);
+                Toast.makeText(getApplicationContext(), "회원가입 성공",Toast.LENGTH_LONG).show();
             }
         });
     }
