@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author mimin
- *
- */
-module server {
-}

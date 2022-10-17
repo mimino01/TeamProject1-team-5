@@ -24,7 +24,7 @@
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.SignupActivity" />
         <activity
-            android:name=".Activity.ServerTestActivity"
+            android:name=".Activity.LodingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
