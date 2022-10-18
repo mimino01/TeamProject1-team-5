@@ -97,7 +97,7 @@ public class SignupActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "회원가입 성공",Toast.LENGTH_LONG).show();
             }
 
-            String addr = "192.168.0.10";
+            String addr = "192.168.0.6";
             SocketTread thread = new SocketTread(addr, userdata);
             thread.start();
         });
@@ -126,6 +126,7 @@ public class SignupActivity extends AppCompatActivity {
                 response = (String) instream.readObject();
 
                 socket.close();
+                data.clear();
             }
             catch (Exception e) {
                 e.printStackTrace();

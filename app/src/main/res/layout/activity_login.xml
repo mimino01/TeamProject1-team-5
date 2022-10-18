@@ -46,7 +46,8 @@
             android:ems="10"
             android:background="@drawable/stroke"
             android:hint="비밀번호"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signin"
