@@ -1,10 +1,13 @@
-package server;
+package socket;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+
+import option.Option;
 
 public class socket {
 	public static void main(String[] args) {
@@ -22,8 +25,12 @@ public class socket {
                 System.out.println("클라이언트 연결됨. 호스트 : " + clientHost + ", 포트 : " + clientPort);
 
                 ObjectInputStream instream = new ObjectInputStream(socket.getInputStream()); //소켓의 입력 스트림 객체 참조
-                Object data = instream.readObject();
+                ArrayList data = (ArrayList) instream.readObject();
                 System.out.println(data.toString());
+                
+                Option option = new Option(Integer.parseInt(data.get(0).toString()) ,data.get(1).toString(),data.get(2).toString(),data.get(3).toString(),data.get(4).toString());
+                
+                
                 //System.out.println(instream.readObject());
                 //Object obj = instream.readObject(); // 입력 스트림으로부터 Object 객체 가져오기
 //                System.out.println("클라이언트로부터 받은 데이터 : " + obj); // 가져온 객체 출력
