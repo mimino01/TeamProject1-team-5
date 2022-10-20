@@ -11,12 +11,20 @@ public class Option {
 		
 	}
 	
-	public Option (int phone, String name, String id, String password, String gender) {
+	public Option (String name, int phone, String id, String password, String gender) {
 		this.name = name;
 		this.phone = phone;
 		this.gender = gender;
 		this.id = id;
 		this.password = password;
+	}
+	
+	public void optionCopy (Option option) {
+		this.name = option.getName();
+		this.phone = option.getPhone();
+		this.gender = option.getGender();
+		this.id = option.getId();
+		this.password = option.getPassword();
 	}
 
 	public String getName() {

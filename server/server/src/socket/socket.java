@@ -5,13 +5,15 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.util.Arrays;
 
-import option.Option;
+import socket.Saver;
 
 public class socket {
 	public static void main(String[] args) {
         int portNumber = 5555;
+        Saver process = new Saver();
+        Socket socket;
 
         try {
             System.out.println("서버를 시작합니다...");
@@ -19,26 +21,43 @@ public class socket {
             System.out.println("포트 " + portNumber + "에서 요청 대기중...");
 
             while(true) {
-                Socket socket = serverSocket.accept(); //클라이언트가 접근했을 때 accept() 메소드를 통해 클라이언트 소켓 객체 참조
+                socket = serverSocket.accept(); //클라이언트가 접근했을 때 accept() 메소드를 통해 클라이언트 소켓 객체 참조
                 InetAddress clientHost = socket.getLocalAddress();
                 int clientPort = socket.getPort();
                 System.out.println("클라이언트 연결됨. 호스트 : " + clientHost + ", 포트 : " + clientPort);
 
+                //클라이언트로 부터 String[]형식으로 데이터 수신
                 ObjectInputStream instream = new ObjectInputStream(socket.getInputStream()); //소켓의 입력 스트림 객체 참조
-                ArrayList data = (ArrayList) instream.readObject();
-                System.out.println(data.toString());
+                String[] res = (String[]) instream.readObject();
                 
-                Option option = new Option(Integer.parseInt(data.get(0).toString()) ,data.get(1).toString(),data.get(2).toString(),data.get(3).toString(),data.get(4).toString());
+                //테이터 확인
+                System.out.println(Arrays.toString(res)); 
                 
-                
-                //System.out.println(instream.readObject());
-                //Object obj = instream.readObject(); // 입력 스트림으로부터 Object 객체 가져오기
-//                System.out.println("클라이언트로부터 받은 데이터 : " + obj); // 가져온 객체 출력
+                //데이터 처리
+                Object req;
+                boolean success;
+                switch (res[0]) {
+				case "signin":
+					success = process.signin(res);
+					break;
+					
+				case "sighup":
+					success = process.signup(res);
+					break;
 
+				default:
+					success = false;
+					break;
+				}
+                req = (Object) success;
+
+                System.out.println(success);
+                //클라이언트로 Object 형태로 데이터 송신 
                 ObjectOutputStream outstream = new ObjectOutputStream(socket.getOutputStream()); //소켓의 출력 스트림 객체 참조
-//                outstream.writeObject(obj + " from server"); //출력 스트림에 응답 넣기
-                outstream.writeObject(" from server"); //출력 스트림에 응답 넣기
+                outstream.writeObject(req); //출력 스트림에 응답 넣기
                 outstream.flush(); // 출력
+                
+                
                 socket.close(); //소켓 해제
             }
         }catch(Exception e) {

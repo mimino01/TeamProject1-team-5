@@ -4,6 +4,8 @@ import static android.content.ContentValues.TAG;
 
 import static androidx.core.content.PackageManagerCompat.LOG_TAG;
 
+import static java.lang.Thread.sleep;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText id, password;
     boolean loginCorrect;
     ServerComponent server;
-    ArrayList data = new ArrayList();
+    String[] data = new String[30];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +47,20 @@ public class LoginActivity extends AppCompatActivity {
             });
 
             login.setOnClickListener(view -> {
-                if (loginCorrect) {
-                    data.add(0,id.getText().toString());
-                    data.add(1,password.getText().toString());
-                    server = new ServerComponent(server.getServerIp(),data);
-                    server.start();
+                data[0] = "login";
+                data[1] = id.getText().toString();
+                data[2] = password.getText().toString();
+                server = new ServerComponent(server.getServerIp(),data);
+                server.start();
+
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.i(TAG, "login: " + server.getRes());
+                if ((boolean) server.getRes()) {
                     Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
-                    //임시로 로딩화면 이동으로 함 추후 메인화면 구현시 변경요망
-//                Intent intent = new Intent(this, LodingActivity.class);
-//                startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
                 }

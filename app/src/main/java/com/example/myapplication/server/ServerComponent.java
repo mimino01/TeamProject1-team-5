@@ -1,5 +1,10 @@
 package com.example.myapplication.server;
 
+import static android.content.ContentValues.TAG;
+
+import android.nfc.Tag;
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,11 +14,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class ServerComponent extends Thread{
-    static public String serverIp = "192.168.0.6";
+    static public String serverIp = "192.168.0.10";
     String host;
-    ArrayList data;
+    String[] data;
+    Object res;
 
-    public ServerComponent(String host, ArrayList data) {
+    public ServerComponent(String host, String[] data) {
         this.host = host;
         this.data = data;
     }
@@ -44,11 +50,11 @@ public class ServerComponent extends Thread{
         this.host = host;
     }
 
-    public ArrayList getData() {
+    public String[] getData() {
         return data;
     }
 
-    public void setData(ArrayList data) {
+    public void setData(String[] data) {
         this.data = data;
     }
 
@@ -60,9 +66,12 @@ public class ServerComponent extends Thread{
         ServerComponent.serverIp = serverIp;
     }
 
+    public Object getRes() {
+        return res;
+    }
+
     @Override
     public void run() {
-        String response = "data not include";
         try {
             int port = 5555;
             Socket socket = new Socket(host, port);
@@ -71,10 +80,10 @@ public class ServerComponent extends Thread{
             outstream.flush();
 
             ObjectInputStream instream = new ObjectInputStream(socket.getInputStream());
-            response = (String) instream.readObject();
+            res = instream.readObject();
+            Log.i(TAG, "run: " + res.toString());
 
             socket.close();
-            data.clear();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
