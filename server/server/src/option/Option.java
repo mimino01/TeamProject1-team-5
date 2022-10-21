@@ -2,7 +2,7 @@ package option;
 
 public class Option {
 	String name;
-	int phone;
+	long phone;
 	String id;
 	String password;
 	String gender;
@@ -11,7 +11,7 @@ public class Option {
 		
 	}
 	
-	public Option (String name, int phone, String id, String password, String gender) {
+	public Option (String name, long phone, String id, String password, String gender) {
 		this.name = name;
 		this.phone = phone;
 		this.gender = gender;
@@ -35,11 +35,11 @@ public class Option {
 		this.name = name;
 	}
 
-	public int getPhone() {
+	public long getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(long phone) {
 		this.phone = phone;
 	}
 

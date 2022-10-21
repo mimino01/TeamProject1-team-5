@@ -38,14 +38,17 @@ public class socket {
                 boolean success;
                 switch (res[0]) {
 				case "signin":
+					System.out.println("processing sign in");
 					success = process.signin(res);
 					break;
 					
-				case "sighup":
+				case "signup":
+					System.out.println("processing sign up");
 					success = process.signup(res);
 					break;
 
 				default:
+					System.out.println("wrong request");
 					success = false;
 					break;
 				}

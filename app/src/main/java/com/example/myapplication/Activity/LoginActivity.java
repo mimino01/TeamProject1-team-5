@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             });
 
             login.setOnClickListener(view -> {
-                data[0] = "login";
+                data[0] = "signin";
                 data[1] = id.getText().toString();
                 data[2] = password.getText().toString();
                 server = new ServerComponent(server.getServerIp(),data);
