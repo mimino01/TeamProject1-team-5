@@ -1,4 +1,4 @@
-package option;
+package Conponent;
 
 public class Option {
 	String name;
@@ -65,6 +65,12 @@ public class Option {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	@Override
+	public String toString() {
+		return "Option [name=" + name + ", phone=" + phone + ", id=" + id + ", password=" + password + ", gender="
+				+ gender + "]";
 	}
 	
 	
