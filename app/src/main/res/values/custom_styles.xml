@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name = "EDITTEXT_STYLE">
+        <item name="android:textSize">50px</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/stroke</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:ems">11</item>
+        <item name="android:paddingLeft">50px</item>
+    </style>
+    <style name="BUTTEN_STYLE">
+        <item name="android:textSize">75px</item>
+        <item name="android:textColor">#070707</item>
+        <item name="android:background">#F9CB54</item>
+        <item name="android:layout_marginTop">50px</item>
+        <item name="android:ems">10</item>
+    </style>
+    <style name="LODING_STYLE">
+
+    </style>
+    <style name="TITLE_STYLE">
+        <item name="android:text">같이 탈래요?</item>
+        <item name="android:textSize">40dp</item>
+        <item name="android:textColor">#6284FF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+</resources>

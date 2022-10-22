@@ -18,7 +18,7 @@ public class LodingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loding);
 
-        sign = findViewById(R.id.textView);
+        sign = findViewById(R.id.nextButton);
 
         sign.setOnClickListener(view -> {
             Intent intent = new Intent(this, LoginActivity.class);

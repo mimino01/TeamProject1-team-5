@@ -45,8 +45,6 @@ public class SignupActivity extends AppCompatActivity {
         submit = findViewById(R.id.buttonSubmit);
         phoneNumber = findViewById(R.id.editPhoneNumber);
         correct = "일치";
-        Bundle bundle = new Bundle();
-
 
         checker.setOnClickListener(view -> {
             if (password.getText().toString().equals(reviewPassword.getText().toString())) {
