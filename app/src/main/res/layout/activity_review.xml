@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.ReviewActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B0C2FF"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/R_TextView_Title"
+                android:layout_width="108dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="같이 탈래요?"
+                android:textColor="#FFFFFF"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/R_Button_Main"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:background="#B0C2FF"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="Main"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/R_Button_Board"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#B0C2FF"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="Board"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/R_Button_Chat"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#B0C2FF"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="Chat"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#D9D9D9"
+            android:orientation="vertical"
+           >
+
+            <!--<TextView
+                android:id="@+id/TextView_info"
+                android:layout_width="125dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="30dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:gravity="center_horizontal"/>-->
+
+            <TextView
+                android:id="@+id/R_TextView_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RatingBar
+                android:id="@+id/R_Ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:numStars="5"
+                android:rating="4.5"
+                android:stepSize="0.5"
+                android:layout_gravity="center"
+                style="?android:attr/ratingBarStyle"/>
+
+            <TextView
+                android:id="@+id/R_Textview_ratingpoint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text=""
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#FFDC62"
+            android:orientation="vertical"
+            android:layout_marginBottom="30dp">
+
+            <EditText
+                android:id="@+id/R_EditText_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="#FFFFFF"
+                android:hint="리뷰를 입력하세요."
+                android:textSize="20dp"
+              />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/R_Button_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/r_submit_bt_bg"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="제출"
+            android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+

@@ -23,8 +23,9 @@
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.SignupActivity" />
+
         <activity
-            android:name=".Activity.LodingActivity"
+            android:name=".Activity.ChatActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +36,9 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
         </activity>
+        <activity android:name=".Activity.ReviewActivity" />
         <activity android:name=".SignupActivity" />
     </application>
 
