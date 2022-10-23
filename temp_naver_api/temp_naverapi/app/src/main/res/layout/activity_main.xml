@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
+
+   <!-- <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:background="#B2EBF4"
+        android:baselineAligned="false"
+        android:text=""
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <Button
+        android:id = "@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:includeFontPadding="false"
+        android:text="버튼1" />
+
+    <Button
+        android:id = "@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:includeFontPadding="false"
+        android:text="버튼2" />
+
+    <Button
+        android:id = "@+id/btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:includeFontPadding="false"
+        android:text="버튼3" />-->
+
+    <!-- 네이버 지도 -->
+    <fragment
+        android:id="@+id/map_view"
+        android:name="com.naver.maps.map.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
