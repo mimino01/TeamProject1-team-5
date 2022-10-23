@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.naver.maps.map.MapView;
-import com.naver.maps.map.overlay.Marker;
+import com.google.android.gms.maps.MapView;
 
 import org.jetbrains.annotations.Nullable;
 

@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author mimin
+ *
+ */
+module server {
+}
