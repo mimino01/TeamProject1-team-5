@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Activity.Chat.ChatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
@@ -45,23 +46,27 @@ public class LoginActivity extends AppCompatActivity {
             });
 
             login.setOnClickListener(view -> {
-                data[0] = "signin";
-                data[1] = id.getText().toString();
-                data[2] = password.getText().toString();
-                server = new ServerComponent(server.getServerIp(),data);
-                server.start();
+                Intent intent = new Intent(this, ChatActivity.class);
+                startActivity(intent);
 
-                try {
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Log.i(TAG, "login: " + server.getRes());
-                if ((boolean) server.getRes()) {
-                    Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
-                }
+                //로그인 구현 완료
+//                data[0] = "signin";
+//                data[1] = id.getText().toString();
+//                data[2] = password.getText().toString();
+//                server = new ServerComponent(server.getServerIp(),data);
+//                server.start();
+//
+//                try {
+//                    sleep(100);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                Log.i(TAG, "login: " + server.getRes());
+//                if ((boolean) server.getRes()) {
+//                    Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
+//                }
             });
         } catch (Exception e) {
             e.printStackTrace();
