@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
+
 public class LodingActivity extends AppCompatActivity {
     TextView sign;
 

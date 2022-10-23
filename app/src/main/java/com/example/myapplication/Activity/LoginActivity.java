@@ -2,8 +2,6 @@ package com.example.myapplication.Activity;
 
 import static android.content.ContentValues.TAG;
 
-import static androidx.core.content.PackageManagerCompat.LOG_TAG;
-
 import static java.lang.Thread.sleep;
 
 import android.content.Intent;
