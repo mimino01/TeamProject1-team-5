@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.naverapimap;
 
 import org.junit.Test;
 
