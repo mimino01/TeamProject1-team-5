@@ -1,4 +1,4 @@
-package com.example.myapplication.Activity;
+package com.example.myapplication.Activity.Other;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.myapplication.Activity.Signup.SignupActivity;
 import com.example.myapplication.R;
 
 

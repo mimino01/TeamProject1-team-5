@@ -1,4 +1,4 @@
-package com.example.myapplication.Activity;
+package com.example.myapplication.Activity.Loading;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -7,10 +7,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Activity.Signin.LoginActivity;
 import com.example.myapplication.R;
 
 
-public class LodingActivity extends AppCompatActivity {
+public class LoadingActivity extends AppCompatActivity {
     TextView sign;
 
     @SuppressLint("MissingInflatedId")

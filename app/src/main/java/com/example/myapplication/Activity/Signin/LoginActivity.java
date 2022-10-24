@@ -1,23 +1,19 @@
-package com.example.myapplication.Activity;
+package com.example.myapplication.Activity.Signin;
 
 import static android.content.ContentValues.TAG;
-
-import static java.lang.Thread.sleep;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Activity.Chat.ChatActivity;
+import com.example.myapplication.Activity.Signup.SignupActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
-
-import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
     TextView  login, logup;

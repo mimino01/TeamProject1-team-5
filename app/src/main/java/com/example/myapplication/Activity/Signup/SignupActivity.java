@@ -1,4 +1,4 @@
-package com.example.myapplication.Activity;
+package com.example.myapplication.Activity.Signup;
 
 import static java.lang.Thread.sleep;
 
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Activity.Signin.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 

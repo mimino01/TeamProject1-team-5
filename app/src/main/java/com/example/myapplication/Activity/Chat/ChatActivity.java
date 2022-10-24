@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Activity.LoginActivity;
 import com.example.myapplication.Activity.Review.ReviewActivity;
+import com.example.myapplication.Activity.Signin.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.option.ChatAdapter;
 import com.example.myapplication.option.ChatClass;
