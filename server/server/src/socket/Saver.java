@@ -10,7 +10,7 @@ public class Saver {
 	static int lastUserNumber = 0;
 	
 	public Saver() {
-		
+		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
 	}
 	
 	public static boolean signup(Object obj) {
@@ -28,6 +28,8 @@ public class Saver {
 	
 	public static boolean signin(Object obj) {
 		String[] user = (String[]) obj;
+		System.out.println(user[2]);
+		System.out.println(hash.get(user[2]).toString());
 		try {
 			if (user[2].equals(hash.get(user[1]).getPassword())) {
 				return true;

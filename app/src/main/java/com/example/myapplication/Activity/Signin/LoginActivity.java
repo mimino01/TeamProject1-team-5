@@ -2,11 +2,14 @@ package com.example.myapplication.Activity.Signin;
 
 import static android.content.ContentValues.TAG;
 
+import static java.lang.Thread.sleep;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,23 +49,23 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 //로그인 구현 완료
-//                data[0] = "signin";
-//                data[1] = id.getText().toString();
-//                data[2] = password.getText().toString();
-//                server = new ServerComponent(server.getServerIp(),data);
-//                server.start();
-//
-//                try {
-//                    sleep(100);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                Log.i(TAG, "login: " + server.getRes());
-//                if ((boolean) server.getRes()) {
-//                    Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
-//                }
+                data[0] = "signin";
+                data[1] = id.getText().toString();
+                data[2] = password.getText().toString();
+                server = new ServerComponent(server.getServerIp(),data);
+                server.start();
+
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.i(TAG, "login: " + server.getRes());
+                if ((boolean) server.getRes()) {
+                    Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
+                }
             });
         } catch (Exception e) {
             e.printStackTrace();

@@ -73,7 +73,7 @@ public class ServerComponent extends Thread{
     @Override
     public void run() {
         try {
-            int port = 5555;
+            int port = 8001;
             Socket socket = new Socket(host, port);
             ObjectOutputStream outstream = new ObjectOutputStream(socket.getOutputStream());
             outstream.writeObject(data);
