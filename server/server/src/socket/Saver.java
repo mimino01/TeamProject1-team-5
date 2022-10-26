@@ -29,7 +29,7 @@ public class Saver {
 	public static boolean signin(Object obj) {
 		String[] user = (String[]) obj;
 		System.out.println(user[2]);
-		System.out.println(hash.get(user[2]).toString());
+		System.out.println(hash.get(user[1]).toString());
 		try {
 			if (user[2].equals(hash.get(user[1]).getPassword())) {
 				return true;

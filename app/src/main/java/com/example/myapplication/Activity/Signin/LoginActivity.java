@@ -45,8 +45,6 @@ public class LoginActivity extends AppCompatActivity {
             });
 
             login.setOnClickListener(view -> {
-                Intent intent = new Intent(this, ChatActivity.class);
-                startActivity(intent);
 
                 //로그인 구현 완료
                 data[0] = "signin";
@@ -63,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, "login: " + server.getRes());
                 if ((boolean) server.getRes()) {
                     Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, ChatActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
                 }
