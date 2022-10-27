@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Activity.Review.ReviewActivity;
 import com.example.myapplication.Activity.Signin.LoginActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.option.ChatAdapter;
-import com.example.myapplication.option.ChatClass;
 import com.example.myapplication.server.ServerComponent;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,11 +28,19 @@ public class ChatActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     TextView Info;
     ServerComponent server;
+    String userid = null, roomNumber;
+    String[] sended_data = new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        Intent getIntent = getIntent();
+        userid = getIntent.getStringExtra("userid");
+        roomNumber = getIntent.getStringExtra("roomid");
+
+        server.setData(new String[]{"chatting", "create", userid});
 
             // 메인으로 이동
 
@@ -86,6 +93,14 @@ public class ChatActivity extends AppCompatActivity {
                     chatAdapter.addItem(data);
                     recyclerView.setAdapter(chatAdapter);
                     chatAdapter.notifyDataSetChanged();
+
+                    sended_data[0] = "chat";
+                    sended_data[1] = "addChat";
+                    sended_data[2] = userid;
+                    sended_data[3] = text1;
+                    sended_data[4] = roomNumber;
+
+                    server = new ServerComponent(server.getServerIp(), sended_data); 
                 }
             });
         }

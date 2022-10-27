@@ -73,5 +73,16 @@ public class Option {
 				+ gender + "]";
 	}
 	
+	public String[] toStringArray() {
+		String[] data = new String[10];
+		
+		data[0] = this.name;
+		data[1] = Long.toString(this.phone);
+		data[2] = this.gender;
+		data[3] = this.id;
+		data[4] = this.password;
+		
+		return data;
+	}
 	
 }

@@ -35,29 +35,40 @@ public class socket {
                 
                 //데이터 처리
                 Object req;
-                boolean success;
+                String[][] success = new String[40][40];
                 switch (res[0]) {
 				case "signin":
 					System.out.println("processing sign in");
-					success = process.signin(res);
+					success[0][0] = Boolean.toString(process.signin(res));
 					break;
 					
 				case "signup":
 					System.out.println("processing sign up");
-					success = process.signup(res);
+					success[0][0] = Boolean.toString(process.signup(res));
 					break;
-
+					
+				case "chat":
+					System.out.println("processing chatting");
+					success = process.chating(res);
+					break;
+					
+				case "req_userdata":
+					System.out.println("processing requist userdata");
+					success[0] = process.reqUserdata(res);
+					break;
+					
 				default:
 					System.out.println("wrong request");
-					success = false;
+					success[0][0] = Boolean.toString(false);
 					break;
 				}
                 req = (Object) success;
 
-                System.out.println(success);
+                System.out.println(Arrays.deepToString(success));
                 //클라이언트로 Object 형태로 데이터 송신 
                 ObjectOutputStream outstream = new ObjectOutputStream(socket.getOutputStream()); //소켓의 출력 스트림 객체 참조
                 outstream.writeObject(req); //출력 스트림에 응답 넣기
+                outstream.writeObject(null); //응답 없을시 객체임을 선언해 줌
                 outstream.flush(); // 출력
                 
                 

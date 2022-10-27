@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Activity.Chat.ChatActivity;
 import com.example.myapplication.Activity.Signup.SignupActivity;
+import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
@@ -61,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, "login: " + server.getRes());
                 if ((boolean) server.getRes()) {
                     Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, ChatActivity.class);
+                    Intent intent = new Intent(this, TempBoardActivity.class);
+                    intent.putExtra("userid", data[1]);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();

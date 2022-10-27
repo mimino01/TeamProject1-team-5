@@ -1,4 +1,4 @@
-package com.example.myapplication.option;
+package com.example.myapplication.Activity.Chat;
 
 public class ChatClass {
     String chat;

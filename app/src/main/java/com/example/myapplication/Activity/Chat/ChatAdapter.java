@@ -1,8 +1,7 @@
-package com.example.myapplication.option;
+package com.example.myapplication.Activity.Chat;
 
 import static android.media.CamcorderProfile.get;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 
 import android.util.Log;
-
-import org.w3c.dom.Text;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private ArrayList<ChatClass> arrayList = new ArrayList<>();
