@@ -87,7 +87,7 @@ public class Saver {
 		switch (key) {
 		case "addReview":
 			user = hash.get(key);
-			review = new ReviewItem(Float.parseFloat(res[3]), res[4]);
+			review = new ReviewItem(res[3], res[4]);
 			user.addReview(review);
 			hash.put(key, user);
 			String[][] temp = new String[1][1];

@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class ReviewItem {
 	String description;
-	float rating;
+	String rating;
 	
-	public ReviewItem(float rating, String description) {
+	public ReviewItem(String rating, String description) {
 		// TODO Auto-generated constructor stub
 		this.rating = rating;
 		this.description = description;
@@ -21,25 +21,17 @@ public class ReviewItem {
 		return description;
 	}
 
-
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
-
-	public float getRating() {
+	public String getRating() {
 		return rating;
 	}
 
-
-
-	public void setRating(float rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -61,7 +53,7 @@ public class ReviewItem {
 	public String[] toStringArray() {
 		String[] data = new String[10];
 		
-		data[0] = Float.toString(this.rating);
+		data[0] = this.rating;
 		data[1] = this.description;
 		
 		return data;

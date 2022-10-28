@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Activity.Chat.ChatActivity;
+import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
@@ -80,20 +81,26 @@ public class ReviewActivity extends AppCompatActivity {
         String reviews = review.getText().toString();
         String ratingbars = Float.toString(Rating_Bar.getRating());
 
-        data[0] = "reviwe";
-        data[1] = ratingbars;
-        data[2] = reviews;
-        server = new ServerComponent(server.getServerIp(),data);
+        String[] req = new String[5];
+        req[0] = "review";
+        req[1] = "addReview";
+        req[2] = "adminid";
+        req[3] = Rating_Point.getText().toString();
+        req[4] = review.getText().toString();
+        server = new ServerComponent(server.getServerIp(),req);
         server.start();
 
         try {
-            sleep(50);
+            sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         Log.i(TAG, "review: " + server.getRes());
-        if ((boolean) server.getRes()) {
+        String[][] temp = (String[][]) server.getRes();
+        if (temp[0][0].equals("true")) {
             Toast.makeText(getApplicationContext(), "리뷰 작성 성공",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), TempBoardActivity.class);
+            startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(), "리뷰 작성 실패", Toast.LENGTH_LONG).show();
         }
