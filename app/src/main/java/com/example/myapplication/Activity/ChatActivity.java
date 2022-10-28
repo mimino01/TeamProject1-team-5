@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Activity.Board.BoardActivity;
+import com.example.myapplication.Activity.Signin.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.option.ChatAdapter;
 import com.example.myapplication.option.ChatClass;
@@ -35,7 +37,14 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-            // 메인으로 이동
+        Button button_main=(Button)findViewById(R.id.Button_Main);    // 메인으로 이동
+        button_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                startActivity(intent);
+            }
+        });
 
         /*Button button_Borad=(Button)findViewById(R.id.Button_Board);    // 보드로 이동
         button_Borad.setOnClickListener(new View.OnClickListener() {

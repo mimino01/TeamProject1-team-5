@@ -53,7 +53,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
-            timeView = itemView.findViewById(R.id.time);
+            timeView = itemView.findViewById(R.id.timeView);
         }
         void onBind(ChatClass data){
             textView.setText(data.getChat());

@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-=======
->>>>>>> 6cac21966cd49259be7fa4ed05f33fcf505bc861
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-<<<<<<< HEAD
-    tools:context=".Activity.ReviewActivity">
-=======
     tools:context=".Activity.Review.ReviewActivity">
->>>>>>> 6cac21966cd49259be7fa4ed05f33fcf505bc861
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -110,26 +102,15 @@
 
             <RatingBar
                 android:id="@+id/R_Ratingbar"
-<<<<<<< HEAD
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-=======
                 style="?android:attr/ratingBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
->>>>>>> 6cac21966cd49259be7fa4ed05f33fcf505bc861
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"
                 android:numStars="5"
                 android:rating="4.5"
-<<<<<<< HEAD
-                android:stepSize="0.5"
-                android:layout_gravity="center"
-                style="?android:attr/ratingBarStyle"/>
-=======
                 android:stepSize="0.5" />
->>>>>>> 6cac21966cd49259be7fa4ed05f33fcf505bc861
 
             <TextView
                 android:id="@+id/R_Textview_ratingpoint"

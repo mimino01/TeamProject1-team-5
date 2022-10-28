@@ -15,19 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-<<<<<<< HEAD
-        <service
-            android:name=".ServerService"
-            android:enabled="true"
-            android:exported="true"></service>
 
-        <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.SignupActivity" />
-
-        <activity
-            android:name=".Activity.ChatActivity"
-=======
         <activity android:name=".Activity.Chat.ChatActivity"/>
         <activity android:name=".Activity.Review.ReviewActivity"/>
         <activity android:name=".Activity.Other.MainActivity"/>
@@ -39,7 +27,6 @@
         <activity android:name=".Activity.Board.BoardAddActivity"/>
         <activity
             android:name=".Activity.Loading.LoadingActivity"
->>>>>>> 6cac21966cd49259be7fa4ed05f33fcf505bc861
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,11 +39,7 @@
                 android:value="" />
 
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".Activity.ReviewActivity" />
-        <activity android:name=".SignupActivity" />
-=======
->>>>>>> 6cac21966cd49259be7fa4ed05f33fcf505bc861
+
     </application>
 
 </manifest>
