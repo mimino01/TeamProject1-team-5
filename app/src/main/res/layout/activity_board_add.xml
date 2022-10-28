@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B0C2FF"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/TextView_Title"
+            android:layout_width="108dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="같이 탈래요?"
+            android:textColor="#FFFFFF"
+            android:textSize="17dp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/Button_Main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#B0C2FF"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Main"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/Button_Board"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#B0C2FF"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Board"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/Button_Chat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#B0C2FF"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Chat"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/board_add_ping"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="70dp"
+        android:padding="20dp"
+        android:background="@drawable/board_add_frame">
+
+
+        <EditText
+            android:id="@+id/board_destination"
+            android:padding="16dp"
+            android:background="#eeeeee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="30dp"
+            android:hint="목적지를 입력하세요."
+            />
+
+        <EditText
+            android:id="@+id/board_time"
+            android:padding="16dp"
+            android:background="#eeeeee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="30dp"
+            android:hint="출발 시각을 입력하세요."
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/R_Button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/r_submit_bt_bg"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:text="등록"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

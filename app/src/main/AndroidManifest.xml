@@ -22,6 +22,8 @@
         <activity android:name=".Activity.Signup.SignupActivity"/>
         <activity android:name=".Activity.TempBoard.TempBoardActivity"/>
         <activity android:name=".Activity.Other.ServertestActivity"/>
+        <activity android:name=".Activity.Board.BoardActivity"/>
+        <activity android:name=".Activity.Board.BoardAddActivity"/>
         <activity
             android:name=".Activity.Loading.LoadingActivity"
             android:exported="true">
