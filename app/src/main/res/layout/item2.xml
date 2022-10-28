@@ -11,7 +11,11 @@
         >
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/Chat_Username"
+=======
+            android:id="@+id/nameView"
+>>>>>>> 6cac21966cd49259be7fa4ed05f33fcf505bc861
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
@@ -47,7 +51,11 @@
                 android:background="@drawable/bg_gis_result_items2_count"/>
 
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/time"
+=======
+                android:id="@+id/timeView"
+>>>>>>> 6cac21966cd49259be7fa4ed05f33fcf505bc861
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

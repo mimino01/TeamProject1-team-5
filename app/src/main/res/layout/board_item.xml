@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#D9D9D9"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="체리"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/Usersex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/Userdestination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강남역"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp">
+        </TextView>
+        <!--Userinfo로 한번에 표시하든지, Username/sex/destination 으로 텍스트뷰를 나눠서 표시하든지-->
+
+    </LinearLayout>
+
+
+</LinearLayout>

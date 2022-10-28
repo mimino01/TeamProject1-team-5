@@ -11,7 +11,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
@@ -21,80 +21,64 @@
                 android:id="@+id/logintext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="회원가입"
-                android:textColor="@color/purple_200"
-                android:textStyle="bold"
-                android:textSize="25dp"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                style="@style/TITLE_STYLE"/>
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:hint="성함"
+                android:inputType="textPersonName"
+                android:text=""
+                style="@style/EDITTEXT_STYLE"/>
+
+            <EditText
+                android:id="@+id/editID"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:hint="아이디"
+                android:inputType="textPersonName"
+                android:text=""
+                style="@style/EDITTEXT_STYLE"/>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:ems="2"
-                    android:text="이름"
-                    android:textColor="@color/purple_200"
-                    android:textSize="30dp"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/editName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="left"
-                    android:ems="10"
-                    android:hint="이름"
-                    android:inputType="textPersonName"
-                    android:text="" />
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/editPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:hint="비밀번호"
+                        android:inputType="textPassword"
+                        android:text=""
+                        style="@style/EDITTEXT_STYLE"/>
 
-            <EditText
-                android:id="@+id/editID"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="left"
-                android:ems="10"
-                android:hint="아이디"
-                android:inputType="textPersonName"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/editPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="left"
-                android:ems="10"
-                android:hint="비밀번호"
-                android:inputType="textPassword"
-                android:text="" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/editReviewPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="left"
-                    android:ems="10"
-                    android:hint="비밀번호 재입력"
-                    android:inputType="textPassword"
-                    android:text="" />
+                    <EditText
+                        android:id="@+id/editReviewPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:hint="비밀번호 재입력"
+                        android:inputType="textPassword"
+                        android:text=""
+                        style="@style/EDITTEXT_STYLE"/>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/buttonCheckPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_margin="10px"
                     android:text="비밀번호 확인"/>
             </LinearLayout>
 
@@ -123,12 +107,10 @@
                 android:id="@+id/editPhoneNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="left"
-                android:ems="10"
                 android:hint="전화번호"
                 android:inputType="phone"
-                android:text="" />
+                android:text=""
+                style="@style/EDITTEXT_STYLE"/>
 
             <Button
                 android:id="@+id/buttonSubmit"
@@ -136,8 +118,8 @@
                 android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="left"
-                android:ems="10"
-                android:text="완료"/>
+                android:text="완료"
+                style="@style/BUTTEN_STYLE"/>
 
         </LinearLayout>
     </ScrollView>

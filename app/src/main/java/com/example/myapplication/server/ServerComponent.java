@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class ServerComponent extends Thread{
@@ -18,10 +19,15 @@ public class ServerComponent extends Thread{
     String host;
     String[] data;
     Object res;
+    Socket socket = new Socket();
 
     public ServerComponent(String host, String[] data) {
         this.host = host;
         this.data = data;
+    }
+
+    public ServerComponent(String host) {
+        this.host = host;
     }
 
     public ServerComponent() {
@@ -73,15 +79,16 @@ public class ServerComponent extends Thread{
     @Override
     public void run() {
         try {
-            int port = 5555;
-            Socket socket = new Socket(host, port);
+            int port = 8001;
+            socket = new Socket(host, port);
             ObjectOutputStream outstream = new ObjectOutputStream(socket.getOutputStream());
             outstream.writeObject(data);
             outstream.flush();
 
             ObjectInputStream instream = new ObjectInputStream(socket.getInputStream());
             res = instream.readObject();
-            Log.i(TAG, "run: " + res.toString());
+            sleep(100);
+            Log.i(TAG, "run: " + Arrays.deepToString((String[][]) res));
 
             socket.close();
         } catch (UnknownHostException e) {
@@ -89,6 +96,8 @@ public class ServerComponent extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

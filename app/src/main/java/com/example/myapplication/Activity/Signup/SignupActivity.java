@@ -1,7 +1,9 @@
-package com.example.myapplication.Activity;
+package com.example.myapplication.Activity.Signup;
 
+import static java.lang.Thread.sleep;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -9,23 +11,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Activity.Signin.LoginActivity;
 import com.example.myapplication.R;
-
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.ArrayList;
+import com.example.myapplication.server.ServerComponent;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     EditText password, reviewPassword, name, id, phoneNumber;
+    ServerComponent server;
     RadioGroup gender_group;
     boolean gender;
     Button checker, submit;
     String correct;
-    String response;
-    ArrayList userdata = new ArrayList();
+    String[] data = new String[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,6 @@ public class SignupActivity extends AppCompatActivity {
         submit = findViewById(R.id.buttonSubmit);
         phoneNumber = findViewById(R.id.editPhoneNumber);
         correct = "일치";
-        Bundle bundle = new Bundle();
-
 
         checker.setOnClickListener(view -> {
             if (password.getText().toString().equals(reviewPassword.getText().toString())) {
@@ -78,15 +74,27 @@ public class SignupActivity extends AppCompatActivity {
             } else if (checker.getText().toString().equals(correct)) {
 
                 //배열화
-                userdata.add(0, phoneNumber.getText().toString());
-                userdata.add(1, name.getText().toString());
-                userdata.add(2, id.getText().toString());
-                userdata.add(3, password.getText().toString());
+                data[0] = "signup";
+                data[1] = name.getText().toString();
+                data[2] = phoneNumber.getText().toString();
+                data[3] = id.getText().toString();
+                data[4] = password.getText().toString();
                 if (gender) {
-                    userdata.add(4, "man");
+                    data[5] = "man";
                 } else {
-                    userdata.add(4, "woman");
+                    data[5] = "woman";
                 }
+
+                //배열리스트화
+//                userdata.add(0, phoneNumber.getText().toString());
+//                userdata.add(1, name.getText().toString());
+//                userdata.add(2, id.getText().toString());
+//                userdata.add(3, password.getText().toString());
+//                if (gender) {
+//                    userdata.add(4, "man");
+//                } else {
+//                    userdata.add(4, "woman");
+//                }
 
                 //번들화
 //                bundle.putInt("PhoneNumber", Integer.parseInt(phoneNumber.getText().toString()));
@@ -94,43 +102,26 @@ public class SignupActivity extends AppCompatActivity {
 //                bundle.putString("ID", id.getText().toString());
 //                bundle.putString("Password", password.getText().toString());
 //                bundle.putBoolean("Gender", gender);
-                Toast.makeText(getApplicationContext(), "회원가입 성공",Toast.LENGTH_LONG).show();
-            }
 
-            String addr = "192.168.0.6";
-            SocketTread thread = new SocketTread(addr, userdata);
-            thread.start();
+                //데이터 송신
+                server = new ServerComponent(server.getServerIp(), data);
+                server.start();
+
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //데이터 수신
+                if ((boolean) server.getRes()) {
+                    Toast.makeText(getApplicationContext(), "회원가입 성공", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_LONG).show();
+                }
+            }
         });
-    }
-
-    class SocketTread extends Thread{
-        String host;
-        ArrayList data;
-
-        public SocketTread(String host, ArrayList data) {
-            this.host = host;
-            this.data = data;
-        }
-
-        @Override
-        public void run() {
-
-            try {
-                int port = 5555;
-                Socket socket = new Socket(host, port);
-                ObjectOutputStream outstream = new ObjectOutputStream(socket.getOutputStream());
-                outstream.writeObject(data);
-                outstream.flush();
-
-                ObjectInputStream instream = new ObjectInputStream(socket.getInputStream());
-                response = (String) instream.readObject();
-
-                socket.close();
-                data.clear();
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

@@ -1,8 +1,6 @@
-package com.example.myapplication.Activity;
+package com.example.myapplication.Activity.Signin;
 
 import static android.content.ContentValues.TAG;
-
-import static androidx.core.content.PackageManagerCompat.LOG_TAG;
 
 import static java.lang.Thread.sleep;
 
@@ -15,10 +13,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Activity.Chat.ChatActivity;
+import com.example.myapplication.Activity.Signup.SignupActivity;
+import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
-import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LoginActivity extends AppCompatActivity {
     TextView  login, logup;
@@ -46,8 +48,12 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
+
+
             login.setOnClickListener(view -> {
-                data[0] = "login";
+
+                //로그인 구현 완료
+                data[0] = "signin";
                 data[1] = id.getText().toString();
                 data[2] = password.getText().toString();
                 server = new ServerComponent(server.getServerIp(),data);
@@ -58,9 +64,13 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.i(TAG, "login: " + server.getRes());
-                if ((boolean) server.getRes()) {
+                String[][] temp = (String[][]) server.getRes();
+                Log.i(TAG, "login: " + temp[0][0]);
+                if (temp[0][0].equals("true")) {
                     Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, TempBoardActivity.class);
+                    intent.putExtra("userid", data[1]);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
                 }
