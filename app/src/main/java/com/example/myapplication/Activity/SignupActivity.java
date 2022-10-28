@@ -11,6 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     EditText password, reviewPassword, name, id, phoneNumber;
@@ -18,6 +24,8 @@ public class SignupActivity extends AppCompatActivity {
     boolean gender;
     Button checker, submit;
     String correct;
+    String response;
+    ArrayList userdata = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +76,61 @@ public class SignupActivity extends AppCompatActivity {
             } else if (11 != phoneNumber.getText().toString().length()) {
                 Toast.makeText(getApplicationContext(), "전화번호는 - 없이 적어주세요",Toast.LENGTH_LONG).show();
             } else if (checker.getText().toString().equals(correct)) {
-                bundle.putInt("PhoneNumber", Integer.parseInt(phoneNumber.getText().toString()));
-                bundle.putString("Name", name.getText().toString());
-                bundle.putString("ID", id.getText().toString());
-                bundle.putString("Password", password.getText().toString());
-                bundle.putBoolean("Gender", gender);
+
+                //배열화
+                userdata.add(0, phoneNumber.getText().toString());
+                userdata.add(1, name.getText().toString());
+                userdata.add(2, id.getText().toString());
+                userdata.add(3, password.getText().toString());
+                if (gender) {
+                    userdata.add(4, "man");
+                } else {
+                    userdata.add(4, "woman");
+                }
+
+                //번들화
+//                bundle.putInt("PhoneNumber", Integer.parseInt(phoneNumber.getText().toString()));
+//                bundle.putString("Name", name.getText().toString());
+//                bundle.putString("ID", id.getText().toString());
+//                bundle.putString("Password", password.getText().toString());
+//                bundle.putBoolean("Gender", gender);
                 Toast.makeText(getApplicationContext(), "회원가입 성공",Toast.LENGTH_LONG).show();
             }
+
+            String addr = "192.168.0.6";
+            SocketTread thread = new SocketTread(addr, userdata);
+            thread.start();
         });
+    }
+
+    class SocketTread extends Thread{
+        String host;
+        ArrayList data;
+
+        public SocketTread(String host, ArrayList data) {
+            this.host = host;
+            this.data = data;
+        }
+
+        @Override
+        public void run() {
+
+            try {
+                int port = 5555;
+                Socket socket = new Socket(host, port);
+                ObjectOutputStream outstream = new ObjectOutputStream(socket.getOutputStream());
+                outstream.writeObject(data);
+                outstream.flush();
+
+                ObjectInputStream instream = new ObjectInputStream(socket.getInputStream());
+                response = (String) instream.readObject();
+
+                socket.close();
+                data.clear();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
