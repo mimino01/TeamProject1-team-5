@@ -7,13 +7,17 @@ public class ChatRoom {
 	final int MAX_CHATTING_LOG = 10;
 	final int MAX_USER = 4;
 	String user[] = new String[MAX_USER];
-	int roomId = 0;
+	int roomId = -1;
 	int lastChatNumber = 0;
 	String[] chatInfo = new String[MAX_CHATTING_LOG];
 	String[][] chatLog = new String[MAX_CHATTING_ROOM][MAX_CHATTING_LOG];
 	
 	public ChatRoom (int roomId) {
 		this.roomId = roomId;
+	}
+	
+	public ChatRoom () {
+		
 	}
 	
 	public boolean addUser(String id) {
@@ -32,16 +36,7 @@ public class ChatRoom {
 		chatInfo[2] = chat;
 		chatLog[lastChatNumber] = chatInfo.clone();
 		lastChatNumber++;
-		return false;
-	}
-	
-	public boolean isThere(String id) {
-		for (int i = 0; i < MAX_USER; i++) {
-			if (user[i] == id) {
-				return true;
-			}			
-		}
-		return false;
+		return true;
 	}
 	
 	//getter setter
@@ -55,5 +50,9 @@ public class ChatRoom {
 
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
+	}
+	
+	public String[] getUser() {
+		return user;
 	}
 }

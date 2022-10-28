@@ -52,6 +52,7 @@ public class Saver {
 		String key = data[1];
 		switch (key) {
 		case "create":
+			System.out.println("processing chat in create");
 			if (room.createRoom(data[2])) {
 				result[0][0] = Boolean.toString(true);
 				return result;
@@ -59,14 +60,16 @@ public class Saver {
 			break;
 			
 		case "addChat":
-			if (room.addData(lastUserNumber, hash.get(key), data[3])) {
+			System.out.println("processing chat in add");
+			if (room.addData(room.findRoomNumberByUserId(data[2]), hash.get(data[2]), data[3])) {
 				result[0][0] = Boolean.toString(true);
 				return result;
 			}
 			break;
 			
 		case "loadChat":
-			return room.getChatData(lastUserNumber);
+			System.out.println("processing chat in load");
+			return room.getChatData(room.findRoomNumberByUserId(data[2]));
 			
 		default:
 			break;
