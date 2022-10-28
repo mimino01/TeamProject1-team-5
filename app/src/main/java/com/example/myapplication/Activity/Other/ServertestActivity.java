@@ -35,16 +35,28 @@ public class ServertestActivity extends AppCompatActivity {
         data[1] = "adminid";
 
         btn.setOnClickListener(view -> {
-            server = new ServerComponent(server.getServerIp(),data);
-            server.start();
             try {
-                Thread.sleep(100);
+                server = new ServerComponent(server.getServerIp(),data);
+                server.start();
+
+                Thread.sleep(1000);
+
+                String[][] resData = (String[][]) server.getRes();
+                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - server request data: " + Arrays.deepToString(resData));
+
+                data[0] = "chat";
+                data[1] = "create";
+                data[2] = "adminid";
+                server = new ServerComponent(server.getServerIp(),data);
+                server.start();
+
+                Thread.sleep(1000);
+
+                resData = (String[][]) server.getRes();
+                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - chatting room create: " + Arrays.deepToString(resData));
             } catch (InterruptedException e) {
 
             }
-            String[][] resData = (String[][]) server.getRes();
-
-            Log.i(TAG, "ServertestActivity.btn.setOnClickListener - server request data: " + Arrays.deepToString(resData));
         });
     }
 }

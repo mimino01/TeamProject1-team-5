@@ -47,7 +47,7 @@ public class Saver {
 	}
 	
 	public static String[][] chating(Object obj) {
-		String[][] result = null;
+		String[][] result = new String[10][10];
 		String[] data = (String[]) obj;
 		String key = data[1];
 		switch (key) {

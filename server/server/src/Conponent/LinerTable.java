@@ -9,8 +9,8 @@ public class LinerTable {
 	
 	public boolean createRoom(String id) {
 		for (int i = 0; i < room.length; i++) {
-			if (this.findRoomNumberByRoomId(i) == -1) {
-				room[i].CreateChatRoom(i);
+			if (room[i] == null) {
+				room[i] = new ChatRoom(i);
 				room[i].addUser(id);
 				return true;
 			}
