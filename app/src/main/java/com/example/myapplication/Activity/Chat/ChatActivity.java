@@ -28,8 +28,8 @@ public class ChatActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     TextView Info;
     ServerComponent server;
-    String userid = null, roomNumber;
-    String[] sended_data = new String[5];
+    String userid = null, roomNumber, createOrJoin;
+    String[] sendedData = new String[5],createData = new String[5];;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,17 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         Intent getIntent = getIntent();
+        createOrJoin = getIntent.getStringExtra("createOrJoin");
         userid = getIntent.getStringExtra("userid");
         roomNumber = getIntent.getStringExtra("roomid");
 
-        server.setData(new String[]{"chatting", "create", userid});
+        if (createOrJoin == "create") {
+            createData[0] = "chat";
+            createData[1] = "create";
+            createData[2] = userid;
+            server = new ServerComponent(server.getServerIp(),createData);
+            server.start();
+        }
 
             // 메인으로 이동
 
@@ -94,13 +101,13 @@ public class ChatActivity extends AppCompatActivity {
                     recyclerView.setAdapter(chatAdapter);
                     chatAdapter.notifyDataSetChanged();
 
-                    sended_data[0] = "chat";
-                    sended_data[1] = "addChat";
-                    sended_data[2] = userid;
-                    sended_data[3] = text1;
-                    sended_data[4] = roomNumber;
+                    sendedData[0] = "chat";
+                    sendedData[1] = "addChat";
+                    sendedData[2] = userid;
+                    sendedData[3] = text1;
 
-                    server = new ServerComponent(server.getServerIp(), sended_data); 
+                    server = new ServerComponent(server.getServerIp(), sendedData);
+                    server.start();
                 }
             });
         }

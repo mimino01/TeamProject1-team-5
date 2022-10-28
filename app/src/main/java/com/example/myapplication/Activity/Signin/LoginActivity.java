@@ -59,8 +59,9 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.i(TAG, "login: " + server.getRes());
-                if ((boolean) server.getRes()) {
+                String[][] temp = (String[][]) server.getRes();
+                Log.i(TAG, "login: " + temp[0][0]);
+                if (temp[0][0].equals("true")) {
                     Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, TempBoardActivity.class);
                     intent.putExtra("userid", data[1]);

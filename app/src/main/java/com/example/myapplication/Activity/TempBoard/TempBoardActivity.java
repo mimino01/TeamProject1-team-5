@@ -35,6 +35,7 @@ public class TempBoardActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ChatActivity.class);
             intent.putExtra("userid", userid);
             intent.putExtra("roomCode", roomid);
+            intent.putExtra("createOrJoin", "create");
             startActivity(intent);
         });
     }
