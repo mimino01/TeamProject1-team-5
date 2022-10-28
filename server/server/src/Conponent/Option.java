@@ -6,6 +6,7 @@ public class Option {
 	String id;
 	String password;
 	String gender;
+	ReviewItem[] review = new ReviewItem[10];
 	
 	public Option () {
 		
@@ -25,6 +26,30 @@ public class Option {
 		this.gender = option.getGender();
 		this.id = option.getId();
 		this.password = option.getPassword();
+	}
+	
+	public boolean addReview (ReviewItem review) {
+		for (int i = 0; i < this.review.length; i++) {
+			this.review[i] = review;
+			return true;
+		}
+		return false;
+	}
+	
+	public void setReview (ReviewItem[] review) {
+		this.review = review;
+	}
+	
+	public ReviewItem[] getReview () {
+		return review;
+	}
+	
+	public String[][] getReviewToString () {
+		String[][] data = new String[review.length][5];
+		for (int i = 0; i < review.length; i++) {
+			data[i] = review[i].toStringArray();
+		}
+		return data;
 	}
 
 	public String getName() {

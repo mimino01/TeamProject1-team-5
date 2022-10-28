@@ -44,16 +44,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textView;
+        TextView dataView;
         TextView timeView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.textView);
-            timeView = itemView.findViewById(R.id.time);
+            dataView = itemView.findViewById(R.id.textView);
+            timeView = itemView.findViewById(R.id.timeView);
         }
         void onBind(ChatClass data){
-            textView.setText(data.getChat());
+            dataView.setText(data.getChat());
             timeView.setText(data.getTime());
         }
     }

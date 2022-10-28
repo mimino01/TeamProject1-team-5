@@ -19,6 +19,9 @@ import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class LoginActivity extends AppCompatActivity {
     TextView  login, logup;
     EditText id, password;
@@ -44,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, SignupActivity.class);
                 startActivity(intent);
             });
+
+
 
             login.setOnClickListener(view -> {
 

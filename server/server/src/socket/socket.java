@@ -52,6 +52,11 @@ public class socket {
 					success = process.chating(res);
 					break;
 					
+				case "review":
+					System.out.println("processing review");
+					success = process.review(res);
+					break;
+					
 				case "req_userdata":
 					System.out.println("processing requist userdata");
 					success[0] = process.reqUserdata(res);

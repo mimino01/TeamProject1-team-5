@@ -2,6 +2,7 @@ package socket;
 
 import java.util.Arrays;
 import Conponent.Option;
+import Conponent.ReviewItem;
 import Conponent.HashTable;
 import Conponent.LinerTable;
 
@@ -76,6 +77,31 @@ public class Saver {
 		}
 		result[0][0] = Boolean.toString(false);
 		return result;
+	}
+	
+	public static String[][] review(Object obj) {
+		String[] res = (String[]) obj;
+		String key = res[1];
+		Option user = new Option();
+		ReviewItem review = new ReviewItem();
+		switch (key) {
+		case "addReview":
+			user = hash.get(key);
+			review = new ReviewItem(Float.parseFloat(res[3]), res[4]);
+			user.addReview(review);
+			hash.put(key, user);
+			String[][] temp = new String[1][1];
+			temp[0][0] = "true";
+			return temp;
+		case "loadReview":
+			return hash.get(key).getReviewToString();				
+			
+		default:
+			break;
+		}
+		String[][] temp = new String[1][1];
+		temp[0][0] = "false";
+		return temp;
 	}
 }
 	

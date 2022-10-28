@@ -11,7 +11,7 @@
         >
 
         <TextView
-            android:id="@+id/Chat_Username"
+            android:id="@+id/nameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
@@ -47,7 +47,7 @@
                 android:background="@drawable/bg_gis_result_items2_count"/>
 
             <TextView
-                android:id="@+id/time"
+                android:id="@+id/timeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

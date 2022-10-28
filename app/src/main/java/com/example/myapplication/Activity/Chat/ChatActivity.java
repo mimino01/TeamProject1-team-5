@@ -16,7 +16,6 @@ import com.example.myapplication.Activity.Signin.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,7 +47,6 @@ public class ChatActivity extends AppCompatActivity {
             server = new ServerComponent(server.getServerIp(),createData);
             server.start();
         }
-
             // 메인으로 이동
 
         /*Button button_Borad=(Button)findViewById(R.id.Button_Board);    // 보드로 이동
