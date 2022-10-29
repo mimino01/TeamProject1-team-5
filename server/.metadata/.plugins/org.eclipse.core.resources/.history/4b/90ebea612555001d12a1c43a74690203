@@ -1,0 +1,16 @@
+package Conponent;
+
+public class ChatRoom {
+	static int roomId;
+	static String[] chatInfo;
+	static String[][] chatLog;
+	
+	public static void main(String[] args) {
+		chatInfo[0] = "id";
+		chatInfo[1] = "description";
+		chatInfo[2] = "time";
+		
+		chatLog[0] = chatInfo.clone();
+		System.out.println(chatLog.toString());
+	}
+}

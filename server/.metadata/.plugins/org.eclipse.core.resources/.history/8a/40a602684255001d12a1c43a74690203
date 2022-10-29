@@ -1,0 +1,36 @@
+package Conponent;
+
+import java.util.Arrays;
+
+public class ChatRoom {
+	final int MAX_CHATTING_ROOM = 100;
+	final int MAX_CHATTING_LOG = 10;
+	int roomId;
+	int lastChatNumber;
+	String[] chatInfo = new String[MAX_CHATTING_LOG];
+	String[][] chatLog = new String[MAX_CHATTING_ROOM][MAX_CHATTING_LOG];
+	
+	public ChatRoom () {
+		
+	}
+	
+	public boolean add(Option op, String chat) {
+		chatInfo[0] = op.getId();
+		chatInfo[1] = op.getName();
+		chatInfo[2] = chat;
+		chatLog[lastChatNumber] = chatInfo.clone();
+		lastChatNumber++;
+		return false;
+	}
+	
+	//getter setter
+	public int getRoomId() {
+		return roomId;
+	}
+
+
+
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
+}

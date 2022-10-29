@@ -1,0 +1,30 @@
+package 과제정리;
+
+public class h6 {
+	public static int SA(int[][] A, int i, int j) {
+		if (i == 0 || j == 0) {
+			return 0;
+		} else {
+			return max(SA(A, i-1, j),SA(A, i, j-1)) + A[i][j];
+		}
+	}
+	
+	public static int max(int a, int b) {
+		if (a < b) {
+			return b;
+		} else {
+			return a;
+		}
+	}
+	
+	public static void main(String[] args) {
+		int[][] a = new int[10][10];
+		
+		a[1][1] = 1;
+		a[1][2] = 2;
+		a[2][1] = 4;
+		a[2][2] = 1;
+		
+		System.out.println(SA(a,2,2));
+	}
+}

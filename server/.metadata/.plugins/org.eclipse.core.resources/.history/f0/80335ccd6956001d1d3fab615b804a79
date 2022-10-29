@@ -1,0 +1,53 @@
+package Conponent;
+
+public class LinerTable {
+	ChatRoom[] room;
+	
+	public LinerTable(int size) {
+		room = new ChatRoom[size];
+		for (int i = 0; i < size; i++) {
+			room[i] = new ChatRoom(i);
+		}
+	}
+	
+	public boolean createRoom(String id) {
+		for (int i = 0; i < room.length; i++) {
+			if (room[i] == null) {
+				room[i].addUser(id);
+				return true;
+			}
+		}		
+		return false;
+	}
+	
+	public boolean addData(int roomId, Option op, String data) {
+		return room[roomId].addChat(op, data);
+	}
+	
+	public int findRoomNumberByUserId(String id) {
+		for (int i = 0; i < room.length; i++) {
+			if (room[i].isThere(id)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public int findRoomNumberByRoomId(int id) {
+		for (int i = 0; i < room.length; i++) {
+			if (room[i].getRoomId() == id) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public String[][] getChatData (int roomId) {
+		if (roomId == -1) {
+			String[][] error = new String[1][1];
+			error[0][0] = Boolean.toString(false);
+			return error;
+		}
+		return room[roomId].getChatLog();		
+	}
+}

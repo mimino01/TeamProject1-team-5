@@ -1,0 +1,40 @@
+package 과제정리;
+
+import java.util.Arrays;
+
+public class h7 {
+	static int[] Save = new int[10];
+	
+	public static int AA(int[] P,int[] C, int k) {
+		if (k != 1) {			
+			int[] A = new int[P.length];
+			if (Save[k] == 0) {
+				for (int i = 0; i < k; i++) {
+					System.out.println("loof" + Arrays.toString(Save) + i);
+					A[i] = AA(P, C, i+1) + AA(P, C, k-i-1) - C[k+1];
+				}
+				Save[k] = max(A);
+			}
+		} else {
+			Save[1] = P[1];
+		}
+		return Save[k];
+	}
+	
+	public static int max(int[] A) {
+		int result = 0;
+		for (int i = 0; i < A.length; i++) {
+			if (result < A[i]) {
+				result = A[i];
+			}
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		int[] P = {3,4,8,9};
+		int[] C = {1,2,1,0};
+		
+		System.out.println(AA(P,C,4));
+	}
+}
