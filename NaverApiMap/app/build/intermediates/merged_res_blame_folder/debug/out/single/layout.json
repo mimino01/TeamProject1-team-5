@@ -1,0 +1,54 @@
+[
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\fragment_first.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\fragment_first.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\item.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\item.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\activity_loding.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_loding.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\item2.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\item2.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\activity_review.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_review.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\activity_signup.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_signup.xml"
+    },
+    {
+        "merged": "com.example.naverapimap.app-mergeDebugResources-42:/layout/activity_review.xml",
+        "source": "com.example.naverapimap.app-main-45:/layout/activity_review.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\content_main.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\content_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\fragment_second.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\fragment_second.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\activity_chat.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_chat.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-mergeDebugResources-42:\\layout\\activity_server.xml",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_server.xml"
+    }
+]

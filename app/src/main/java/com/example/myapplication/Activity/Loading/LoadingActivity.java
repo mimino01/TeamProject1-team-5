@@ -9,8 +9,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication.Activity.Board.BoardActivity;
 import com.example.myapplication.Activity.Board.BoardAddActivity;
 import com.example.myapplication.Activity.Other.ServertestActivity;
 import com.example.myapplication.Activity.Signin.LoginActivity;

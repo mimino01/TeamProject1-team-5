@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B0C2FF"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/R_TextView_Title"
+            android:layout_width="108dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="같이 탈래요?"
+            android:textColor="#FFFFFF"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/Button_Main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#B0C2FF"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Main"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/Button_Board"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#B0C2FF"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Board"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/Button_Chat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#B0C2FF"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Chat"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <fragment
+            android:id="@+id/map_view"
+            android:name="com.naver.maps.map.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/board_sort_button"
+                    android:layout_width="61dp"
+                    android:layout_height="57dp"
+                    android:layout_margin="5dp"
+                    android:background="#F9CB54"
+                    android:text="정렬"
+                    android:textColor="#050505"
+                    android:textSize="20sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="448dp" />
+
+                <EditText
+                    android:id="@+id/board_searchview"
+                    android:layout_width="300dp"
+                    android:layout_height="57dp"
+                    android:layout_margin="5dp"
+                    android:hint="목적지를 검색하세요."
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/button2"
+                    app:layout_constraintTop_toBottomOf="@+id/button"/>
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/board_listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+
+                ></ListView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
