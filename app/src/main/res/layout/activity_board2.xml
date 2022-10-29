@@ -122,15 +122,15 @@
                     tools:layout_editor_absoluteY="448dp" />
 
                 <Button
-                    android:id="@+id/button_near_sort"
+                    android:id="@+id/button_point_sort2"
                     android:layout_width="80dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:background="#F9CB54"
-                    android:text="목적지순"
+                    android:text="매너점수순"
                     android:textColor="#050505"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="448dp" />
 

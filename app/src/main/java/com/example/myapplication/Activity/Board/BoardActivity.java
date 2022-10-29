@@ -34,13 +34,16 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     private MapView mapView;
     private static NaverMap naverMap;
     private Marker marker1,marker2,marker3;;
-    int [] timeArray;
+    long [] timeArray;
+    long[] copy_timeArray;
+    double[] pointArray;
+    double[] copy_pointArray;
 
     Button btn1,btn2,btn3;
     Object[] Object_res;
     String[][][] String_res;
     public String[][] sending =
-            {{"marking","박휘건", "남", "기흥역", "0930", "3"},
+            {{"marking","박휘건", "남", "기흥역", "0930", "5"},
             {"marking","홍길동", "남", "영통역", "0830", "4"},
             {"marking","가나다", "여", "명지대역", "1000", "4.5"}};
     String[] btn_texts;
@@ -56,7 +59,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     Button New_Sort_button;
     Button Old_Sort_button;
     Button Time_Sort_button;
-    Button Des_Sort_button;
+    Button Point_sort_button;
     ArrayList<BoardClass> boardArrayList;
     ArrayList<BoardClass> copy_array;
     SearchAdapter searchAdapter;
@@ -120,7 +123,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        Button button_board = (Button) findViewById(R.id.Button_Board);    // 보드로 이동
+        Button button_board = (Button) findViewById(R.id.Button_Board);    // 보드로 이동버튼
         button_board.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,7 +132,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-        Button button_chat = (Button) findViewById(R.id.Button_Chat);    // 채팅으로 이동
+        Button button_chat = (Button) findViewById(R.id.Button_Chat);    // 채팅으로 이동버튼
         button_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,26 +178,61 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         });
 
         quickClass = new QuickClass();
-        timeArray = new int[boardArrayList.size()];
+        timeArray = new long[boardArrayList.size()];
         for(int i=0; i<boardArrayList.size();i++){
-            timeArray[i] = (int)boardArrayList.get(i).getTime();
+            timeArray[i] = (long)boardArrayList.get(i).getTime();
+        }
+
+        copy_timeArray = new long[boardArrayList.size()];
+        for(int i=0; i<boardArrayList.size();i++){
+            copy_timeArray[i] = (long)boardArrayList.get(i).getTime();
         }
 
         Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 오래된 정렬
         Time_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                quickClass.sort(timeArray);
-                boardArrayList.add(new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
-                boardArrayList.add(new BoardClass("뚜비", "남", "서초역", 830, 4.0));
-                boardArrayList.add(new BoardClass("나나", "여", "명지대역", 1000, 4.5));
-                boardArrayList.add(new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
-                boardArrayList.add(new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
+                quickClass.long_sort(copy_timeArray);
+                boardArrayList.clear();
+                for(int i=0; i < timeArray.length ;i++) {
+                    for (int j = 0; j < timeArray.length; j++) {
+                        if (copy_timeArray[i] == timeArray[j]){
+                            boardArrayList.add(new BoardClass(sending[j][1], sending[j][2], sending[j][3], Long.parseLong(sending[j][4]), Double.parseDouble(sending[j][5])));
+                        }
+                    }
+                }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
         });
 
+        pointArray = new double[boardArrayList.size()];
+        for(int i=0; i<boardArrayList.size();i++){
+            pointArray[i] = (double)boardArrayList.get(i).getManner_point();
+        }
+
+        copy_pointArray = new double[boardArrayList.size()];
+        for(int i=0; i<boardArrayList.size();i++){
+            copy_pointArray[i] = (double) boardArrayList.get(i).getManner_point();
+        }
+
+        Point_sort_button =(Button)findViewById(R.id.button_point_sort2);     // 오래된 정렬
+        Point_sort_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quickClass.double_sort(copy_pointArray);
+                boardArrayList.clear();
+                for(int i=0; i < pointArray.length ;i++) {
+                    for (int j = 0; j < pointArray.length; j++) {
+                        if (copy_pointArray[i] == pointArray[j]){
+                            boardArrayList.add(new BoardClass(sending[j][1], sending[j][2], sending[j][3], Long.parseLong(sending[j][4]), Double.parseDouble(sending[j][5])));
+                        }
+                    }
+                }
+                boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
+                listView.setAdapter(boardAdapter);
+            }
+        });
 
         // 검색을 위해서 리스트의 모든 데이터를 copy_array에 복사한다.
         copy_array = new ArrayList<BoardClass>();

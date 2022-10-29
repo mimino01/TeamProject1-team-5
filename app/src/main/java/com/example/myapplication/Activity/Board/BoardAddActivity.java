@@ -32,6 +32,7 @@ public class BoardAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board_add);
 
         try {
+
             Button button_main = (Button) findViewById(R.id.Button_Main);    // 메인으로 이동
             button_main.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -45,7 +46,7 @@ public class BoardAddActivity extends AppCompatActivity {
             button_chat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
                     startActivity(intent);
                 }
             });
