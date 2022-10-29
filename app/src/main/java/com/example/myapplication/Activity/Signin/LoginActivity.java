@@ -13,14 +13,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.Activity.Chat.ChatActivity;
-import com.example.myapplication.Activity.Signup.SignupActivity;
+import com.example.myapplication.Activity.Other.Signup.SignupActivity;
 import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class LoginActivity extends AppCompatActivity {
     TextView  login, logup;
