@@ -39,9 +39,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     Button btn1,btn2,btn3;
     Object[] Object_res;
     String[][][] String_res;
-    String[][] sending = {{"marking","박휘건", "남", "기흥역", "09:30", "3점"},
-            {"marking","홍길동", "남", "영통역", "08:30", "4점"},
-            {"marking","가나다", "여", "명지대역", "10:00", "4.5점"}};
+    public String[][] sending =
+            {{"marking","박휘건", "남", "기흥역", "0930", "3"},
+            {"marking","홍길동", "남", "영통역", "0830", "4"},
+            {"marking","가나다", "여", "명지대역", "1000", "4.5"}};
     String[] btn_texts;
     String[][] abc;
     EditText edt;
@@ -137,15 +138,13 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-        listView = (ListView) findViewById(R.id.board_listView);
+        listView = (ListView)findViewById(R.id.board_listView);
 
         boardArrayList = new ArrayList<BoardClass>();
-        boardArrayList.add(new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
-        boardArrayList.add(new BoardClass("뚜비", "남", "서초역", 830, 4.0));
-        boardArrayList.add(new BoardClass("나나", "여", "명지대역", 1000, 4.5));
-        boardArrayList.add(new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
-        boardArrayList.add(new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
 
+        for(int i=0; i < sending.length ;i++) {
+                boardArrayList.add(new BoardClass(sending[i][1], sending[i][2], sending[i][3], Long.parseLong(sending[i][4]), Double.parseDouble(sending[i][5])));
+            }
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
 
@@ -154,11 +153,9 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
                 boardArrayList.clear();
-                boardArrayList.add(0,new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
-                boardArrayList.add(0,new BoardClass("뚜비", "남", "서초역", 830, 4.0));
-                boardArrayList.add(0,new BoardClass("나나", "여", "명지대역", 1000, 4.5));
-                boardArrayList.add(0,new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
-                boardArrayList.add(0,new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
+                for(int i=0; i < sending.length ;i++) {
+                    boardArrayList.add(0,new BoardClass(sending[i][1], sending[i][2], sending[i][3], Long.parseLong(sending[i][4]), Double.parseDouble(sending[i][5])));
+                }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
@@ -169,11 +166,9 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
                 boardArrayList.clear();
-                boardArrayList.add(new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
-                boardArrayList.add(new BoardClass("뚜비", "남", "서초역", 830, 4.0));
-                boardArrayList.add(new BoardClass("나나", "여", "명지대역", 1000, 4.5));
-                boardArrayList.add(new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
-                boardArrayList.add(new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
+                for(int i=0; i < sending.length ;i++) {
+                    boardArrayList.add(new BoardClass(sending[i][1], sending[i][2], sending[i][3], Long.parseLong(sending[i][4]), Double.parseDouble(sending[i][5])));
+                }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
@@ -200,28 +195,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-        quickClass = new QuickClass();
-        int[] timeArray = new int[boardArrayList.size()];
-
-        for(int i=0; i<boardArrayList.size();i++){
-            timeArray[i] = (int)boardArrayList.get(i).getTime();
-        }
-
-        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 오래된 정렬
-        Time_Sort_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                quickClass.sort(timeArray);
-                boardArrayList.add(new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
-                boardArrayList.add(new BoardClass("뚜비", "남", "서초역", 830, 4.0));
-                boardArrayList.add(new BoardClass("나나", "여", "명지대역", 1000, 4.5));
-                boardArrayList.add(new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
-                boardArrayList.add(new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
-                boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
-                listView.setAdapter(boardAdapter);
-            }
-        });
-        quickClass.sort(timeArray);
 
         // 검색을 위해서 리스트의 모든 데이터를 copy_array에 복사한다.
         copy_array = new ArrayList<BoardClass>();
@@ -333,7 +306,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                     .setNeutralButton(" chat", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
+                            Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                            startActivity(intent);
                         }
                     })
                     .show();
