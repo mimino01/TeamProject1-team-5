@@ -35,6 +35,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     private static NaverMap naverMap;
     private Marker marker1,marker2,marker3;;
     int [] timeArray;
+
     Button btn1,btn2,btn3;
     Object[] Object_res;
     String[][][] String_res;
@@ -44,7 +45,9 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     String[] btn_texts;
     String[][] abc;
     EditText edt;
+
     ServerComponent[] servers;
+
     ListView listView;
     //ArrayList boardArrayList;
     BoardAdapter boardAdapter;
@@ -99,7 +102,22 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         mapView.getMapAsync(this);
 
 
+        ServerComponent[] servers = new ServerComponent[3];
+        Object_res = new Object[3];
+        String_res = new String[3][][];
+        for(int i=0; i<3; i++){
+            servers[i] = new ServerComponent();
+            servers[i] = new ServerComponent(servers[i].getServerIp(),sending[i]);
+            servers[i].start();
+            Object_res[i] = servers[i].getRes();
+            String_res[i] = (String[][]) Object_res[i];
+        }
 
+        abc = (String[][]) Object_res[0];
+
+        mapView = (MapView) findViewById(R.id.map_view);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
         Button button_board = (Button) findViewById(R.id.Button_Board);    // 보드로 이동
         button_board.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +164,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-        Old_Sort_button=(Button)findViewById(R.id.button_old_sort);     // 오래된 정렬
+        Old_Sort_button = (Button) findViewById(R.id.button_old_sort2);
         Old_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -183,7 +201,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         });
 
         quickClass = new QuickClass();
-        timeArray = new int[boardArrayList.size()];
+        int[] timeArray = new int[boardArrayList.size()];
 
         for(int i=0; i<boardArrayList.size();i++){
             timeArray[i] = (int)boardArrayList.get(i).getTime();
@@ -204,8 +222,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
         quickClass.sort(timeArray);
-
-
 
         // 검색을 위해서 리스트의 모든 데이터를 copy_array에 복사한다.
         copy_array = new ArrayList<BoardClass>();
