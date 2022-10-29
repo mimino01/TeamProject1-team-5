@@ -33,16 +33,10 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-        </activity>
-<<<<<<< HEAD
-
-    </application>
-=======
->>>>>>> 10bfac44efbee08fa33a37dcc37d6aa98d2e74a0
 
     </application>
     <meta-data

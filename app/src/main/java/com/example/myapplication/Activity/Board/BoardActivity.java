@@ -4,18 +4,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-=======
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
->>>>>>> 10bfac44efbee08fa33a37dcc37d6aa98d2e74a0
 
 import com.example.myapplication.Activity.Chat.ChatActivity;
 import com.example.myapplication.R;
@@ -28,15 +25,9 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
-class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener{
+public class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener{
 
     private MapView mapView;
     private static NaverMap naverMap;
@@ -51,16 +42,12 @@ class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Ove
     String[][] abc;
     EditText edt;
     ListView listView;
-    ArrayList boardArrayList;
+    //ArrayList boardArrayList;
     BoardAdapter boardAdapter;
-<<<<<<< HEAD
-    Button Sort_button;
     ArrayList<BoardClass> boardArrayList;
     ArrayList<BoardClass> copy_array;
     SearchAdapter searchAdapter;
     EditText editSearch;
-=======
->>>>>>> 10bfac44efbee08fa33a37dcc37d6aa98d2e74a0
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +101,6 @@ class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Ove
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
 
-<<<<<<< HEAD
         // 검색을 위해서 리스트의 모든 데이터를 copy_array에 복사한다.
         copy_array = new ArrayList<BoardClass>();
         copy_array.addAll(boardArrayList);
@@ -176,7 +162,7 @@ class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Ove
         }
         // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
         searchAdapter.notifyDataSetChanged();
-=======
+
     }
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
@@ -239,6 +225,5 @@ class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Ove
         }
         //Toast.makeText(this.getApplicationContext(), "마커가 선택되었습니다", Toast.LENGTH_LONG).show();
         return true;
->>>>>>> 10bfac44efbee08fa33a37dcc37d6aa98d2e74a0
     }
 }
