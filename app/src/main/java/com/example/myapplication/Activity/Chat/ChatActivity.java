@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Activity.Board.BoardActivity;
+import com.example.myapplication.Activity.Board.BoardAddActivity;
 import com.example.myapplication.Activity.Review.ReviewActivity;
 import com.example.myapplication.Activity.Signin.LoginActivity;
 import com.example.myapplication.R;
@@ -47,16 +49,24 @@ public class ChatActivity extends AppCompatActivity {
             server = new ServerComponent(server.getServerIp(),createData);
             server.start();
         }
-            // 메인으로 이동
 
-        /*Button button_Borad=(Button)findViewById(R.id.Button_Board);    // 보드로 이동
-        button_Borad.setOnClickListener(new View.OnClickListener() {
+        Button button_main = (Button) findViewById(R.id.Button_Main);    // 메인으로 이동
+        button_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button button_board=(Button)findViewById(R.id.Button_Board);    // 보드로 이동
+        button_board.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
             Button button_back = (Button) findViewById(R.id.Button_back);  // 뒤로가기
             button_back.setOnClickListener(new View.OnClickListener() {

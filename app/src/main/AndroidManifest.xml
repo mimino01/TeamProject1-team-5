@@ -23,17 +23,19 @@
         <activity android:name=".Activity.Other.Signup.SignupActivity"/>
         <activity android:name=".Activity.TempBoard.TempBoardActivity"/>
         <activity android:name=".Activity.Other.ServertestActivity"/>
-        <activity android:name=".Activity.Board.BoardAddActivity"/>
-        <!--<activity android:name=".Activity.Board.BoardActivity"/>-->
-        <activity
-            android:name=".Activity.Board.BoardActivity"
-            android:exported="true">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".Activity.Board.BoardActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity android:name=".Activity.Board.BoardAddActivity"/>
+        <activity
+                android:name=".Activity.Loading.LoadingActivity">
+               <!-- android:exported="true"--></activity>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

@@ -1,77 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#B0C2FF"
-        android:orientation="horizontal"
-        android:weightSum="4">
-
-        <TextView
-            android:id="@+id/R_TextView_Title"
-            android:layout_width="108dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="같이 탈래요?"
-            android:textColor="#FFFFFF"
-            android:textSize="17dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/Button_Main"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="#B0C2FF"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:text="Main"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <Button
-            android:id="@+id/Button_Board"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="#B0C2FF"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:text="Board"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <Button
-            android:id="@+id/Button_Chat"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="#B0C2FF"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:text="Chat"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-       <fragment
-            android:id="@+id/map_view"
-            android:name="com.naver.maps.map.MapFragment"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            />
+            android:layout_height="wrap_content"
+            android:background="#B0C2FF"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/TextView_Title"
+                android:layout_width="108dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="같이 탈래요?"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/Button_Main"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#B0C2FF"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="Main"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/Button_Board"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#B0C2FF"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="Board"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/Button_Chat"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#B0C2FF"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="Chat"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            /><!--지도 API 자리 -->
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -85,9 +84,9 @@
                 <Button
                     android:id="@+id/button_new_sort"
                     android:layout_width="80dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
                     android:background="#F9CB54"
                     android:text="최신순"
                     android:textColor="#050505"
@@ -96,11 +95,11 @@
                     tools:layout_editor_absoluteY="448dp" />
 
                 <Button
-                    android:id="@+id/button_old_sort2"
+                    android:id="@+id/button_old_sort"
                     android:layout_width="80dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="#F9CB54"
                     android:text="오래된순"
                     android:textColor="#050505"
@@ -111,9 +110,9 @@
                 <Button
                     android:id="@+id/button_time_sort"
                     android:layout_width="80dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="#F9CB54"
                     android:text="출발시간순"
                     android:textColor="#050505"
@@ -124,9 +123,9 @@
                 <Button
                     android:id="@+id/button_near_sort"
                     android:layout_width="80dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="#F9CB54"
                     android:text="목적지순"
                     android:textColor="#050505"
@@ -152,10 +151,28 @@
                 android:id="@+id/board_listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
 
                 ></ListView>
+
+
+
+
+            <!-- ?>TextView
+                android:id="@+id/text_view"
+                android:layout_width="395dp"
+                android:layout_height="151dp"
+                android:text="TextView"
+                android:textColor="#040303"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="502dp"
+                tools:text="체리/여/강남역\n아몬드/남/잠실역\n레인보우/여/노량진역" /-->
+
+
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

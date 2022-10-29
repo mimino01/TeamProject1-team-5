@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.Activity.Chat.ChatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
+
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.MapView;
@@ -25,6 +26,7 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener{
@@ -32,6 +34,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     private MapView mapView;
     private static NaverMap naverMap;
     private Marker marker1,marker2,marker3;;
+    int [] timeArray;
     Button btn1,btn2,btn3;
     Object[] Object_res;
     String[][][] String_res;
@@ -41,20 +44,27 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     String[] btn_texts;
     String[][] abc;
     EditText edt;
+    ServerComponent[] servers;
     ListView listView;
     //ArrayList boardArrayList;
     BoardAdapter boardAdapter;
+
+    Button New_Sort_button;
+    Button Old_Sort_button;
+    Button Time_Sort_button;
+    Button Des_Sort_button;
     ArrayList<BoardClass> boardArrayList;
     ArrayList<BoardClass> copy_array;
     SearchAdapter searchAdapter;
     EditText editSearch;
+    QuickClass quickClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board2);
 
-        ServerComponent[] servers = new ServerComponent[3];
+        servers = new ServerComponent[3];
         Object_res = new Object[3];
         String_res = new String[3][][];
         for(int i=0; i<3; i++){
@@ -70,6 +80,26 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         mapView = (MapView) findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+        servers = new ServerComponent[3];
+        Object_res = new Object[3];
+        String_res = new String[3][][];
+        for(int i=0; i<3; i++){
+            servers[i] = new ServerComponent();
+            servers[i] = new ServerComponent(servers[i].getServerIp(),sending[i]);
+            servers[i].start();
+            Object_res[i] = servers[i].getRes();
+            String_res[i] = (String[][]) Object_res[i];
+        }
+
+        abc = (String[][]) Object_res[0];
+
+        mapView = (MapView) findViewById(R.id.map_view);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+
+
+
 
         Button button_board = (Button) findViewById(R.id.Button_Board);    // 보드로 이동
         button_board.setOnClickListener(new View.OnClickListener() {
@@ -92,14 +122,90 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         listView = (ListView) findViewById(R.id.board_listView);
 
         boardArrayList = new ArrayList<BoardClass>();
-        boardArrayList.add(new BoardClass("보라돌이", "제목1", "내용1"));
-        boardArrayList.add(new BoardClass("뚜비", "제목2", "내용2"));
-        boardArrayList.add(new BoardClass("나나", "제목3", "내용3"));
-        boardArrayList.add(new BoardClass("뽀", "제목4", "내용4"));
-        boardArrayList.add(new BoardClass("햇님", "제목5", "내용5"));
+        boardArrayList.add(new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
+        boardArrayList.add(new BoardClass("뚜비", "남", "서초역", 830, 4.0));
+        boardArrayList.add(new BoardClass("나나", "여", "명지대역", 1000, 4.5));
+        boardArrayList.add(new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
+        boardArrayList.add(new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
 
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
+
+        New_Sort_button=(Button)findViewById(R.id.button_new_sort);     // 최신순 정렬
+        New_Sort_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boardArrayList.clear();
+                boardArrayList.add(0,new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
+                boardArrayList.add(0,new BoardClass("뚜비", "남", "서초역", 830, 4.0));
+                boardArrayList.add(0,new BoardClass("나나", "여", "명지대역", 1000, 4.5));
+                boardArrayList.add(0,new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
+                boardArrayList.add(0,new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
+                boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
+                listView.setAdapter(boardAdapter);
+            }
+        });
+
+        Old_Sort_button=(Button)findViewById(R.id.button_old_sort);     // 오래된 정렬
+        Old_Sort_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boardArrayList.clear();
+                boardArrayList.add(new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
+                boardArrayList.add(new BoardClass("뚜비", "남", "서초역", 830, 4.0));
+                boardArrayList.add(new BoardClass("나나", "여", "명지대역", 1000, 4.5));
+                boardArrayList.add(new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
+                boardArrayList.add(new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
+                boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
+                listView.setAdapter(boardAdapter);
+            }
+        });
+
+        quickClass = new QuickClass();
+        timeArray = new int[boardArrayList.size()];
+        for(int i=0; i<boardArrayList.size();i++){
+            timeArray[i] = (int)boardArrayList.get(i).getTime();
+        }
+
+        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 오래된 정렬
+        Time_Sort_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quickClass.sort(timeArray);
+                boardArrayList.add(new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
+                boardArrayList.add(new BoardClass("뚜비", "남", "서초역", 830, 4.0));
+                boardArrayList.add(new BoardClass("나나", "여", "명지대역", 1000, 4.5));
+                boardArrayList.add(new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
+                boardArrayList.add(new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
+                boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
+                listView.setAdapter(boardAdapter);
+            }
+        });
+
+        quickClass = new QuickClass();
+        timeArray = new int[boardArrayList.size()];
+
+        for(int i=0; i<boardArrayList.size();i++){
+            timeArray[i] = (int)boardArrayList.get(i).getTime();
+        }
+
+        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 오래된 정렬
+        Time_Sort_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quickClass.sort(timeArray);
+                boardArrayList.add(new BoardClass("보라돌이", "여", "강남역", 930, 3.0));
+                boardArrayList.add(new BoardClass("뚜비", "남", "서초역", 830, 4.0));
+                boardArrayList.add(new BoardClass("나나", "여", "명지대역", 1000, 4.5));
+                boardArrayList.add(new BoardClass("뽀", "남", "명지대입구", 1250, 2.0));
+                boardArrayList.add(new BoardClass("햇님", "남", "동진저수지", 1640, 5.0));
+                boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
+                listView.setAdapter(boardAdapter);
+            }
+        });
+        quickClass.sort(timeArray);
+
+
 
         // 검색을 위해서 리스트의 모든 데이터를 copy_array에 복사한다.
         copy_array = new ArrayList<BoardClass>();
@@ -110,14 +216,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         listView.setAdapter(searchAdapter);
 
         editSearch = (EditText) findViewById(R.id.board_searchview);
-
-       /* Sort_button=(Button)findViewById(R.id.board_sort_button);     // 정렬버튼 누르면
-        Sort_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });*/
 
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
         editSearch.addTextChangedListener(new TextWatcher() {
@@ -138,6 +236,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
     }
+
 
     // 검색을 수행하는 메소드
     public void search(String charText) {
