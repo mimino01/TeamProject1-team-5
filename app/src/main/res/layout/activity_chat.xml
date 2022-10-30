@@ -92,16 +92,17 @@
                 android:layout_gravity="center"
                 android:gravity="center"/>
 
-            <TextView
-                android:id="@+id/TextView_info"
-                android:layout_width="267dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="30dp"/>
+        <TextView
+            android:id="@+id/TextView_info"
+            android:layout_width="267dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="데이터 없음"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
-            <Button
+        <Button
                 android:id="@+id/Button_off"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

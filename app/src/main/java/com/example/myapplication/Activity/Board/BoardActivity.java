@@ -339,15 +339,18 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     @Override
     public boolean onClick(@NonNull Overlay overlay) {
         if (overlay instanceof Marker) {
+            int save = 0;
             String message = "";
             for (int i = 0; i < 4; i++) {
                 if (overlay == markers[i]) {
                 Log.i(TAG, "BoardActivity - make board");
                 message = "이름 : " + markingData[i][1] + "\n성별 : " + markingData[i][2] + "\n목적지 : " + markingData[i][3] +
                         "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5];
+                save = i;
                 }
             }
 
+            int finalSave = save;
             new AlertDialog.Builder(this)
                     .setTitle("마커 정보")
                     .setMessage(message)
@@ -361,6 +364,12 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                            intent.putExtra("userName",markingData[finalSave][2]);
+                            intent.putExtra("userSex",markingData[finalSave][3]);
+                            intent.putExtra("destination",markingData[finalSave][4]);
+                            intent.putExtra("userid", "adminid");
+                            intent.putExtra("roomCode", "0");
+                            intent.putExtra("createOrJoin", "create");
                             startActivity(intent);
                         }
                     })

@@ -76,7 +76,7 @@
             android:orientation="vertical"
            >
 
-            <!--<TextView
+            <TextView
                 android:id="@+id/TextView_info"
                 android:layout_width="125dp"
                 android:layout_height="24dp"
@@ -84,7 +84,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="30dp"
-                android:gravity="center_horizontal"/>-->
+                android:gravity="center_horizontal"/>
 
             <TextView
                 android:id="@+id/R_TextView_info"

@@ -49,7 +49,6 @@ public class BoardAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.i(TAG, "BoardAdapter - Override getView run test");
 
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.board_item,null);
@@ -65,7 +64,15 @@ public class BoardAdapter extends BaseAdapter {
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i(TAG, "BoardAdapter - Override getView run test");
+
                 Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("userName",username.getText().toString());
+                intent.putExtra("userSex",userSex.getText().toString());
+                intent.putExtra("destination",destination.getText().toString());
+                intent.putExtra("userid", "adminid");
+                intent.putExtra("roomCode", "0");
+                intent.putExtra("createOrJoin", "create");
                 context.startActivity(intent);
             }
         });

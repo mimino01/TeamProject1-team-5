@@ -5,6 +5,7 @@ import static java.lang.Thread.sleep;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,10 @@ public class ReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
+        Intent getIntent = getIntent();
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView info = findViewById(R.id.TextView_info);
+        info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination"));
 
         try {
             Button button_chat = (Button) findViewById(R.id.R_Button_Chat);  // chat으로 이동

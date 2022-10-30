@@ -1,7 +1,10 @@
 package com.example.myapplication.Activity.Chat;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,11 +41,17 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         Intent getIntent = getIntent();
+
+        Log.i(TAG, "ChatActivity - get intent data checker : " + getIntent.getStringExtra("createOrJoin") + getIntent.getStringExtra("userid") + getIntent.getStringExtra("roomCode"));
         createOrJoin = getIntent.getStringExtra("createOrJoin");
         userid = getIntent.getStringExtra("userid");
-        roomNumber = getIntent.getStringExtra("roomid");
+        roomNumber = getIntent.getStringExtra("roomCode");
 
-        if (createOrJoin == "create") {
+        TextView info = findViewById(R.id.TextView_info);
+        info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination"));
+
+        if (createOrJoin.equals("create")) {
+            Log.i(TAG, "ChatActivity - create checker");
             createData[0] = "chat";
             createData[1] = "create";
             createData[2] = userid;
@@ -84,6 +93,8 @@ public class ChatActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
+                    intent.putExtra("userName",getIntent.getStringExtra("userName"));
+                    intent.putExtra("destination",getIntent.getStringExtra("destination"));
                     startActivity(intent);
                 }
             });
