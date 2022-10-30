@@ -2,24 +2,30 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="@drawable/lagetax">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
-        android:orientation="vertical" >
+        android:layout_height="207dp"
+        android:layout_marginTop="390dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TITLE_STYLE"/>
 
         <Button
             android:id="@+id/nextButton"
-            android:layout_width="match_parent"
+            style="@style/BUTTEN_STYLE"
+            android:layout_marginTop="100dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="시작하기"
-            style="@style/BUTTEN_STYLE"/>
+            android:layout_gravity="center"
+            android:text="시작하기" />
 
     </LinearLayout>
+
+
 </FrameLayout>
