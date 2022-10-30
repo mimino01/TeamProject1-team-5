@@ -16,6 +16,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Activity.Board.BoardActivity;
 import com.example.myapplication.Activity.Chat.ChatActivity;
 import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
 import com.example.myapplication.R;
@@ -104,7 +105,7 @@ public class ReviewActivity extends AppCompatActivity {
         String[][] temp = (String[][]) server.getRes();
         if (temp[0][0].equals("true")) {
             Toast.makeText(getApplicationContext(), "리뷰 작성 성공",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(), TempBoardActivity.class);
+            Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
             startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(), "리뷰 작성 실패", Toast.LENGTH_LONG).show();
