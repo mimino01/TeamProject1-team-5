@@ -252,6 +252,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         editSearch = (EditText) findViewById(R.id.board_searchview);
 
+
+
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
         editSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -331,6 +333,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         markers[1] = marker2;
         markers[2] = marker3;
     }
+
+
 
     @Override
     public boolean onClick(@NonNull Overlay overlay) {

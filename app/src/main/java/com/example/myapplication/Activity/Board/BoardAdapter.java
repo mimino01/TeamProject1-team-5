@@ -1,12 +1,19 @@
 package com.example.myapplication.Activity.Board;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.Activity.Chat.ChatActivity;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -42,6 +49,8 @@ public class BoardAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        Log.i(TAG, "BoardAdapter - Override getView run test");
+
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.board_item,null);
             username = (TextView)convertView.findViewById(R.id.Username);
@@ -52,8 +61,16 @@ public class BoardAdapter extends BaseAdapter {
         userSex.setText(Board_ArrayList.get(position).getUserSex());
         destination.setText(Board_ArrayList.get(position).getDestination());
 
-        return convertView;}
+        LinearLayout bar = (LinearLayout) convertView.findViewById(R.id.itemBar);
+        bar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ChatActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
-
+        return convertView;
+    }
 }
 
