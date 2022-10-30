@@ -81,7 +81,7 @@ public class ReviewActivity extends AppCompatActivity {
         String reviews = review.getText().toString();
         String ratingbars = Float.toString(Rating_Bar.getRating());
 
-        data[0] = "reviwe";
+        data[0] = "review";
         data[1] = ratingbars;
         data[2] = reviews;
         server = new ServerComponent(server.getServerIp(),data);
