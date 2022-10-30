@@ -59,23 +59,13 @@ public class BoardAddActivity extends AppCompatActivity {
                 String times = time_add.getText().toString();
 
                 Log.i(TAG, "returnToMain: return to main");
-                data[0] = "BoardAdd";
-                data[1] = destinations;
-                data[2] = times;
-                server = new ServerComponent(server.getServerIp(),data);
-                server.start();
 
-                try {
-                    sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Log.i(TAG, "boardAdd: " + server.getRes());
-                if (((String[][]) server.getRes())[0][0].equals("true")) {
-                    Toast.makeText(getApplicationContext(), "게시글 업로드 성공",Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "게시들 업로드 실패", Toast.LENGTH_LONG).show();
-                }
+                Intent getIntent = getIntent();
+                Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                intent.putExtra("destinations", destinations);
+                intent.putExtra("times", times);
+                intent.putExtra("userid",getIntent.getStringExtra("userid"));
+                startActivity(intent);
             });
 
 

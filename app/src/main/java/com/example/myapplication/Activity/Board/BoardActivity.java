@@ -1,11 +1,14 @@
 package com.example.myapplication.Activity.Board;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,32 +31,29 @@ import com.naver.maps.map.overlay.Overlay;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener{
 
     private MapView mapView;
     private static NaverMap naverMap;
-    private Marker marker1,marker2,marker3;;
+    private Marker marker1,marker2,marker3;
+    public static Marker[] markers = new Marker[10];
     long [] timeArray;
     long[] copy_timeArray;
     double[] pointArray;
     double[] copy_pointArray;
+    String userId;
 
-    Button btn1,btn2,btn3;
     Object[] Object_res;
     String[][][] String_res;
-    public String[][] sending =
-            {{"marking","박휘건", "남", "기흥역", "0930", "5"},
-            {"marking","홍길동", "남", "영통역", "0830", "4"},
-            {"marking","가나다", "여", "명지대역", "1000", "4.5"}};
-    String[] btn_texts;
-    String[][] abc;
-    EditText edt;
 
-    ServerComponent[] servers;
+    String[][] markingData = new String[10][10];
+    String[][] abc;
+
+    ServerComponent servers;
 
     ListView listView;
-    //ArrayList boardArrayList;
     BoardAdapter boardAdapter;
 
     Button New_Sort_button;
@@ -71,63 +71,69 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board2);
 
-        servers = new ServerComponent[3];
-        Object_res = new Object[3];
-        String_res = new String[3][][];
-        for(int i=0; i<3; i++){
-            servers[i] = new ServerComponent();
-            servers[i] = new ServerComponent(servers[i].getServerIp(),sending[i]);
-            servers[i].start();
-            Object_res[i] = servers[i].getRes();
-            String_res[i] = (String[][]) Object_res[i];
-        }
-
-        abc = (String[][]) Object_res[0];
-
         mapView = (MapView) findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        servers = new ServerComponent[3];
-        Object_res = new Object[3];
-        String_res = new String[3][][];
-        for(int i=0; i<3; i++){
-            servers[i] = new ServerComponent();
-            servers[i] = new ServerComponent(servers[i].getServerIp(),sending[i]);
-            servers[i].start();
-            Object_res[i] = servers[i].getRes();
-            String_res[i] = (String[][]) Object_res[i];
+        markingData[0] = new String[]{"marking", "박휘건", "남", "기흥역", "0930", "5"};
+        markingData[1] = new String[]{"marking", "홍길동", "남", "영통역", "0830", "4"};
+        markingData[2] = new String[]{"marking", "가나다", "여", "명지대역", "1000", "4.5"};
+
+        Intent getIntent = getIntent();
+        String destinations = "";
+        destinations = getIntent.getStringExtra("destinations");
+        String times = "";
+        times = getIntent.getStringExtra("times");
+        userId = getIntent.getStringExtra("userid");
+        Log.i(TAG, "BoardActivity - after make marker: " + destinations + " : " + times + " : " + userId);
+        if (destinations != null && times != null) {
+            Log.i(TAG, "BoardActivity - making marker");
+            markers[3] = new Marker();
+            markers[3].setPosition(new LatLng(37.221789, 127.187758));
+            markers[3].setOnClickListener(this);
+            markers[3].setMap(naverMap);
+
+            String[] reqData = new String[5];
+            reqData[0] = "req_userdata";
+            reqData[1] = userId;
+
+            servers = new ServerComponent(servers.getServerIp(),reqData);
+            servers.start();
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            String[][] resData = (String[][]) servers.getRes();
+            Log.i(TAG, "BoardActivity - test server data : " + Arrays.deepToString(resData));
+            String name = resData[0][0];
+            String gender = resData[0][2];
+            if (gender.equals("man")) gender = "남";
+            else gender = "여";
+            markingData[3] = new String[]{"marking", name, gender, destinations, times, "0"};
         }
 
-        abc = (String[][]) Object_res[0];
-
-        mapView = (MapView) findViewById(R.id.map_view);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
-
-
-        ServerComponent[] servers = new ServerComponent[3];
         Object_res = new Object[3];
         String_res = new String[3][][];
-        for(int i=0; i<3; i++){
-            servers[i] = new ServerComponent();
-            servers[i] = new ServerComponent(servers[i].getServerIp(),sending[i]);
-            servers[i].start();
-            Object_res[i] = servers[i].getRes();
-            String_res[i] = (String[][]) Object_res[i];
-        }
+//        for(int i=0; i<3; i++){
+//            servers = new ServerComponent();
+//            servers = new ServerComponent(servers.getServerIp(),markingData[i]);
+//            servers.start();
+//            Object_res[i] = servers.getRes();
+//            String_res[i] = (String[][]) Object_res[i];
+//        }
 
         abc = (String[][]) Object_res[0];
-
-        mapView = (MapView) findViewById(R.id.map_view);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
 
         Button button_board = (Button) findViewById(R.id.Button_Board);    // 보드로 이동버튼
         button_board.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent getIntent = getIntent();
                 Intent intent = new Intent(getApplicationContext(), BoardAddActivity.class);
+                intent.putExtra("userid",userId = getIntent.getStringExtra("userid"));
                 startActivity(intent);
             }
         });
@@ -145,8 +151,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         boardArrayList = new ArrayList<BoardClass>();
 
-        for(int i=0; i < sending.length ;i++) {
-                boardArrayList.add(new BoardClass(sending[i][1], sending[i][2], sending[i][3], Long.parseLong(sending[i][4]), Double.parseDouble(sending[i][5])));
+        Log.i(TAG, "BoardActivity - loof checker - markingData checking" + Arrays.deepToString(markingData));
+        for(int i=0; markingData[i][0] != null ;i++) {
+            Log.i(TAG, "BoardActivity - loof checker" + i);
+                boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
             }
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
@@ -156,8 +164,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
                 boardArrayList.clear();
-                for(int i=0; i < sending.length ;i++) {
-                    boardArrayList.add(0,new BoardClass(sending[i][1], sending[i][2], sending[i][3], Long.parseLong(sending[i][4]), Double.parseDouble(sending[i][5])));
+                for(int i=0; markingData[i][0] != null ;i++) {
+                    boardArrayList.add(0,new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
@@ -169,8 +177,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
                 boardArrayList.clear();
-                for(int i=0; i < sending.length ;i++) {
-                    boardArrayList.add(new BoardClass(sending[i][1], sending[i][2], sending[i][3], Long.parseLong(sending[i][4]), Double.parseDouble(sending[i][5])));
+                for(int i=0; markingData[i][0] != null ;i++) {
+                    boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
@@ -194,10 +202,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View view) {
                 quickClass.long_sort(copy_timeArray);
                 boardArrayList.clear();
-                for(int i=0; i < timeArray.length ;i++) {
+                for(int i=0; i < copy_timeArray.length ;i++) {
                     for (int j = 0; j < timeArray.length; j++) {
                         if (copy_timeArray[i] == timeArray[j]){
-                            boardArrayList.add(new BoardClass(sending[j][1], sending[j][2], sending[j][3], Long.parseLong(sending[j][4]), Double.parseDouble(sending[j][5])));
+                            boardArrayList.add(new BoardClass(markingData[j][1], markingData[j][2], markingData[j][3], Long.parseLong(markingData[j][4]), Double.parseDouble(markingData[j][5])));
                         }
                     }
                 }
@@ -222,10 +230,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View view) {
                 quickClass.double_sort(copy_pointArray);
                 boardArrayList.clear();
-                for(int i=0; i < pointArray.length ;i++) {
-                    for (int j = 0; j < pointArray.length; j++) {
+                for(int i=0; i < copy_pointArray.length ;i++) {
+                    for (int j = 0; j < pointArray.length ; j++) {
                         if (copy_pointArray[i] == pointArray[j]){
-                            boardArrayList.add(new BoardClass(sending[j][1], sending[j][2], sending[j][3], Long.parseLong(sending[j][4]), Double.parseDouble(sending[j][5])));
+                            boardArrayList.add(new BoardClass(markingData[j][1], markingData[j][2], markingData[j][3], Long.parseLong(markingData[j][4]), Double.parseDouble(markingData[j][5])));
                         }
                     }
                 }
@@ -302,6 +310,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         );
         naverMap.setCameraPosition(cameraPosition);
 
+
+
         marker1 = new Marker();
         marker1.setPosition(new LatLng(37.22344259294581, 127.18734526333768));
         marker1.setOnClickListener(this);
@@ -316,22 +326,24 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         marker3.setPosition(new LatLng(37.22219444666843, 127.19029421815819));
         marker3.setOnClickListener(this);
         marker3.setMap(naverMap);
+
+        markers[0] = marker1;
+        markers[1] = marker2;
+        markers[2] = marker3;
     }
 
     @Override
     public boolean onClick(@NonNull Overlay overlay) {
         if (overlay instanceof Marker) {
             String message = "";
-            if (overlay == marker1) {
-                message = "이름 : " + sending[0][1] + "\n성별 : " + sending[0][2] + "\n목적지 : " + sending[0][3] +
-                        "\n출발시간 : " +sending[0][4] + "\n매너점수 : " + sending[0][5];
-            } else if (overlay == marker2) {
-                message = "이름 : " + sending[1][1] + "\n성별 : " + sending[1][2] + "\n목적지 : " + sending[1][3] +
-                        "\n출발시간 : " + sending[1][4] + "\n매너점수 : " + sending[1][5];
-            } else if (overlay == marker3) {
-                message = "이름 : " +sending[2][1] + "\n성별 : " + sending[2][2] + "\n목적지 : " + sending[2][3] +
-                        "\n출발시간 : " + sending[2][4] + "\n매너점수 : " + sending[2][5];
+            for (int i = 0; i < 4; i++) {
+                if (overlay == markers[i]) {
+                Log.i(TAG, "BoardActivity - make board");
+                message = "이름 : " + markingData[i][1] + "\n성별 : " + markingData[i][2] + "\n목적지 : " + markingData[i][3] +
+                        "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5];
+                }
             }
+
             new AlertDialog.Builder(this)
                     .setTitle("마커 정보")
                     .setMessage(message)
