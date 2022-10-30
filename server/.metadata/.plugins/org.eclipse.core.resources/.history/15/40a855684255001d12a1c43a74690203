@@ -1,0 +1,17 @@
+package Conponent;
+
+public class LinerTable {
+	ChatRoom[] room;
+	
+	public BineryTable(int size) {
+		room = new ChatRoom[size];
+	}
+	
+	public void createRoom(int id) {
+		
+	}
+	
+	public int findById(String id) {
+		
+	}
+}

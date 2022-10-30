@@ -1,0 +1,25 @@
+package 과제정리;
+
+import java.sql.Array;
+import java.util.Arrays;
+
+public class h2 {
+	public static int[] MR(int[] Score) {
+		int[] Rank = new int[Score.length + 1];
+		
+		for (int i = 0; i < Rank.length; i++) {
+			for (int j = 0; j < Rank.length; j++) {
+				if (Rank[i] <= Rank[j]) {
+					Rank[i]++;
+				}
+			}
+		}
+		
+		return Rank;
+	}
+	
+	public static void main(String[] args) {
+		int[] Score = {3,4,1,6,7};
+		System.out.println(Arrays.toString(MR(Score)));
+	}
+}

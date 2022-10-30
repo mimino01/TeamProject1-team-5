@@ -105,11 +105,5 @@ public class ReviewActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "리뷰 작성 실패", Toast.LENGTH_LONG).show();
         }
 
-        /*Intent intent = new Intent();
-        intent.putExtra("review", reviews);
-        intent.putExtra("ratingbar", ratingbars);
-
-        setResult(RESULT_OK, intent);
-        finish();*/
     }
 }

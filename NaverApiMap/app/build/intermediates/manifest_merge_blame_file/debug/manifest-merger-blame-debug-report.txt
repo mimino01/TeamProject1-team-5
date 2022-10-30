@@ -1,0 +1,202 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.naverapimap"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+12-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:6:5-76
+12-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:6:22-74
+13
+14    <uses-feature
+14-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:9:5-11:35
+15        android:glEsVersion="0x00020000"
+15-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:10:9-41
+16        android:required="true" />
+16-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:11:9-32
+17    <uses-feature
+17-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:12:5-14:36
+18        android:name="android.hardware.wifi"
+18-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:13:9-45
+19        android:required="false" />
+19-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:14:9-33
+20
+21    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+21-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:17:5-79
+21-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:17:22-76
+22    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+22-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:18:5-76
+22-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:18:22-73
+23
+24    <application
+24-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:7:5-55:19
+25        android:allowBackup="true"
+25-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:9:9-35
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.8.0] C:\Users\mania\.gradle\caches\transforms-3\28a1708219c3158e49b329d141e5cfff\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+27        android:dataExtractionRules="@xml/data_extraction_rules"
+27-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:10:9-65
+28        android:debuggable="true"
+29        android:fullBackupContent="@xml/backup_rules"
+29-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:11:9-54
+30        android:icon="@mipmap/ic_launcher"
+30-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:12:9-43
+31        android:label="@string/app_name"
+31-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:13:9-41
+32        android:roundIcon="@mipmap/ic_launcher_round"
+32-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:14:9-54
+33        android:supportsRtl="true"
+33-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:15:9-35
+34        android:testOnly="true"
+35        android:theme="@style/Theme.NaverApiMap" >
+35-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:16:9-49
+36        <service
+36-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:19:9-22:47
+37            android:name="com.example.naverapimap.ServerService"
+37-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:20:13-42
+38            android:enabled="true"
+38-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:21:13-35
+39            android:exported="true" />
+39-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:22:13-36
+40
+41        <activity android:name="com.example.naverapimap.LoginActivity" />
+41-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:24:9-51
+41-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:24:19-48
+42        <activity android:name="com.example.naverapimap.SignupActivity" />
+42-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:25:9-52
+42-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:25:19-49
+43        <activity android:name="com.example.naverapimap.ReviewActivity" />
+43-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:26:9-52
+43-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:26:19-49
+44>
+45        <activity
+45-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:28:9-30:38
+46            android:name="com.example.naverapimap.ChatActivity"
+46-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:29:13-40
+47            android:exported="true" />
+47-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:30:13-36
+48
+49        <intent-filter>
+49-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:31:9-35:25
+50            <action android:name="android.intent.action.MAIN" />
+50-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:32:13-65
+50-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:32:21-62
+51
+52            <category android:name="android.intent.category.LAUNCHER" />
+52-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:34:13-73
+52-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:34:23-70
+53        </intent-filter>
+54
+55        <activity
+55-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:36:9-51:20
+56            android:name="com.example.naverapimap.MainActivity"
+56-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:37:13-41
+57            android:exported="true"
+57-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:38:13-36
+58            android:label="@string/app_name"
+58-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:39:13-45
+59            android:theme="@style/Theme.NaverApiMap.NoActionBar" >
+59-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:40:13-65
+60            <intent-filter>
+60-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:31:9-35:25
+61                <action android:name="android.intent.action.MAIN" />
+61-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:32:13-65
+61-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:32:21-62
+62
+63                <category android:name="android.intent.category.LAUNCHER" />
+63-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:34:13-73
+63-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:34:23-70
+64            </intent-filter>
+65
+66            <meta-data
+66-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:47:13-49:36
+67                android:name="android.app.lib_name"
+67-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:48:17-52
+68                android:value="" />
+68-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:49:17-33
+69        </activity>
+70
+71        <meta-data
+71-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:52:9-54:42
+72            android:name="com.naver.maps.map.CLIENT_ID"
+72-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:53:13-56
+73            android:value="yqryyj7d5m" />
+73-->C:\Users\mania\AndroidStudioProjects\NaverApiMap\app\src\main\AndroidManifest.xml:54:13-39
+74
+75        <activity
+75-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:21:9-25:51
+76            android:name="com.naver.maps.map.app.LegendActivity"
+76-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:22:13-65
+77            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+77-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:23:13-91
+78            android:label="@string/navermap_legend"
+78-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:24:13-52
+79            android:theme="@style/navermap_app" />
+79-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:25:13-48
+80        <activity
+80-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:26:9-30:51
+81            android:name="com.naver.maps.map.app.LegalNoticeActivity"
+81-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:27:13-70
+82            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+82-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:28:13-91
+83            android:label="@string/navermap_legal_notice"
+83-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:29:13-58
+84            android:theme="@style/navermap_app" />
+84-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:30:13-48
+85        <activity
+85-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:31:9-35:51
+86            android:name="com.naver.maps.map.app.OpenSourceLicenseActivity"
+86-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:32:13-76
+87            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+87-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:33:13-91
+88            android:label="@string/navermap_open_source_license"
+88-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:34:13-65
+89            android:theme="@style/navermap_app" />
+89-->[com.naver.maps:map-sdk:3.16.0] C:\Users\mania\.gradle\caches\transforms-3\24f7711ab1fc387f85008ac212c53bb3\transformed\jetified-map-sdk-3.16.0\AndroidManifest.xml:35:13-48
+90
+91        <provider
+91-->[androidx.emoji2:emoji2:1.2.0] C:\Users\mania\.gradle\caches\transforms-3\7b79f7e4a058224274d9b5ea417be867\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+92            android:name="androidx.startup.InitializationProvider"
+92-->[androidx.emoji2:emoji2:1.2.0] C:\Users\mania\.gradle\caches\transforms-3\7b79f7e4a058224274d9b5ea417be867\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+93            android:authorities="com.example.naverapimap.androidx-startup"
+93-->[androidx.emoji2:emoji2:1.2.0] C:\Users\mania\.gradle\caches\transforms-3\7b79f7e4a058224274d9b5ea417be867\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+94            android:exported="false" >
+94-->[androidx.emoji2:emoji2:1.2.0] C:\Users\mania\.gradle\caches\transforms-3\7b79f7e4a058224274d9b5ea417be867\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+95            <meta-data
+95-->[androidx.emoji2:emoji2:1.2.0] C:\Users\mania\.gradle\caches\transforms-3\7b79f7e4a058224274d9b5ea417be867\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+96                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+96-->[androidx.emoji2:emoji2:1.2.0] C:\Users\mania\.gradle\caches\transforms-3\7b79f7e4a058224274d9b5ea417be867\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+97                android:value="androidx.startup" />
+97-->[androidx.emoji2:emoji2:1.2.0] C:\Users\mania\.gradle\caches\transforms-3\7b79f7e4a058224274d9b5ea417be867\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+98            <meta-data
+98-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\mania\.gradle\caches\transforms-3\e49fb580d7eda2494a8100e094041989\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+99                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+99-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\mania\.gradle\caches\transforms-3\e49fb580d7eda2494a8100e094041989\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+100                android:value="androidx.startup" />
+100-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\mania\.gradle\caches\transforms-3\e49fb580d7eda2494a8100e094041989\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+101        </provider>
+102
+103        <uses-library
+103-->[androidx.window:window:1.0.0] C:\Users\mania\.gradle\caches\transforms-3\a168aa6180515b270a921847cb17cfdc\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
+104            android:name="androidx.window.extensions"
+104-->[androidx.window:window:1.0.0] C:\Users\mania\.gradle\caches\transforms-3\a168aa6180515b270a921847cb17cfdc\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
+105            android:required="false" />
+105-->[androidx.window:window:1.0.0] C:\Users\mania\.gradle\caches\transforms-3\a168aa6180515b270a921847cb17cfdc\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
+106        <uses-library
+106-->[androidx.window:window:1.0.0] C:\Users\mania\.gradle\caches\transforms-3\a168aa6180515b270a921847cb17cfdc\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
+107            android:name="androidx.window.sidecar"
+107-->[androidx.window:window:1.0.0] C:\Users\mania\.gradle\caches\transforms-3\a168aa6180515b270a921847cb17cfdc\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
+108            android:required="false" />
+108-->[androidx.window:window:1.0.0] C:\Users\mania\.gradle\caches\transforms-3\a168aa6180515b270a921847cb17cfdc\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
+109    </application>
+110
+111</manifest>

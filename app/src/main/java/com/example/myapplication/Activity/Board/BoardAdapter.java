@@ -52,7 +52,8 @@ public class BoardAdapter extends BaseAdapter {
         userSex.setText(Board_ArrayList.get(position).getUserSex());
         destination.setText(Board_ArrayList.get(position).getDestination());
 
-        return convertView;
-    }
+        return convertView;}
+
+
 }
 

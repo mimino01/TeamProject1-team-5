@@ -1,0 +1,166 @@
+[
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable_logosample.png.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\drawable\\logosample.png"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\menu_menu_main.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_activity_review.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_review.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-pngs-38:\\drawable-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_activity_signup.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_signup.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_item.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\item.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_content_main.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\content_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-pngs-38:\\drawable-xxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-pngs-38:\\drawable-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable-ldpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-pngs-38:\\drawable-ldpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-pngs-38:\\drawable-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_fragment_second.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\fragment_second.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_fragment_first.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\fragment_first.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.naverapimap.app-merged_res-43:/layout_activity_review.xml.flat",
+        "source": "com.example.naverapimap.app-main-45:/layout/activity_review.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable_bg_gis_result_items_count.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\drawable\\bg_gis_result_items_count.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_activity_server.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_server.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_activity_loding.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_loding.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-pngs-38:\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_item2.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\item2.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\navigation_nav_graph.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-pngs-38:\\drawable-hdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable_stroke.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\drawable\\stroke.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\layout_activity_chat.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\layout\\activity_chat.xml"
+    },
+    {
+        "merged": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-merged_res-43:\\drawable_bg_gis_result_items2_count.xml.flat",
+        "source": "C:\\Users\\mania\\.gradle\\daemon\\7.4\\com.example.naverapimap.app-main-45:\\drawable\\bg_gis_result_items2_count.xml"
+    }
+]
