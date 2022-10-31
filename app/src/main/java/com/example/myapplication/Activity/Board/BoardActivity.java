@@ -88,10 +88,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         Log.i(TAG, "BoardActivity - after make marker: " + destinations + " : " + times + " : " + userId);
         if (destinations != null && times != null) {
             Log.i(TAG, "BoardActivity - making marker");
-            markers[3] = new Marker();
-            markers[3].setPosition(new LatLng(37.221789, 127.187758));
-            markers[3].setOnClickListener(this);
-            markers[3].setMap(naverMap);
+
 
             String[] reqData = new String[5];
             reqData[0] = "req_userdata";
@@ -312,7 +309,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         );
         naverMap.setCameraPosition(cameraPosition);
 
-
+        Log.i(TAG, "BoardActivity - mark maker");
 
         marker1 = new Marker();
         marker1.setPosition(new LatLng(37.22344259294581, 127.18734526333768));
@@ -332,16 +329,23 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         markers[0] = marker1;
         markers[1] = marker2;
         markers[2] = marker3;
+
+        Log.i(TAG, "BoardActivity - add markers : " + markers.toString());
+        if (markingData[3][0] != null) {
+            Log.i(TAG, "BoardActivity - add board checker");
+            markers[3] = new Marker();
+            markers[3].setPosition(new LatLng(37.221789, 127.187758));
+            markers[3].setOnClickListener(this);
+            markers[3].setMap(naverMap);
+        }
     }
-
-
 
     @Override
     public boolean onClick(@NonNull Overlay overlay) {
         if (overlay instanceof Marker) {
             int save = 0;
             String message = "";
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < markers.length; i++) {
                 if (overlay == markers[i]) {
                 Log.i(TAG, "BoardActivity - make board");
                 message = "이름 : " + markingData[i][1] + "\n성별 : " + markingData[i][2] + "\n목적지 : " + markingData[i][3] +

@@ -24,7 +24,7 @@
         <activity android:name=".Activity.Review.ReviewActivity"/>
         <activity android:name=".Activity.Other.MainActivity"/>
         <activity android:name=".Activity.Signin.LoginActivity"/>
-        <activity android:name=".Activity.Other.Signup.SignupActivity"/>
+        <activity android:name=".Activity.Signup.SignupActivity"/>
         <activity android:name=".Activity.TempBoard.TempBoardActivity"/>
         <activity android:name=".Activity.Other.ServertestActivity"/>
         <activity android:name=".Activity.Board.BoardAddActivity"/>

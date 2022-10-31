@@ -14,8 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Activity.Board.BoardActivity;
-import com.example.myapplication.Activity.Other.Signup.SignupActivity;
-import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
+import com.example.myapplication.Activity.Signup.SignupActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 

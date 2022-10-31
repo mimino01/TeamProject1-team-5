@@ -1,4 +1,4 @@
-package com.example.myapplication.Activity.Other.Signup;
+package com.example.myapplication.Activity.Signup;
 
 import static java.lang.Thread.sleep;
 
