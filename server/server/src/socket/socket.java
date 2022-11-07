@@ -62,6 +62,11 @@ public class socket {
 					success[0] = process.reqUserdata(res);
 					break;
 					
+				case "marker":
+					System.out.println("processing markering");
+                    success = process.marker(res);
+					break;
+					
 				default:
 					System.out.println("wrong request");
 					success[0][0] = Boolean.toString(false);

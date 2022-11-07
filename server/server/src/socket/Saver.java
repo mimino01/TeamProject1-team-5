@@ -103,5 +103,20 @@ public class Saver {
 		temp[0][0] = "false";
 		return temp;
 	}
+
+	public static String[][] marker(Object obj) {
+		String[][] req = new String[0][];
+		String[] res = (String[]) obj;
+
+		switch (res[1]) {
+			case "addData":
+				break;
+
+			case  "getData":
+				break;
+		}
+
+		return req;
+	}
 }
 	
