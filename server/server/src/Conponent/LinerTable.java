@@ -9,8 +9,8 @@ public class LinerTable {
 	public LinerTable() {
 	}
 	
-	public boolean createRoom(String host,String latitude, String longitude, String departureTime, String destination) {
-		ChatRoom temp = new ChatRoom(host, destination, Float.parseFloat(departureTime), new Double[]{Double.parseDouble(latitude), Double.parseDouble(longitude)});
+	public boolean createRoom(String host,String latitude, String longitude, String departureTime, String destination, String createTime) {
+		ChatRoom temp = new ChatRoom(host, destination, Float.parseFloat(departureTime), new Double[]{Double.parseDouble(latitude), Double.parseDouble(longitude)}, Integer.parseInt(createTime));
 		room.insertNode(temp);
 		return true;
 	}

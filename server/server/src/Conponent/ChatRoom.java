@@ -17,6 +17,7 @@ public class ChatRoom {
 	public float departureTime;
 	public Double[] coordinate = new Double[2];
 
+	public int createTime;
 
 	public ChatRoom (int roomId) {
 		this.roomId = roomId;
@@ -27,11 +28,12 @@ public class ChatRoom {
 	}
 
 
-	public ChatRoom(String host, String destination, float departureTime, Double[] coordinate) {
+	public ChatRoom(String host, String destination, float departureTime, Double[] coordinate, int createTime) {
 		this.host = host;
 		this.destination = destination;
 		this.departureTime = departureTime;
 		this.coordinate = coordinate;
+		this.createTime = createTime;
 	}
 
 	public ChatRoom (String host) {

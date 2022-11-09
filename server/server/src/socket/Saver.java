@@ -52,7 +52,7 @@ public class Saver {
 		switch (key) {
 		case "create":
 			System.out.println("processing chat in create");
-			if (room.createRoom(data[2],data[3],data[4],data[5],data[6])) {
+			if (room.createRoom(data[2],data[3],data[4],data[5],data[6], data[7])) {
 				result[0][0] = Boolean.toString(true);
 				return result;
 			}
