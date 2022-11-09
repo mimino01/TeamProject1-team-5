@@ -36,8 +36,8 @@ public class ServertestActivity extends AppCompatActivity {
             try {
 
                 data = new String[5];
-                data[0] = "review";
-                data[1] = "addReview";
+                data[0] = "marker";
+                data[1] = "test";
                 data[2] = "adminid";
                 data[3] = "3.5";
                 data[4] = "리뷰 예제 입니다";

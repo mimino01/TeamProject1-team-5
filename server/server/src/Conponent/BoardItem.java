@@ -13,6 +13,13 @@ public class BoardItem {
     public BoardItem() {
     }
 
+    public BoardItem(String host) {
+        this.host = host;
+    }
+    public String getHost() {
+        return host;
+    }
+
     //방장 아이디, 방장 위치, 목적지, 출발시각 입력받음
     public BoardItem(String host, String destination, float departureTime, Double Latitude, Double longitude) {
         this.host = host;
@@ -47,6 +54,26 @@ public class BoardItem {
         req[2][1] = Double.toString(this.coordinate[1]);
         req[3][0] = destination;
         req[4][0] = Float.toString(departureTime);
+
+        return req;
+    }
+
+    public String getData(String type) {
+        String req = null;
+
+        switch (type) {
+            case "host":
+                req = this.host;
+                break;
+
+            case "departureTime":
+                req = Float.toString(this.departureTime);
+                break;
+
+            default:
+                req = "";
+                break;
+        }
 
         return req;
     }

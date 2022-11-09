@@ -1,8 +1,9 @@
 package Conponent;
 
 public class BoardLinkedList {
+
     class Node{
-        private String data;
+        private ChatRoom data;
         public Node link;
 
         public Node() {
@@ -10,17 +11,17 @@ public class BoardLinkedList {
             this.link = null;
         }
 
-        public Node(String data) {
+        public Node(ChatRoom data) {
             this.data = data;
             this.link = null;
         }
 
-        public Node(String data, Node front) {
+        public Node(ChatRoom data, Node front) {
             this.data = data;
             this.link = front;
         }
 
-        public String getData() {
+        public ChatRoom getData() {
             return this.data;
         }
     }
@@ -32,13 +33,13 @@ public class BoardLinkedList {
             head = null;
         }
 
-        public void insertNode (Node preNode, String data) {
+        public void insertNode (Node preNode, ChatRoom data) {
             Node newNode = new Node(data);
             newNode.link = preNode.link;
             preNode.link = newNode;
         }
 
-        public void insertNode (String data) {
+        public void insertNode (ChatRoom data) {
             if (head == null) {
                 this.head = new Node(data);
             } else {
@@ -50,7 +51,7 @@ public class BoardLinkedList {
             }
         }
 
-        public void deleteNode(String data) {
+        public void deleteNode(ChatRoom data) {
             Node preNode = head;
             Node tempNode = head.link;
 
@@ -58,7 +59,20 @@ public class BoardLinkedList {
                 head = preNode.link;
                 preNode.link = null;
             } else {
-                
+                while (tempNode != null) {
+                    if (data.equals(tempNode.getData())) {
+                        if (tempNode.link == null) {
+                            preNode.link = null;
+                        } else {
+                            preNode.link = tempNode.link;
+                            tempNode.link = null;
+                        }
+                        break;
+                    } else {
+                        preNode = tempNode;
+                        tempNode = tempNode.link;
+                    }
+                }
             }
         }
 
@@ -78,6 +92,33 @@ public class BoardLinkedList {
                 }
                 preNode.link = null;
             }
+        }
+
+        public ChatRoom searchNode(Option user) {
+            Node tempNode = this.head;
+
+            while (tempNode != null) {
+                if (tempNode.getData().findUser(user)) {
+                    return tempNode.getData();
+                } else {
+                    tempNode = tempNode.link;
+                }
+            }
+            return tempNode.getData();
+        }
+
+        public boolean addChat(Option user, String data) {
+            Node tempNode = this.head;
+
+            while (tempNode != null) {
+                if (tempNode.getData().findUser(user)) {
+                    tempNode.getData().addChat(user,data);
+                    return true;
+                } else {
+                    tempNode = tempNode.link;
+                }
+            }
+            return false;
         }
     }
 }

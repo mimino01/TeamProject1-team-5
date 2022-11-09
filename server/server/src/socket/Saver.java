@@ -1,14 +1,12 @@
 package socket;
 
 import java.util.Arrays;
-import Conponent.Option;
-import Conponent.ReviewItem;
-import Conponent.HashTable;
-import Conponent.LinerTable;
+
+import Conponent.*;
 
 public class Saver {
 	static HashTable hash = new HashTable(40);
-	static LinerTable room = new LinerTable(40);
+	static LinerTable room = new LinerTable();
 	static Option list = new Option();
 	static int lastUserNumber = 0;
 	
@@ -54,7 +52,7 @@ public class Saver {
 		switch (key) {
 		case "create":
 			System.out.println("processing chat in create");
-			if (room.createRoom(data[2])) {
+			if (room.createRoom(data[2],data[3],data[4],data[5],data[6])) {
 				result[0][0] = Boolean.toString(true);
 				return result;
 			}
@@ -62,7 +60,7 @@ public class Saver {
 			
 		case "addChat":
 			System.out.println("processing chat in add");
-			if (room.addData(room.findRoomNumberByUserId(data[2]), hash.get(data[2]), data[3])) {
+			if (room.addData(hash.get(data[2]), data[3])) {
 				result[0][0] = Boolean.toString(true);
 				return result;
 			}
@@ -70,7 +68,7 @@ public class Saver {
 			
 		case "loadChat":
 			System.out.println("processing chat in load");
-			return room.getChatData(room.findRoomNumberByUserId(data[2]));
+			return room.getChatData(hash.get(data[2]));
 			
 		default:
 			break;
@@ -102,21 +100,6 @@ public class Saver {
 		String[][] temp = new String[1][1];
 		temp[0][0] = "false";
 		return temp;
-	}
-
-	public static String[][] marker(Object obj) {
-		String[][] req = new String[0][];
-		String[] res = (String[]) obj;
-
-		switch (res[1]) {
-			case "addData":
-				break;
-
-			case  "getData":
-				break;
-		}
-
-		return req;
 	}
 }
 	

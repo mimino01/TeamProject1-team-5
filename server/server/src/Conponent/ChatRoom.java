@@ -11,13 +11,31 @@ public class ChatRoom {
 	int lastChatNumber = 0;
 	String[] chatInfo = new String[MAX_CHATTING_LOG];
 	String[][] chatLog = new String[MAX_CHATTING_ROOM][MAX_CHATTING_LOG];
-	
+	public String host;
+	public int numberOfUser;
+	public String destination;
+	public float departureTime;
+	public Double[] coordinate = new Double[2];
+
+
 	public ChatRoom (int roomId) {
 		this.roomId = roomId;
 	}
 	
 	public ChatRoom () {
 		
+	}
+
+
+	public ChatRoom(String host, String destination, float departureTime, Double[] coordinate) {
+		this.host = host;
+		this.destination = destination;
+		this.departureTime = departureTime;
+		this.coordinate = coordinate;
+	}
+
+	public ChatRoom (String host) {
+		this.host = host;
 	}
 	
 	public boolean addUser(String id) {
@@ -38,6 +56,15 @@ public class ChatRoom {
 		lastChatNumber++;
 		return true;
 	}
+
+	public boolean findUser(Option op) {
+		for (int i = 0; i < lastChatNumber; i++) {
+			if (user[i].equals(op.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	//getter setter
 	public int getRoomId() {
@@ -54,5 +81,9 @@ public class ChatRoom {
 	
 	public String[] getUser() {
 		return user;
+	}
+
+	public String getHost() {
+		return host;
 	}
 }
