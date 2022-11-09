@@ -4,7 +4,7 @@ import java.util.Arrays;
 import Conponent.*;
 
 public class LinerTable {
-	BoardLinkedList.LinkedList room;
+	BoardLinkedList.LinkedList room = new BoardLinkedList.LinkedList();
 	
 	public LinerTable() {
 	}

@@ -2,7 +2,7 @@ package Conponent;
 
 public class BoardLinkedList {
 
-    class Node{
+    static class Node{
         private ChatRoom data;
         public Node link;
 
@@ -26,7 +26,7 @@ public class BoardLinkedList {
         }
     }
 
-    public class LinkedList {
+    public static class LinkedList {
         private Node head;
 
         public LinkedList() {
