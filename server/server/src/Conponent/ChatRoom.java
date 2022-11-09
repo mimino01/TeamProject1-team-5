@@ -30,6 +30,8 @@ public class ChatRoom {
 
 	public ChatRoom(String host, String destination, float departureTime, Double[] coordinate, int createTime) {
 		this.host = host;
+		this.user[0] = host;
+		numberOfUser++;
 		this.destination = destination;
 		this.departureTime = departureTime;
 		this.coordinate = coordinate;
@@ -60,7 +62,8 @@ public class ChatRoom {
 	}
 
 	public boolean findUser(Option op) {
-		for (int i = 0; i < lastChatNumber; i++) {
+		System.out.println(op.toString());
+		for (int i = 0; i < numberOfUser; i++) {
 			if (user[i].equals(op.getName())) {
 				return true;
 			}
@@ -87,5 +90,22 @@ public class ChatRoom {
 
 	public String getHost() {
 		return host;
+	}
+
+	@Override
+	public String toString() {
+		return "ChatRoom{" +
+				"user=" + Arrays.toString(user) +
+				", roomId=" + roomId +
+				", lastChatNumber=" + lastChatNumber +
+				", chatInfo=" + Arrays.toString(chatInfo) +
+				", chatLog=" + Arrays.toString(chatLog) +
+				", host='" + host + '\'' +
+				", numberOfUser=" + numberOfUser +
+				", destination='" + destination + '\'' +
+				", departureTime=" + departureTime +
+				", coordinate=" + Arrays.toString(coordinate) +
+				", createTime=" + createTime +
+				'}';
 	}
 }

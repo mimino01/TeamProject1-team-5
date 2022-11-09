@@ -6,7 +6,8 @@ import Conponent.*;
 
 public class Saver {
 	static HashTable hash = new HashTable(40);
-	static LinerTable room = new LinerTable();
+//	static LinerTable room = new LinerTable();
+	static BoardLinkedList.LinkedList room = new BoardLinkedList.LinkedList();
 	static Option list = new Option();
 	static int lastUserNumber = 0;
 	
@@ -52,7 +53,8 @@ public class Saver {
 		switch (key) {
 		case "create":
 			System.out.println("processing chat in create");
-			if (room.createRoom(data[2],data[3],data[4],data[5],data[6], data[7])) {
+			ChatRoom temp = new ChatRoom(data[2],data[6],Float.parseFloat(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]));
+			if (room.insertNode(temp)) {
 				result[0][0] = Boolean.toString(true);
 				return result;
 			}
@@ -60,7 +62,7 @@ public class Saver {
 			
 		case "addChat":
 			System.out.println("processing chat in add");
-			if (room.addData(hash.get(data[2]), data[3])) {
+			if (room.addChat(hash.get(data[2]), data[3])) {
 				result[0][0] = Boolean.toString(true);
 				return result;
 			}
@@ -68,7 +70,13 @@ public class Saver {
 			
 		case "loadChat":
 			System.out.println("processing chat in load");
-			return room.getChatData(hash.get(data[2]));
+			if (room.searchNode(hash.get(data[2])) == null) {
+				String[][] temp1 = new String[1][1];
+				temp1[0][0] = "user not included";
+				return temp1;
+			} else {
+				return room.searchNode(hash.get(data[2])).getChatLog();
+			}
 			
 		default:
 			break;

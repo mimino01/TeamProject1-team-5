@@ -39,7 +39,7 @@ public class BoardLinkedList {
             preNode.link = newNode;
         }
 
-        public void insertNode (ChatRoom data) {
+        public boolean insertNode (ChatRoom data) {
             if (head == null) {
                 this.head = new Node(data);
             } else {
@@ -49,6 +49,7 @@ public class BoardLinkedList {
                 }
                 tempNode.link = new Node(data);
             }
+            return true;
         }
 
         public void deleteNode(ChatRoom data) {
@@ -109,8 +110,10 @@ public class BoardLinkedList {
 
         public boolean addChat(Option user, String data) {
             Node tempNode = this.head;
+            System.out.println("유저 정보: " + user + " 채팅내용: " + data);
 
             while (tempNode != null) {
+                System.out.println("챗팅방 데이터 : " + tempNode.getData().toString());
                 if (tempNode.getData().findUser(user)) {
                     tempNode.getData().addChat(user,data);
                     return true;

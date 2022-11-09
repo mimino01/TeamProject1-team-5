@@ -36,22 +36,33 @@ public class ServertestActivity extends AppCompatActivity {
 
         btn.setOnClickListener(view -> {
             try {
-
+                data = new String[10];
                 double 위도 = 37.22219444666843;
                 double 경도 = 127.19029421815819;
-                String 이름 = "admin";
+                String 이름 = "관리자";
                 int 출발시간 = 1030; //10시 30분
                 String 도착지 = "명지대역";
-                int 방생성시간 = 102030;
-                data = new String[10]; //10시 20분 30초
-                data[0] = "chat"; //프로토콜입니다
-                data[1] = "create"; //프로토콜입니다
-                data[2] = 이름; //방 생성자 이름 입니다
-                data[3] = Double.toString(위도); //방생성자 위치기준 위도 입니다
-                data[4] = Double.toString(경도); //방생성자 위치 기준 경도 입니다
-                data[5] = Integer.toString(출발시간);
-                data[6] = 도착지;
-                data[7] = Integer.toString(방생성시간);
+                int 방생성시간 = 102030; //10시 20분 30초
+                String 아이디 = "adminid";
+//
+//                data[0] = "chat"; //프로토콜입니다
+//                data[1] = "create"; //프로토콜입니다
+//                data[2] = 이름; //방 생성자 이름 입니다
+//                data[3] = Double.toString(위도); //방생성자 위치기준 위도 입니다
+//                data[4] = Double.toString(경도); //방생성자 위치 기준 경도 입니다
+//                data[5] = Integer.toString(출발시간);
+//                data[6] = 도착지;
+//                data[7] = Integer.toString(방생성시간);
+
+//                data[0] = "chat";
+//                data[1] = "addChat";
+//                data[2] = "adminid";
+//                data[3] = "채팅채팅채팅";
+
+                data[0] = "chat";
+                data[1] = "loadChat";
+                data[2] = 아이디;
+
                 server = new ServerComponent(server.getServerIp(),data);
                 server.start();
 
