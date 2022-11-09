@@ -46,7 +46,17 @@ public class socket {
 					System.out.println("processing sign up");
 					success[0][0] = Boolean.toString(process.signup(res));
 					break;
-					
+
+                case "signOut":
+                    System.out.println("processing sign out");
+                    success[0][0] = Boolean.toString(process.signOut(res));
+				    break;
+
+                case "signUpdate":
+                    System.out.println("processing sign updata");
+                    success[0][0] = Boolean.toString(process.update(res));
+                    break;
+
 				case "chat":
 					System.out.println("processing chatting");
 					success = process.chating(res);

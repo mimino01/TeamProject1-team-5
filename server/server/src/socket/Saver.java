@@ -13,8 +13,9 @@ public class Saver {
 	
 	public Saver() {
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
+		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
 	}
-	
+
 	public static boolean signup(Object obj) {
 		String[] user = (String[]) obj;
 		list = new Option(user[1],Long.parseLong(user[2]),user[3],user[4],user[5]);
@@ -36,6 +37,33 @@ public class Saver {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public static boolean signOut(Object obj) {
+		String[] user = (String[]) obj;
+		try {
+			hash.delete(user[1]);
+			if (hash.get(user[1]).getId().equals("data not include")) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public static boolean update(Object obj) {
+		String[] user = (String[]) obj;
+		list = new Option(user[1],Long.parseLong(user[2]),user[3],user[4],user[5]);
+		try {
+			hash.update(user[1],list);
+			if (hash.get(user[1]) == null) {
+				return true;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;

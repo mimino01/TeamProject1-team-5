@@ -77,4 +77,36 @@ public class HashTable {
 		Node node = searchKey(lsit, key);
 		return node == null? nullValue : node.getValue();
 	}
+
+	public boolean delete(String key) {
+		int hashcode = getHashCode(key);
+		int index = convertToIndex(hashcode);
+		int nodeIndex = 0;
+		LinkedList<Node> list = data[index];
+		if (list == null) {
+			list = new LinkedList<Node>();
+			data[index] = list;
+		}
+		if (list == null) {
+			System.out.println("already empty");
+			return true;
+		}
+		for (Node node : list) {
+			if (node.key.equals(key)) {
+				list.remove(nodeIndex);
+				return true;
+			}
+			nodeIndex++;
+		}
+		return false;
+	}
+
+	public boolean update(String key, Option op) {
+		int hashcode = getHashCode(key);
+		int index = convertToIndex(hashcode);
+		LinkedList<Node> list = data[index];
+		Node node = searchKey(list, key);
+		node.value = op;
+		return true;
+	}
 }
