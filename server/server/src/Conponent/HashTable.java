@@ -19,7 +19,8 @@ public class HashTable {
 		}
 
 		public void setValue(Option value) {
-			this.value = value;
+//			System.out.println("HashTablb.Node.setValue - parameter value" + value.toString());
+			this.value.update(value);
 		}
 	}
 	
@@ -56,11 +57,18 @@ public class HashTable {
 		int hashcode = getHashCode(key);
 		int index = convertToIndex(hashcode);
 		LinkedList<Node> list = data[index];
+//		if (list == null || key == null) {
+//			System.out.println("HashTable.LinkedList.put - process before list or key is null");
+//		} else {
+//			System.out.println("HashTable.LinkedList.put - process before list and key : " + list.toString() + key);
+//		}
 		if (list == null) {
 			list = new LinkedList<Node>();
 			data[index] = list;
 		}
 		Node node = searchKey(list, key);
+//		System.out.println("HashTable.LinkedList.put - search node by key" + node.getValue().toString());
+//		System.out.println("HashTable.LinkedList.put - list and key : " + list.toString() + key);
 		if (node == null) {
 			list.addLast(new Node(key,value));
 		} else {
@@ -75,6 +83,7 @@ public class HashTable {
 		nullValue.setId("data not include");
 		LinkedList<Node> lsit = data[index];
 		Node node = searchKey(lsit, key);
+//		if (node != null) System.out.println("HashTable.LinkedList.get - search node by key : " + node.getValue().toString());
 		return node == null? nullValue : node.getValue();
 	}
 
@@ -99,14 +108,5 @@ public class HashTable {
 			nodeIndex++;
 		}
 		return false;
-	}
-
-	public boolean update(String key, Option op) {
-		int hashcode = getHashCode(key);
-		int index = convertToIndex(hashcode);
-		LinkedList<Node> list = data[index];
-		Node node = searchKey(list, key);
-		node.value = op;
-		return true;
 	}
 }

@@ -59,8 +59,12 @@ public class Saver {
 		String[] user = (String[]) obj;
 		list = new Option(user[1],Long.parseLong(user[2]),user[3],user[4],user[5]);
 		try {
-			hash.update(user[1],list);
-			if (hash.get(user[1]) == null) {
+			if (hash.get(list.getId()) == null) {
+				return false;
+			}
+			hash.put(user[3], list);
+//			System.out.println("Saver.update - updated user info and res data : " + hash.get(user[3]).toString() + list.toString() + hash.get(user[3]).equals(list));
+			if (hash.get(user[3]).equals(list)) {
 				return true;
 			}
 		} catch (Exception e) {

@@ -1,5 +1,7 @@
 package Conponent;
 
+import java.util.Objects;
+
 public class Option {
 	String name;
 	long phone;
@@ -27,7 +29,14 @@ public class Option {
 		this.id = option.getId();
 		this.password = option.getPassword();
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Option option)) return false;
+		return phone == option.phone && Objects.equals(name, option.name) && Objects.equals(id, option.id) && Objects.equals(password, option.password) && Objects.equals(gender, option.gender);
+	}
+
 	public boolean addReview (ReviewItem review) {
 		for (int i = 0; i < this.review.length; i++) {
 			this.review[i] = review;
@@ -50,6 +59,13 @@ public class Option {
 			data[i] = review[i].toStringArray();
 		}
 		return data;
+	}
+
+	public void update(Option opt) {
+		this.name = opt.getName();
+		this.password = opt.getPassword();
+		this.phone = opt.getPhone();
+		this.gender = opt.getGender();
 	}
 
 	public String getName() {

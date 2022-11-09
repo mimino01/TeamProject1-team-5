@@ -38,7 +38,8 @@ public class ServertestActivity extends AppCompatActivity {
             try {
                 data = new String[10];
 
-                data[0] = "signOut";
+//                data = new String[]{"signUpdate","수정된관리자", "01012341234", "adminid", "adminpw", "man"};
+                data[0] = "req_userdata";
                 data[1] = "adminid";
 
                 server = new ServerComponent(server.getServerIp(),data);
