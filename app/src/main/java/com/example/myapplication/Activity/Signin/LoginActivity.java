@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.Activity.Board.BoardActivity;
+import com.example.myapplication.Activity.EditSign.EditSignActivity;
 import com.example.myapplication.Activity.Signup.SignupActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, "login: " + temp[0][0]);
                 if (temp[0][0].equals("true")) {
                     Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, BoardActivity.class);
+                    Intent intent = new Intent(this, EditSignActivity.class);
                     intent.putExtra("userid", data[1]);
                     startActivity(intent);
                 } else {

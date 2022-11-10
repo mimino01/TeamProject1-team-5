@@ -91,6 +91,10 @@ public class Saver {
 				return result;
 			}
 			break;
+
+		case "addUser":
+			room.searchNode(hash.get(data[2])).addUser(data[3]);
+			break;
 			
 		case "addChat":
 			System.out.println("processing chat in add");
@@ -129,6 +133,7 @@ public class Saver {
 			case "Distance":
 				break;
 			case "Rank":
+				break;
 		}
 
 		return req;

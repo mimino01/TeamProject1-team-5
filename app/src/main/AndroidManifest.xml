@@ -29,6 +29,7 @@
         <activity android:name=".Activity.Other.ServertestActivity"/>
         <activity android:name=".Activity.Board.BoardAddActivity"/>
         <activity android:name=".Activity.Board.BoardActivity"/>
+        <activity android:name=".Activity.EditSign.InfomationActivity"/>
 
         <activity android:name=".Activity.Loading.LoadingActivity"
             android:exported="true">

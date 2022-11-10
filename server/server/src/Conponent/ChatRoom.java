@@ -19,10 +19,6 @@ public class ChatRoom {
 	private float hostRank;
 
 	private int createTime;
-
-	public ChatRoom (int roomId) {
-		this.roomId = roomId;
-	}
 	
 	public ChatRoom () {
 		
@@ -48,6 +44,7 @@ public class ChatRoom {
 		for (int i = 0; i < MAX_USER; i++) {
 			if (user[i] == null) {
 				user[i] = id;
+				numberOfUser++;
 				return true;
 			}			
 		}
@@ -92,6 +89,14 @@ public class ChatRoom {
 
 	public String getHost() {
 		return host;
+	}
+
+	public float getHostRank() {
+		return hostRank;
+	}
+
+	public void setHostRank(float hostRank) {
+		this.hostRank = hostRank;
 	}
 
 	@Override
