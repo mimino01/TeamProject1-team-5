@@ -33,7 +33,7 @@
             android:background="#B0C2FF"
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
-            android:text="Main"
+            android:text="유저정보"
             android:textColor="#000000"
             android:textSize="15sp" />
 

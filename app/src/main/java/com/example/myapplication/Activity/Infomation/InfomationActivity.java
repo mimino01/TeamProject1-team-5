@@ -3,6 +3,7 @@ package com.example.myapplication.Activity.Infomation;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static java.lang.Thread.sleep;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Activity.Board.BoardActivity;
 import com.example.myapplication.Activity.EditSign.EditSignActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
@@ -19,11 +21,12 @@ import java.util.Arrays;
 
 public class InfomationActivity extends AppCompatActivity {
     TextView name, id, phone, gender, rank;
-    Button submit;
+    Button submit, back;
     String[] req = new String[10];
     String intentId;
     ServerComponent server;
 
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infomation);
@@ -34,6 +37,7 @@ public class InfomationActivity extends AppCompatActivity {
         gender = findViewById(R.id.genderTextView);
         rank = findViewById(R.id.rankTextView);
         submit = findViewById(R.id.buttonSubmit);
+        back = findViewById(R.id.buttonReturn);
 
         Intent getIntent = getIntent();
         intentId = getIntent.getStringExtra("userid");
@@ -63,6 +67,12 @@ public class InfomationActivity extends AppCompatActivity {
 
         submit.setOnClickListener(view -> {
             Intent intent = new Intent(this, EditSignActivity.class);
+            intent.putExtra("userid", intentId);
+            startActivity(intent);
+        });
+
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(this, BoardActivity.class);
             intent.putExtra("userid", intentId);
             startActivity(intent);
         });

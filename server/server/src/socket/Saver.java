@@ -13,7 +13,7 @@ public class Saver {
 	
 	public Saver() {
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
-//		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
+		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
 	}
 
 	public static boolean signup(Object obj) {

@@ -2,9 +2,11 @@ package com.example.myapplication.Activity.Board;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Activity.Chat.ChatActivity;
+import com.example.myapplication.Activity.Infomation.InfomationActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
@@ -123,6 +126,18 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 //        }
 
         abc = (String[][]) Object_res[0];
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        Button button_main = (Button) findViewById(R.id.Button_Main);    // 보드로 이동버튼
+        button_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent getIntent = getIntent();
+                Intent intent = new Intent(getApplicationContext(), InfomationActivity.class);
+                intent.putExtra("userid",userId = getIntent.getStringExtra("userid"));
+                startActivity(intent);
+            }
+        });
 
         Button button_board = (Button) findViewById(R.id.Button_Board);    // 보드로 이동버튼
         button_board.setOnClickListener(new View.OnClickListener() {
