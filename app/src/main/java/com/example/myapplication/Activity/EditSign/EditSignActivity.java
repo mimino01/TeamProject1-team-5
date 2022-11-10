@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -34,8 +35,19 @@ public class EditSignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_sign);
 
+        phone = findViewById(R.id.updatePhone);
+        genderGroup = findViewById(R.id.radioGroup);
+        delete = findViewById(R.id.buttonDelete);
+        submit = findViewById(R.id.buttonSubmit);
+
         try {
             Intent getIntent = getIntent();
+            if (getIntent.getStringExtra("type").equals("gender")) {
+                phone.setVisibility(View.GONE);
+            } else {
+                genderGroup.setVisibility(View.GONE);
+            }
+
             id = getIntent.getStringExtra("userid");
 
             req[0] = "req_userdata";
@@ -50,11 +62,6 @@ public class EditSignActivity extends AppCompatActivity {
             String[] resData = DresData[0];
             Log.i(TAG, "EditSignActivity.onCreate - check response data : " + Arrays.toString(resData));
             req = new String[]{"signUpdate", resData[0], resData[1], resData[3], resData[4], resData[2]};
-
-            phone = findViewById(R.id.updatePhone);
-            genderGroup = findViewById(R.id.radioGroup);
-            delete = findViewById(R.id.buttonDelete);
-            submit = findViewById(R.id.buttonSubmit);
 
             genderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -71,11 +78,21 @@ public class EditSignActivity extends AppCompatActivity {
             });
 
             submit.setOnClickListener(view -> {
-                Log.i(TAG, "InfomationActivity.submit.setOnClickListener - phone data : " + phone.getText().toString() + " : " + phone.getText().toString().length());
-                if (11 == phone.getText().toString().length()) {
-                    req[2] = phone.getText().toString();
+                if (getIntent.getStringExtra("type").equals("gender")) {
                     req[5] = gender;
+                    server = new ServerComponent(server.getServerIp(),req);
+                    server.start();
+                    try {
+                        sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
+                    Intent intent = new Intent(this, InfomationActivity.class);
+                    intent.putExtra("userid", id);
+                    startActivity(intent);
+                } else if (11 == phone.getText().toString().length()) {
+                    req[2] = phone.getText().toString();
                     server = new ServerComponent(server.getServerIp(),req);
                     server.start();
                     try {

@@ -21,7 +21,7 @@ import java.util.Arrays;
 
 public class InfomationActivity extends AppCompatActivity {
     TextView name, id, phone, gender, rank;
-    Button submit, back;
+    Button changePhone, changeGender, back;
     String[] req = new String[10];
     String intentId;
     ServerComponent server;
@@ -36,7 +36,8 @@ public class InfomationActivity extends AppCompatActivity {
         phone = findViewById(R.id.phoneTextView);
         gender = findViewById(R.id.genderTextView);
         rank = findViewById(R.id.rankTextView);
-        submit = findViewById(R.id.buttonSubmit);
+        changePhone = findViewById(R.id.buttonPhoneChange);
+        changeGender = findViewById(R.id.buttonChangeGender);
         back = findViewById(R.id.buttonReturn);
 
         Intent getIntent = getIntent();
@@ -65,9 +66,17 @@ public class InfomationActivity extends AppCompatActivity {
             gender.setText(gender.getText().toString() + "여");
         }
 
-        submit.setOnClickListener(view -> {
+        changeGender.setOnClickListener(view -> {
             Intent intent = new Intent(this, EditSignActivity.class);
             intent.putExtra("userid", intentId);
+            intent.putExtra("type","gender");
+            startActivity(intent);
+        });
+
+        changePhone.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EditSignActivity.class);
+            intent.putExtra("userid", intentId);
+            intent.putExtra("type","phone");
             startActivity(intent);
         });
 

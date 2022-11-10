@@ -67,12 +67,21 @@
                 android:ems="11"/>
 
             <Button
-                android:id="@+id/buttonSubmit"
-                android:layout_width="match_parent"
+                android:id="@+id/buttonPhoneChange"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="left"
-                android:text="유저 정보 변경"
+                android:text="전화번호 변경"
+                style="@style/BUTTEN_STYLE"/>
+
+            <Button
+                android:id="@+id/buttonChangeGender"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="left"
+                android:text="성별 정보 변경"
                 style="@style/BUTTEN_STYLE"/>
 
             <Button
