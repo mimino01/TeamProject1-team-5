@@ -13,8 +13,11 @@ import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Activity.Infomation.InfomationActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
+
+import java.util.Arrays;
 
 public class EditSignActivity extends AppCompatActivity {
     EditText phone;
@@ -44,6 +47,7 @@ public class EditSignActivity extends AppCompatActivity {
 
             String[][] DresData = (String[][]) server.getRes();
             String[] resData = DresData[0];
+            Log.i(TAG, "EditSignActivity.onCreate - check response data : " + Arrays.toString(resData));
             req = new String[]{"signUpdate", resData[0], resData[1], resData[3], resData[4], resData[2]};
 
             phone = findViewById(R.id.updatePhone);
@@ -68,7 +72,7 @@ public class EditSignActivity extends AppCompatActivity {
             submit.setOnClickListener(view -> {
                 Log.i(TAG, "InfomationActivity.submit.setOnClickListener - phone data : " + phone.getText().toString() + " : " + phone.getText().toString().length());
                 if (11 == phone.getText().toString().length()) {
-                    req[1] = phone.getText().toString();
+                    req[2] = phone.getText().toString();
                     req[5] = gender;
 
                     server = new ServerComponent(server.getServerIp(),req);
@@ -78,6 +82,10 @@ public class EditSignActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
+                    Intent intent = new Intent(this, InfomationActivity.class);
+                    intent.putExtra("userid", id);
+                    startActivity(intent);
                 }
             });
 

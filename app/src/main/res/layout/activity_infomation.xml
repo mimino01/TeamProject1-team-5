@@ -22,39 +22,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="유저 정보 수정"
+                android:text="유저 정보"
                 android:layout_marginBottom="50dp"
                 style="@style/TITLE_STYLE"/>
 
-            <EditText
-                android:id="@+id/updatePhone"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="전화번호"
-                android:inputType="phone"
-                android:text=""
-                style="@style/EDITTEXT_STYLE"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameTextView"
+                android:text="이름 : "
+                android:textSize="50px"
+                android:ems="11"/>
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneTextView"
+                android:text="전화번호 : "
+                android:textSize="50px"
+                android:ems="11"/>
 
-                <RadioButton
-                    android:id="@+id/radioMan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType=""
-                    android:text="남성" />
-                <RadioButton
-                    android:id="@+id/radioWoman"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:text="여성" />
-            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/idTextView"
+                android:text="아이디 : "
+                android:textSize="50px"
+                android:ems="11"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/genderTextView"
+                android:text="성별 : "
+                android:textSize="50px"
+                android:ems="11"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rankTextView"
+                android:text="별점 : "
+                android:textSize="50px"
+                android:ems="11"/>
 
             <Button
                 android:id="@+id/buttonSubmit"
@@ -62,20 +72,8 @@
                 android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="left"
-                android:text="완료"
+                android:text="유저 정보 변경"
                 style="@style/BUTTEN_STYLE"/>
-
-            <Button
-                android:id="@+id/buttonDelete"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="left"
-                android:background="#E63B3B"
-                android:textColor="#ffffff"
-                android:text="계정 삭제"
-                style="@style/BUTTEN_STYLE"/>
-
         </LinearLayout>
     </ScrollView>
 
