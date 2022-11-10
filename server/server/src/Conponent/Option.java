@@ -3,12 +3,12 @@ package Conponent;
 import java.util.Objects;
 
 public class Option {
-	String name;
-	long phone;
-	String id;
-	String password;
-	String gender;
-	ReviewItem[] review = new ReviewItem[10];
+	private String name;
+	private long phone;
+	private String id;
+	private String password;
+	private String gender;
+	private ReviewItem[] review = new ReviewItem[10];
 	
 	public Option () {
 		
@@ -43,6 +43,14 @@ public class Option {
 			return true;
 		}
 		return false;
+	}
+
+	public float getRank() {
+		float rank = 0;
+		for (int i = 0; review == null; i++) {
+			rank += Float.parseFloat(review[i].getRating());
+		}
+		return rank;
 	}
 	
 	public void setReview (ReviewItem[] review) {

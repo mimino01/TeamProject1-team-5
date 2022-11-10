@@ -13,7 +13,7 @@ public class Saver {
 	
 	public Saver() {
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
-		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
+//		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
 	}
 
 	public static boolean signup(Object obj) {
@@ -85,7 +85,7 @@ public class Saver {
 		switch (key) {
 		case "create":
 			System.out.println("processing chat in create");
-			ChatRoom temp = new ChatRoom(data[2],data[6],Float.parseFloat(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]));
+			ChatRoom temp = new ChatRoom(data[2],data[6],Float.parseFloat(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank());
 			if (room.insertNode(temp)) {
 				result[0][0] = Boolean.toString(true);
 				return result;
@@ -115,6 +115,23 @@ public class Saver {
 		}
 		result[0][0] = Boolean.toString(false);
 		return result;
+	}
+
+	public static String[][] chatRoomSort(Object object) {
+		String[] res = (String[]) object;
+		String[][] req = new String[1][1];
+
+		switch (res[0]) {
+			case "AscendingTime":
+				break;
+			case "DescendingTime":
+				break;
+			case "Distance":
+				break;
+			case "Rank":
+		}
+
+		return req;
 	}
 	
 	public static String[][] review(Object obj) {

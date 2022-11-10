@@ -7,17 +7,18 @@ public class ChatRoom {
 	final int MAX_CHATTING_LOG = 10;
 	final int MAX_USER = 4;
 	String user[] = new String[MAX_USER];
-	int roomId = -1;
-	int lastChatNumber = 0;
-	String[] chatInfo = new String[MAX_CHATTING_LOG];
-	String[][] chatLog = new String[MAX_CHATTING_ROOM][MAX_CHATTING_LOG];
-	public String host;
-	public int numberOfUser;
-	public String destination;
-	public float departureTime;
-	public Double[] coordinate = new Double[2];
+	private int roomId = -1;
+	private int lastChatNumber = 0;
+	private String[] chatInfo = new String[MAX_CHATTING_LOG];
+	private String[][] chatLog = new String[MAX_CHATTING_ROOM][MAX_CHATTING_LOG];
+	private String host;
+	private int numberOfUser;
+	private String destination;
+	private float departureTime;
+	private Double[] coordinate = new Double[2];
+	private float hostRank;
 
-	public int createTime;
+	private int createTime;
 
 	public ChatRoom (int roomId) {
 		this.roomId = roomId;
@@ -28,9 +29,10 @@ public class ChatRoom {
 	}
 
 
-	public ChatRoom(String host, String destination, float departureTime, Double[] coordinate, int createTime) {
+	public ChatRoom(String host, String destination, float departureTime, Double[] coordinate, int createTime, float hostRank) {
 		this.host = host;
 		this.user[0] = host;
+		this.hostRank = hostRank;
 		numberOfUser++;
 		this.destination = destination;
 		this.departureTime = departureTime;
