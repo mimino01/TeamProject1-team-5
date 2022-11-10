@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Activity.EditSign.EditSignActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
@@ -59,5 +60,11 @@ public class InfomationActivity extends AppCompatActivity {
         } else {
             gender.setText(gender.getText().toString() + "여");
         }
+
+        submit.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EditSignActivity.class);
+            intent.putExtra("userid", intentId);
+            startActivity(intent);
+        });
     }
 }

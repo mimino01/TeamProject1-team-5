@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Activity.Infomation.InfomationActivity;
+import com.example.myapplication.Activity.Loading.LoadingActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
@@ -90,7 +91,15 @@ public class EditSignActivity extends AppCompatActivity {
             });
 
             delete.setOnClickListener(view -> {
+                req = new String[5];
+                req[0] = "signOut";
+                req[1] = id;
 
+                server = new ServerComponent(server.getServerIp(),req);
+                server.start();
+
+                Intent intent = new Intent(this, LoadingActivity.class);
+                startActivity(intent);
             });
 
         } catch (Exception e) {
