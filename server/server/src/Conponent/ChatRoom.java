@@ -40,10 +40,10 @@ public class ChatRoom {
 		this.host = host;
 	}
 	
-	public boolean addUser(String id) {
+	public boolean addUser(String id, String name) {
 		for (int i = 0; i < MAX_USER; i++) {
 			if (user[i] == null) {
-				user[i] = id;
+				user[i] = name;
 				numberOfUser++;
 				return true;
 			}			
@@ -61,7 +61,7 @@ public class ChatRoom {
 	}
 
 	public boolean findUser(Option op) {
-		System.out.println(op.toString());
+		System.out.println("findUser parameter : " + op.toString());
 		for (int i = 0; i < numberOfUser; i++) {
 			if (user[i].equals(op.getName())) {
 				return true;
@@ -106,7 +106,7 @@ public class ChatRoom {
 				", roomId=" + roomId +
 				", lastChatNumber=" + lastChatNumber +
 				", chatInfo=" + Arrays.toString(chatInfo) +
-				", chatLog=" + Arrays.toString(chatLog) +
+				", chatLog=" + Arrays.deepToString(chatLog) +
 				", host='" + host + '\'' +
 				", numberOfUser=" + numberOfUser +
 				", destination='" + destination + '\'' +

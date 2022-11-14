@@ -1,7 +1,5 @@
 package socket;
 
-import java.util.Arrays;
-
 import Conponent.*;
 
 public class Saver {
@@ -78,14 +76,15 @@ public class Saver {
 		return hash.get(user[1]).toStringArray();
 	}
 	
-	public static String[][] chating(Object obj) {
+	public static String[][] chatting(Object obj) {
 		String[][] result = new String[10][10];
 		String[] data = (String[]) obj;
 		String key = data[1];
+		ChatRoom temp;
 		switch (key) {
 		case "create":
 			System.out.println("processing chat in create");
-			ChatRoom temp = new ChatRoom(data[2],data[6],Float.parseFloat(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank());
+			temp = new ChatRoom(hash.get(data[2]).getName(),data[6],Float.parseFloat(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank());
 			if (room.insertNode(temp)) {
 				result[0][0] = Boolean.toString(true);
 				return result;
@@ -93,8 +92,11 @@ public class Saver {
 			break;
 
 		case "addUser":
-			room.searchNode(hash.get(data[2])).addUser(data[3]);
-			break;
+			temp = room.searchNode(hash.get(data[2]));
+			boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
+			room.insertNode(temp);
+			result[0][0] = Boolean.toString(response);
+			return result;
 			
 		case "addChat":
 			System.out.println("processing chat in add");
@@ -142,8 +144,8 @@ public class Saver {
 	public static String[][] review(Object obj) {
 		String[] res = (String[]) obj;
 		String key = res[1];
-		Option user = new Option();
-		ReviewItem review = new ReviewItem();
+		Option user;
+		ReviewItem review;
 		switch (key) {
 		case "addReview":
 			user = hash.get(key);

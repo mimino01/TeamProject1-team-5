@@ -10,165 +10,48 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_height="350dp"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#B0C2FF"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:id="@+id/TextView_Title"
-                android:layout_width="108dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:text="같이 탈래요?"
-                android:textColor="#FFFFFF"
-                android:textSize="17dp"
-                android:textStyle="bold"/>
-
-            <Button
-                android:id="@+id/Button_Main"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#B0C2FF"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:text="Main"
-                android:textColor="#000000"
-                android:textSize="15dp" />
-
-            <Button
-                android:id="@+id/Button_Board"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#B0C2FF"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:text="Board"
-                android:textColor="#000000"
-                android:textSize="15dp" />
-
-            <Button
-                android:id="@+id/Button_Chat"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#B0C2FF"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:text="Chat"
-                android:textColor="#000000"
-                android:textSize="15dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#D9D9D9"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/Button_back"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:width="20dp"
-                android:height="10dp"
-                android:padding="5dp"
-                android:text="뒤로"
-                android:textSize="15dp"
-                android:background="#F3F3F3"
-                android:layout_gravity="center"
-                android:gravity="center"/>
-
-            <TextView
-                android:id="@+id/TextView_info"
-                android:layout_width="267dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="데이터 없음"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-
-            <Button
-                android:id="@+id/Button_off"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="15dp"
-                android:width="20dp"
-                android:height="10dp"
-                android:padding="5dp"
-                android:text="리뷰    작성"
-                android:textSize="14dp"
-                android:background="#F3F3F3"
-                android:layout_gravity="center"
-                android:gravity="center"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/chatting"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_margin="10dp" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatting"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="#FFDC62"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/EditText_chat"
-                android:layout_width="283dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="#ffffff"
-                android:hint="채팅을 입력하세요."
-                android:textSize="12dp" />
-
-            <Button
-                android:id="@+id/Button_send"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="#D9D9D9"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:text="전 송"
-                />
-
-        </LinearLayout>
+            android:layout_gravity="right"
+            android:layout_margin="10dp" />
 
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFDC62"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/EditText_chat"
+            android:layout_width="283dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#ffffff"
+            android:hint="채팅을 입력하세요."
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/Button_send"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#D9D9D9"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="전 송"
+            />
+
+    </LinearLayout>
 </LinearLayout>

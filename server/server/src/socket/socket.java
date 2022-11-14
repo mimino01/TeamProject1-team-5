@@ -7,8 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 
-import socket.Saver;
-
 public class socket {
 	public static void main(String[] args) {
         int portNumber = 8001;
@@ -59,7 +57,7 @@ public class socket {
 
 				case "chat":
 					System.out.println("processing chatting");
-					success = process.chating(res);
+					success = process.chatting(res);
 					break;
 					
 				case "review":
