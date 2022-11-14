@@ -63,14 +63,18 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 String[][] temp = (String[][]) server.getRes();
-                Log.i(TAG, "login: " + temp[0][0]);
-                if (temp[0][0].equals("true")) {
-                    Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, BoardActivity.class);
-                    intent.putExtra("userid", data[1]);
-                    startActivity(intent);
+                if (temp == null) {
+                    Toast.makeText(getApplicationContext(), "서버가 연결되지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
+                    Log.i(TAG, "login: " + temp[0][0]);
+                    if (temp[0][0].equals("true")) {
+                        Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(this, BoardActivity.class);
+                        intent.putExtra("userid", data[1]);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "로그인 실패",Toast.LENGTH_LONG).show();
+                    }
                 }
             });
         } catch (Exception e) {
