@@ -43,11 +43,12 @@ public class ChatTestingActivity extends AppCompatActivity {
             if (name.equals("adminid"))
             {
                 create = true;
-
+                //방 생성 데이터
                 String[] request = new String[]{"chat", "create", name, "37.22344259294581", "127.18734526333768", "1030", "명지대", "1010"};
                 server = new ServerComponent(server.getServerIp(),request);
                 server.start();
             } else {
+                //방 가입 데이터
                 String[] request = new String[]{"chat", "addUser", "adminid", "subadminid"};
                 server = new ServerComponent(server.getServerIp(),request);
                 server.start();

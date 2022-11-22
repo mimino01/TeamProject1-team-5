@@ -383,9 +383,9 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                            intent.putExtra("userName",markingData[finalSave][2]);
-                            intent.putExtra("userSex",markingData[finalSave][3]);
-                            intent.putExtra("destination",markingData[finalSave][4]);
+                            intent.putExtra("userName",markingData[finalSave][1]);
+                            intent.putExtra("userSex",markingData[finalSave][2]);
+                            intent.putExtra("destination",markingData[finalSave][3]);
                             intent.putExtra("userid", "adminid");
                             intent.putExtra("roomCode", "0");
                             intent.putExtra("createOrJoin", "create");

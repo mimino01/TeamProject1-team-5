@@ -69,8 +69,13 @@ public class socket {
 					System.out.println("processing requist userdata");
 					success[0] = process.reqUserdata(res);
 					break;
-					
-				default:
+
+                case "sort":
+                    System.out.println("processing sort");
+                    success = process.chatRoomSort(res);
+                    break;
+
+                    default:
 					System.out.println("wrong request");
 					success[0][0] = Boolean.toString(false);
 					break;
