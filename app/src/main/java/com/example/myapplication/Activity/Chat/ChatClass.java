@@ -3,7 +3,13 @@ package com.example.myapplication.Activity.Chat;
 public class ChatClass {
     String chat;
     String time;
+    private int viewType;
 
+//    public ChatClass(String chat, String time, int viewType){
+//        this.chat = chat;
+//        this.time = time;
+//        this.viewType = viewType;
+//    }
     public String getChat(){
         return chat;
     }
@@ -16,5 +22,6 @@ public class ChatClass {
     public void setTime(String time){
         this.time=time;
     }
-
+    public int getViewType() { return viewType;}
+    public void setViewType(int viewType) { this.viewType = viewType; }
 }

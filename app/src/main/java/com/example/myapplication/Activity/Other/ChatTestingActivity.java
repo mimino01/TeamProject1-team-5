@@ -39,7 +39,7 @@ public class ChatTestingActivity extends AppCompatActivity {
         Intent getIntent = getIntent();
         name = getIntent.getStringExtra("userid");
 
-        if (!create) {
+        if (!create) { // 설명 부탁
             if (name.equals("adminid"))
             {
                 create = true;
