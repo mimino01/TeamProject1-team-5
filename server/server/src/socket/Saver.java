@@ -4,10 +4,8 @@ import Conponent.*;
 
 public class Saver {
 	static HashTable hash = new HashTable(40);
-//	static LinerTable room = new LinerTable();
 	static BoardLinkedList.LinkedList room = new BoardLinkedList.LinkedList();
 	static Option list = new Option();
-	static int lastUserNumber = 0;
 	
 	public Saver() {
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
@@ -125,16 +123,34 @@ public class Saver {
 
 	public static String[][] chatRoomSort(Object object) {
 		String[] res = (String[]) object;
-		String[][] req = new String[1][1];
+		String[][] req = new String[100][8];
+		String key = res[1];
+		int roomLength = 0;
+		String[][] copyRoom = room.toDeepArray().clone();
 
-		switch (res[0]) {
-			case "AscendingTime":
+		switch (key) {
+			case "default":
+				req = copyRoom.clone();
 				break;
+
+			case "AscendingTime":
+				for (int i = 0; copyRoom[i][0] == null; i++) {
+					roomLength++;
+				}
+				Sort.ascendingTime(copyRoom, 0, roomLength);
+				req = copyRoom.clone();
+				break;
+
 			case "DescendingTime":
 				break;
+
 			case "Distance":
 				break;
+
 			case "Rank":
+				break;
+
+			default:
 				break;
 		}
 

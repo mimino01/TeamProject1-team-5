@@ -115,4 +115,16 @@ public class ChatRoom {
 				", createTime=" + createTime +
 				'}';
 	}
+
+	public String[] toArray() {
+		String[] result = new String[]{Arrays.toString(user), Integer.toString(roomId), Integer.toString(lastChatNumber), Arrays.toString(chatInfo), Arrays.deepToString(chatLog), host, Integer.toString(numberOfUser), destination, Float.toString(departureTime), Arrays.toString(coordinate), Integer.toString(createTime)};
+
+		return result;
+	}
+
+	public String[] infoToArray() {
+		String[] result = new String[]{host, destination, String.valueOf(hostRank), String.valueOf(createTime), String.valueOf(departureTime)};
+
+		return result;
+	}
 }
