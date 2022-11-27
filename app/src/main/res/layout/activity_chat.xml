@@ -121,6 +121,18 @@
 
         </LinearLayout>
 
+
+        <EditText
+            android:id="@+id/chat_searchview"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:hint="키워드를 검색하세요."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="350dp"

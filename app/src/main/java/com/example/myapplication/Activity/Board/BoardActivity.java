@@ -208,7 +208,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             copy_timeArray[i] = (long)boardArrayList.get(i).getTime();
         }
 
-        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 오래된 정렬
+        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     //
         Time_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -386,10 +386,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                             intent.putExtra("userName",markingData[finalSave][1]);
                             intent.putExtra("userSex",markingData[finalSave][2]);
                             intent.putExtra("destination",markingData[finalSave][3]);
-<<<<<<< HEAD
                             intent.putExtra("time",markingData[finalSave][4]);
-=======
->>>>>>> fcb2f89cee9296f87dacf4957048cde1a0264cb1
                             intent.putExtra("userid", "adminid");
                             intent.putExtra("roomCode", "0");
                             intent.putExtra("createOrJoin", "create");
