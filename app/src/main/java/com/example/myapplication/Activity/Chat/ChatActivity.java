@@ -32,6 +32,8 @@ public class ChatActivity extends AppCompatActivity {
     ChatClass data;
 
     //레이아웃 연결
+    EditText searchText;
+    Button searchButton;
     EditText message;
     Button send;
     RecyclerView recyclerView;
@@ -71,16 +73,15 @@ public class ChatActivity extends AppCompatActivity {
         }*/
 
         if (!create) { // 설명부탁
-            if (userid.equals("adminid"))
-            {
+            if (userid.equals("adminid")) {
                 create = true;
 
                 String[] request = new String[]{"chat", "create", userid, "37.22344259294581", "127.18734526333768", "1030", "명지대", "1010"};
-                server = new ServerComponent(server.getServerIp(),request);
+                server = new ServerComponent(server.getServerIp(), request);
                 server.start();
             } else {
                 String[] request = new String[]{"chat", "addUser", "adminid", "subadminid"};
-                server = new ServerComponent(server.getServerIp(),request);
+                server = new ServerComponent(server.getServerIp(), request);
                 server.start();
             }
         }
@@ -94,7 +95,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        Button button_board=(Button)findViewById(R.id.Button_Board);    // 보드로 이동
+        Button button_board = (Button) findViewById(R.id.Button_Board);    // 보드로 이동
         button_board.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,94 +104,106 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-            Button button_back = (Button) findViewById(R.id.Button_back);  // 뒤로가기
-            button_back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
-                    startActivity(intent);
-                }
-            });
+        Button button_back = (Button) findViewById(R.id.Button_back);  // 뒤로가기
+        button_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                startActivity(intent);
+            }
+        });
 
-            Button button_off = (Button) findViewById(R.id.Button_off);
-            button_off.setOnClickListener(new View.OnClickListener() {      // 리뷰쓰러 가기
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
-                    intent.putExtra("userName",getIntent.getStringExtra("userName"));
-                    intent.putExtra("destination",getIntent.getStringExtra("destination"));
-                    intent.putExtra("time",getIntent.getStringExtra("time"));
-                    startActivity(intent);
-                }
-            });
+        Button button_off = (Button) findViewById(R.id.Button_off);
+        button_off.setOnClickListener(new View.OnClickListener() {      // 리뷰쓰러 가기
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
+                intent.putExtra("userName", getIntent.getStringExtra("userName"));
+                intent.putExtra("destination", getIntent.getStringExtra("destination"));
+                intent.putExtra("time", getIntent.getStringExtra("time"));
+                startActivity(intent);
+            }
+        });
 
-            // 레이아웃과 연결
-            message = (EditText) findViewById(R.id.EditText_chat);
-            send = (Button) findViewById(R.id.Button_send);
-            recyclerView = (RecyclerView) findViewById(R.id.chatting);
-            recyclerView.setHasFixedSize(true);
-            linearLayoutManager = new LinearLayoutManager(this);
+        // 레이아웃과 연결
+        searchText = (EditText) findViewById(R.id.SearchText);
+        searchButton = (Button) findViewById(R.id.SearchButton);
+        message = (EditText) findViewById(R.id.EditText_chat);
+        send = (Button) findViewById(R.id.Button_send);
+        recyclerView = (RecyclerView) findViewById(R.id.chatting);
+        recyclerView.setHasFixedSize(true);
+        linearLayoutManager = new LinearLayoutManager(this);
             /*((LinearLayoutManager) linearLayoutManager).setReverseLayout(true);
             ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
 
-            recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
-            send.setOnClickListener(new View.OnClickListener() {
+        //채팅 검색 기능
+        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
+            @Override
+            public void onClick(View view) {
+                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
+                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
+            }
+        });
 
-                @Override
-                public void onClick(View view) {
-                    String[] request = new String[]{"chat", "loadChat", userid};
-                    server = new ServerComponent(server.getServerIp(),request);
-                    server.start();
+        send.setOnClickListener(new View.OnClickListener() {
 
-                    try {
-                        sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+            @Override
+            public void onClick(View view) {
+                String[] request = new String[]{"chat", "loadChat", userid};
+                server = new ServerComponent(server.getServerIp(), request);
+                server.start();
+
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
 
-                    String[][] response = (String[][]) server.getRes();
-                    if (response[0][0] != null){
+                String[][] response = (String[][]) server.getRes();
+                if (response[0][0] != null) {
 //                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 1");
 
-                        for (int i = 0; response[i][0] != null; i++) {
+                    for (int i = 0; response[i][0] != null; i++) {
 //                        Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data : " + Arrays.toString(response[i]));
-                            if (!userid.equals(response[i][0])) {
+                        if (!userid.equals(response[i][0])) {
 //                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
 
-                                data = new ChatClass();
-                                data.setChat(response[i][2]);
-                                data.setTime(Time());
-                                chatAdapter.addItem(data);
-                            }
+                            data = new ChatClass();
+                            data.setChat(response[i][2]);
+                            data.setTime(Time());
+                            chatAdapter.addItem(data);
                         }
-                    } else {
-//                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data is null ");
                     }
+                } else {
+//                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data is null ");
+                }
 
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: back");
 
 
-                    String text1 = message.getText().toString();
-                    ChatClass data = new ChatClass();
-                    data.setChat(text1);
-                    data.setTime(Time());
-                    data.setViewType(0);
-                    chatAdapter.addItem(data);
-                    recyclerView.setAdapter(chatAdapter);
-                    chatAdapter.notifyDataSetChanged();
+                String text1 = message.getText().toString();
+                ChatClass data = new ChatClass();
+                data.setChat(text1);
+                data.setTime(Time());
+                data.setViewType(0);
+                chatAdapter.addItem(data);
+                recyclerView.setAdapter(chatAdapter);
+                chatAdapter.notifyDataSetChanged();
 
-                    sendedData[0] = "chat";
-                    sendedData[1] = "addChat";
-                    sendedData[2] = userid;
-                    sendedData[3] = text1;
+                sendedData[0] = "chat";
+                sendedData[1] = "addChat";
+                sendedData[2] = userid;
+                sendedData[3] = text1;
 
-                    server = new ServerComponent(server.getServerIp(), sendedData);
-                    server.start();
-                }
-            });
-        }
+                server = new ServerComponent(server.getServerIp(), sendedData);
+                server.start();
+            }
+        });
+    }
+
     private String Time() {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
@@ -198,6 +211,15 @@ public class ChatActivity extends AppCompatActivity {
         String Time = dateFormat.format(date);
 
         return Time;
+    }
+
+    // 검색을 수행하는 메소드
+    public void ChatSearch(String chatText) {
+        // chatText와 chatLog에서의 채팅값끼리 비교하여 해당 인덱스값을 포지션으로 하여
+        // 리사이클러.ScrollToPosition(포지션)으로 이동한다.
+
+        //그게 아니라면 리사이클러 전체를 탐색하여 찾고, 포지션은,, 어카지?
+
     }
 }
 
