@@ -17,6 +17,7 @@ import com.example.myapplication.Activity.Board.BoardActivity;
 import com.example.myapplication.Activity.EditSign.EditSignActivity;
 import com.example.myapplication.Activity.Infomation.InfomationActivity;
 import com.example.myapplication.Activity.Other.ChatTestingActivity;
+import com.example.myapplication.Activity.Other.ServertestActivity;
 import com.example.myapplication.Activity.Signup.SignupActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;

@@ -125,7 +125,7 @@ public class BoardLinkedList {
         }
 
         public String[][] toDeepArray() {
-            String[][] result = new String[0][];
+            String[][] result = new String[100][];
             Node tempNode = this.head;
             int i = 0;
 
