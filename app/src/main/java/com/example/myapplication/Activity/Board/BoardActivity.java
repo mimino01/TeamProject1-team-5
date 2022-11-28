@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +24,7 @@ import com.example.myapplication.server.ServerComponent;
 
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
@@ -65,6 +67,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     SearchAdapter searchAdapter;
     EditText editSearch;
     QuickClass quickClass;
+    double latitude, logitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -309,6 +312,26 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         );
         naverMap.setCameraPosition(cameraPosition);
 
+        naverMap.setOnMapClickListener(new NaverMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull PointF pointF, @NonNull LatLng latLng) {
+                latitude = latLng.latitude;
+                logitude = latLng.longitude;
+                CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(latitude, logitude));
+                naverMap.moveCamera(cameraUpdate);
+
+                Log.d(TAG,"BoardActivity latitude "+latitude);
+                Log.d(TAG,"BoardActivity logitude "+logitude);
+
+                Intent getIntent = getIntent();
+                Intent intent = new Intent(getApplicationContext(), BoardAddActivity.class);
+                intent.putExtra("userid",userId = getIntent.getStringExtra("userid"));
+                intent.putExtra("latitude", String.valueOf(latitude));
+                intent.putExtra("logitude", String.valueOf(logitude));
+                startActivity(intent);
+            }
+        });
+
         Log.i(TAG, "BoardActivity - mark maker");
 
         marker1 = new Marker();
@@ -333,8 +356,9 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         Log.i(TAG, "BoardActivity - add markers : " + markers.toString());
         if (markingData[3][0] != null) {
             Log.i(TAG, "BoardActivity - add board checker");
+            Object_res[3] = servers.getRes();
             markers[3] = new Marker();
-            markers[3].setPosition(new LatLng(37.221789, 127.187758));
+            markers[3].setPosition(new LatLng(latitude, logitude));
             markers[3].setOnClickListener(this);
             markers[3].setMap(naverMap);
         }

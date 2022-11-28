@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class ServerComponent extends Thread{
-    static public String serverIp = "192.168.0.10";
+    static public String serverIp = "192.168.45.107";
     String host;
     String[] data;
     Object res;
