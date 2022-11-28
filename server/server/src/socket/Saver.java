@@ -155,6 +155,19 @@ public class Saver {
 				break;
 
 			case "DescendingTime":
+				System.out.println("Save.chatRoomSort.DescendingTime - room data : " + Arrays.deepToString(copyRoom));
+				if (copyRoom[0] == null) {
+
+				} else if (copyRoom[1] == null) {
+
+				} else {
+					for (int i = 0; copyRoom[i] != null; i++) {
+						roomLength++;
+					}
+					System.out.println("Saver.chatRoomSort.DescendingTime - roomLength data : " + roomLength);
+					sortD.ascendingTime(copyRoom, 0, roomLength - 1);
+				}
+				req = copyRoom.clone();
 				break;
 
 			case "Distance":

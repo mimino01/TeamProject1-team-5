@@ -44,6 +44,17 @@ public class Sort {
         return room.toDeepArray();
     }
 
+    public static void descendingTime(String[][] array, int first, int last) {
+        ascendingTime(array, first, last);
+
+        for (int i = 0; true; i++) {
+            if (last < 1) break;
+            if (last - first == 2 * i) {
+
+            }
+        }
+    }
+
     public static void ascendingTime(String[][] array, int first, int last) {
         if (first >= last) {
             return;
