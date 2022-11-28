@@ -78,10 +78,12 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+        //게시판 임시 데이터
         markingData[0] = new String[]{"marking", "박휘건", "남", "기흥역", "0930", "5"};
         markingData[1] = new String[]{"marking", "홍길동", "남", "영통역", "0830", "4"};
         markingData[2] = new String[]{"marking", "가나다", "여", "명지대역", "1000", "4.5"};
 
+        //핀
         Intent getIntent = getIntent();
         String destinations = "";
         destinations = getIntent.getStringExtra("destinations");
