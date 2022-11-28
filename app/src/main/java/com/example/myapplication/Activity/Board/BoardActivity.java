@@ -6,11 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< HEAD
-import android.icu.text.IDNA;
-=======
 import android.graphics.PointF;
->>>>>>> origin/new_version
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
