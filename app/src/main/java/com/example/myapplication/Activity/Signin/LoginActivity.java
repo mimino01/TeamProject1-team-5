@@ -17,6 +17,7 @@ import com.example.myapplication.Activity.Board.BoardActivity;
 import com.example.myapplication.Activity.EditSign.EditSignActivity;
 import com.example.myapplication.Activity.Infomation.InfomationActivity;
 import com.example.myapplication.Activity.Other.ChatTestingActivity;
+import com.example.myapplication.Activity.Other.ServertestActivity;
 import com.example.myapplication.Activity.Signup.SignupActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 server.start();
 
                 try {
-                    sleep(300);
+                    sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -70,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.i(TAG, "login: " + temp[0][0]);
                     if (temp[0][0].equals("true")) {
                         Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(this, BoardActivity.class); //처음 연결할 때 이동 하는 곳
+                        Intent intent = new Intent(this, ChatTestingActivity.class);
                         intent.putExtra("userid", data[1]);
                         startActivity(intent);
                     } else {

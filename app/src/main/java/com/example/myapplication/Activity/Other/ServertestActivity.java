@@ -39,8 +39,8 @@ public class ServertestActivity extends AppCompatActivity {
                 data = new String[10];
 
 //                data = new String[]{"signUpdate","수정된관리자", "01012341234", "adminid", "adminpw", "man"};
-                data[0] = "req_userdata";
-                data[1] = "adminid";
+                data[0] = "sort";
+                data[1] = "AscendingTime";
 
                 server = new ServerComponent(server.getServerIp(),data);
                 server.start();
