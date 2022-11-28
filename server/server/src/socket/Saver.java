@@ -2,6 +2,8 @@ package socket;
 
 import Conponent.*;
 
+import java.util.Arrays;
+
 public class Saver {
 	static HashTable hash = new HashTable(40);
 	static BoardLinkedList.LinkedList room = new BoardLinkedList.LinkedList();
@@ -126,7 +128,10 @@ public class Saver {
 		String[][] req = new String[100][8];
 		String key = res[1];
 		int roomLength = 0;
+		Sort sortD = new Sort();
 		String[][] copyRoom = room.toDeepArray().clone();
+//		copyRoom[0] = new String[]{"안녕","하","세","3","요","ㅇㅈ"};
+//		copyRoom[1] = new String[]{"안sdaf","하","세","2","31","fasd"};
 
 		switch (key) {
 			case "default":
@@ -134,10 +139,18 @@ public class Saver {
 				break;
 
 			case "AscendingTime":
-				for (int i = 0; copyRoom[i][0] == null; i++) {
-					roomLength++;
+				System.out.println("Save.chatRoomSort.AscendingTime - room data : " + Arrays.deepToString(copyRoom));
+				if (copyRoom[0] == null) {
+
+				} else if (copyRoom[1] == null) {
+
+				} else {
+					for (int i = 0; copyRoom[i] != null; i++) {
+						roomLength++;
+					}
+					System.out.println("Saver.chatRoomSort.AscendingTime - roomLength data : " + roomLength);
+					sortD.ascendingTime(copyRoom, 0, roomLength - 1);
 				}
-				Sort.ascendingTime(copyRoom, 0, roomLength);
 				req = copyRoom.clone();
 				break;
 
