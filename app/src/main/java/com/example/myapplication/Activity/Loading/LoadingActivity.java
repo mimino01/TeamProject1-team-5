@@ -31,7 +31,11 @@ public class LoadingActivity extends AppCompatActivity {
 
         sign.setOnClickListener(view -> {
             Log.i(TAG, "LoadingActivity - sign on click listener");
+<<<<<<< HEAD
             Intent intent = new Intent(this, ServertestActivity.class);
+=======
+            Intent intent = new Intent(this, BoardActivity.class);
+>>>>>>> origin/new_version
             startActivity(intent);
         });
     }
