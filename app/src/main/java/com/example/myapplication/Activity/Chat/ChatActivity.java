@@ -24,11 +24,13 @@ import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private ChatAdapter chatAdapter = new ChatAdapter();
+    private ArrayList<ChatClass> datalist; // 상대방 채팅
     ChatClass data;
 
     //레이아웃 연결
@@ -51,6 +53,13 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        // 상대방 채팅 삽입
+//        datalist = new ArrayList<>();
+//        datalist.add(new ChatClass("HI, CLASS", Time(), ChatViewClass.ViewType.LEFT_CONTENT));
+//        recyclerView.setAdapter(chatAdapter);
+//        chatAdapter.notifyDataSetChanged();
+
+
         Intent getIntent = getIntent();
         userid = getIntent.getStringExtra("userid");
 
@@ -72,7 +81,7 @@ public class ChatActivity extends AppCompatActivity {
             server.start();
         }*/
 
-        if (!create) { // 설명부탁
+        if (!create) {          // 설명
             if (userid.equals("adminid")) {
                 create = true;
 
@@ -132,20 +141,20 @@ public class ChatActivity extends AppCompatActivity {
         send = (Button) findViewById(R.id.Button_send);
         recyclerView = (RecyclerView) findViewById(R.id.chatting);
         recyclerView.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
             /*((LinearLayoutManager) linearLayoutManager).setReverseLayout(true);
             ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        //채팅 검색 기능
-        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
-            @Override
-            public void onClick(View view) {
-                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
-                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
-            }
-        });
+//        //채팅 검색 기능
+//        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
+//            @Override
+//            public void onClick(View view) {
+//                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
+//                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
+//            }
+//        });
 
         send.setOnClickListener(new View.OnClickListener() {
 
@@ -171,9 +180,9 @@ public class ChatActivity extends AppCompatActivity {
                         if (!userid.equals(response[i][0])) {
 //                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
 
-                            data = new ChatClass();
-                            data.setChat(response[i][2]);
-                            data.setTime(Time());
+                            data = new ChatClass(response[i][2], Time(), 0);
+//                            data.setChat();
+//                            data.setTime(Time());
                             chatAdapter.addItem(data);
                         }
                     }
@@ -185,10 +194,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
                 String text1 = message.getText().toString();
-                ChatClass data = new ChatClass();
-                data.setChat(text1);
-                data.setTime(Time());
-                data.setViewType(0);
+                ChatClass data = new ChatClass(text1, Time(), 0);
                 chatAdapter.addItem(data);
                 recyclerView.setAdapter(chatAdapter);
                 chatAdapter.notifyDataSetChanged();
@@ -197,6 +203,7 @@ public class ChatActivity extends AppCompatActivity {
                 sendedData[1] = "addChat";
                 sendedData[2] = userid;
                 sendedData[3] = text1;
+                sendedData[4] = "right";    // 임시 왼/오 확인
 
                 server = new ServerComponent(server.getServerIp(), sendedData);
                 server.start();
@@ -212,18 +219,17 @@ public class ChatActivity extends AppCompatActivity {
 
         return Time;
     }
-
-    // 검색을 수행하는 메소드
-    public void ChatSearch(String chatText) {
-        // chatText와 chatLog에서의 채팅값끼리 비교하여 해당 인덱스값을 포지션으로 하여
-        // 리사이클러.ScrollToPosition(포지션)으로 이동한다.
-
-        //그게 아니라면 리사이클러 전체를 탐색하여 찾고, 포지션은,, 어카지?
-
-    }
 }
 
-    //init();
+    // 검색을 수행하는 메소드
+//    public void ChatSearch(String chatText) {
+//        // chatText와 chatLog에서의 채팅값끼리 비교하여 해당 인덱스값을 포지션으로 하여
+//        // 리사이클러.ScrollToPosition(포지션)으로 이동한다.
+//
+//        //그게 아니라면 리사이클러 전체를 탐색하여 찾고, 포지션은,, 어카지?
+//
+//    }
+//}
 
     /*public void returnToMain(){  // 채팅, 사용자 정보를 메인으로 전송하는 함수
         ArrayList chattings = adapter.getList();

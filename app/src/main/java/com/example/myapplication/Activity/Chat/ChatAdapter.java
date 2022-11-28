@@ -2,6 +2,7 @@ package com.example.myapplication.Activity.Chat;
 
 import static android.media.CamcorderProfile.get;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 
 import android.util.Log;
+
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private ArrayList<ChatClass> arrayList = new ArrayList<>();
@@ -62,6 +64,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         arrayList.add(item);
         Log.d("#######배열에 넣어짐 -->    ",item.chat+item.time);
     }
+
 
    /* public void setarrayList(ArrayList<String> arrayList) {
 

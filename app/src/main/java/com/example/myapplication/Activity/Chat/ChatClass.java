@@ -1,15 +1,18 @@
 package com.example.myapplication.Activity.Chat;
 
 public class ChatClass {
+    String name;
     String chat;
     String time;
     private int viewType;
 
-//    public ChatClass(String chat, String time, int viewType){
-//        this.chat = chat;
-//        this.time = time;
-//        this.viewType = viewType;
-//    }
+    public ChatClass(String chat, String time, int viewType){
+        this.chat = chat;
+        this.time = time;
+        this.viewType = viewType;
+    }
+    public String getName(){return name;}
+    public void setName(String name){this.name = name;}
     public String getChat(){
         return chat;
     }
