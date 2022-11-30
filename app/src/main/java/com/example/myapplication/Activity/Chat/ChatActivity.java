@@ -30,8 +30,8 @@ import java.util.Date;
 public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager1;
     private LinearLayoutManager linearLayoutManager2;
-    private ChatAdapter chatAdapter1 = new ChatAdapter();
-    private ChatAdapter chatAdapter2 = new ChatAdapter();
+    private ChatAdapterLeft chatAdapter1 = new ChatAdapterLeft();
+    private ChatAdapterRight chatAdapter2 = new ChatAdapterRight();
     private ArrayList<ChatClass> datalist; // 상대방 채팅
     ChatClass data;
 
@@ -143,16 +143,16 @@ public class ChatActivity extends AppCompatActivity {
         message = (EditText) findViewById(R.id.EditText_chat);
         send = (Button) findViewById(R.id.Button_send);
         recyclerView_R = (RecyclerView) findViewById(R.id.chatting_Right);
-        recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
+//        recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
         recyclerView_R.setHasFixedSize(true);
-        recyclerView_L.setHasFixedSize(true);
+
         linearLayoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         linearLayoutManager2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
             /*((LinearLayoutManager) linearLayoutManager).setReverseLayout(true);
             ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
 
         recyclerView_R.setLayoutManager(linearLayoutManager2);
-        recyclerView_L.setLayoutManager(linearLayoutManager1);
+//        recyclerView_L.setLayoutManager(linearLayoutManager1);
 
         //채팅 검색 기능, 근데 이제 임시로 클릭하면 상대방 채팅이 뜨는
         searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
