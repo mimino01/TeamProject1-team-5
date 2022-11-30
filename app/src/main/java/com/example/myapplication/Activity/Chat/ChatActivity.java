@@ -28,8 +28,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ChatActivity extends AppCompatActivity {
-    private LinearLayoutManager linearLayoutManager;
-    private ChatAdapter chatAdapter = new ChatAdapter();
+    private LinearLayoutManager linearLayoutManager1;
+    private LinearLayoutManager linearLayoutManager2;
+    private ChatAdapter chatAdapter1 = new ChatAdapter();
+    private ChatAdapter chatAdapter2 = new ChatAdapter();
     private ArrayList<ChatClass> datalist; // 상대방 채팅
     ChatClass data;
 
@@ -38,7 +40,8 @@ public class ChatActivity extends AppCompatActivity {
     Button searchButton;
     EditText message;
     Button send;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView_L;
+    RecyclerView recyclerView_R;
     TextView Info;
 
     //서버 연결
@@ -81,7 +84,7 @@ public class ChatActivity extends AppCompatActivity {
             server.start();
         }*/
 
-        if (!create) {          // 설명
+        if (!create) {
             if (userid.equals("adminid")) {
                 create = true;
 
@@ -139,22 +142,33 @@ public class ChatActivity extends AppCompatActivity {
         searchButton = (Button) findViewById(R.id.SearchButton);
         message = (EditText) findViewById(R.id.EditText_chat);
         send = (Button) findViewById(R.id.Button_send);
-        recyclerView = (RecyclerView) findViewById(R.id.chatting);
-        recyclerView.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recyclerView_R = (RecyclerView) findViewById(R.id.chatting_Right);
+        recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
+        recyclerView_R.setHasFixedSize(true);
+        recyclerView_L.setHasFixedSize(true);
+        linearLayoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        linearLayoutManager2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
             /*((LinearLayoutManager) linearLayoutManager).setReverseLayout(true);
             ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
 
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView_R.setLayoutManager(linearLayoutManager2);
+        recyclerView_L.setLayoutManager(linearLayoutManager1);
 
-//        //채팅 검색 기능
-//        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
-//            @Override
-//            public void onClick(View view) {
+        //채팅 검색 기능, 근데 이제 임시로 클릭하면 상대방 채팅이 뜨는
+        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
+            @Override
+            public void onClick(View view) {
+                String text = "안녕하십니까";
+                ChatClass data = new ChatClass(text, Time(), 0);
+                chatAdapter1.addItem(data);
+                recyclerView_L.setAdapter(chatAdapter1);
+                chatAdapter1.notifyDataSetChanged();
+
+
 //                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
 //                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
-//            }
-//        });
+            }
+        });
 
         send.setOnClickListener(new View.OnClickListener() {
 
@@ -183,7 +197,7 @@ public class ChatActivity extends AppCompatActivity {
                             data = new ChatClass(response[i][2], Time(), 0);
 //                            data.setChat();
 //                            data.setTime(Time());
-                            chatAdapter.addItem(data);
+                            chatAdapter2.addItem(data);
                         }
                     }
                 } else {
@@ -195,9 +209,9 @@ public class ChatActivity extends AppCompatActivity {
 
                 String text1 = message.getText().toString();
                 ChatClass data = new ChatClass(text1, Time(), 0);
-                chatAdapter.addItem(data);
-                recyclerView.setAdapter(chatAdapter);
-                chatAdapter.notifyDataSetChanged();
+                chatAdapter2.addItem(data);
+                recyclerView_R.setAdapter(chatAdapter2);
+                chatAdapter2.notifyDataSetChanged();
 
                 sendedData[0] = "chat";
                 sendedData[1] = "addChat";

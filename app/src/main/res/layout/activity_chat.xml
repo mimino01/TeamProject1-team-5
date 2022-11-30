@@ -149,14 +149,25 @@
             android:layout_height="350dp"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/chatting"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_margin="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:orientation="horizontal">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chatting_Left"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chatting_Right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="230dp" />
+
+            </LinearLayout>
         </LinearLayout>
 
             <LinearLayout
