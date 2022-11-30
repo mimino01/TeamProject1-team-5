@@ -143,8 +143,9 @@ public class ChatActivity extends AppCompatActivity {
         message = (EditText) findViewById(R.id.EditText_chat);
         send = (Button) findViewById(R.id.Button_send);
         recyclerView_R = (RecyclerView) findViewById(R.id.chatting_Right);
-//        recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
+        recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
         recyclerView_R.setHasFixedSize(true);
+        recyclerView_L.setHasFixedSize(true);
 
         linearLayoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         linearLayoutManager2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
@@ -152,14 +153,15 @@ public class ChatActivity extends AppCompatActivity {
             ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
 
         recyclerView_R.setLayoutManager(linearLayoutManager2);
-//        recyclerView_L.setLayoutManager(linearLayoutManager1);
-
+        recyclerView_L.setLayoutManager(linearLayoutManager1);
+//
         //채팅 검색 기능, 근데 이제 임시로 클릭하면 상대방 채팅이 뜨는
         searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
             @Override
             public void onClick(View view) {
                 String text = "안녕하십니까";
-                ChatClass data = new ChatClass(text, Time(), 0);
+                ChatClass data = new ChatClass("신서연",text, Time(), 0);
+
                 chatAdapter1.addItem(data);
                 recyclerView_L.setAdapter(chatAdapter1);
                 chatAdapter1.notifyDataSetChanged();
@@ -194,7 +196,7 @@ public class ChatActivity extends AppCompatActivity {
                         if (!userid.equals(response[i][0])) {
 //                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
 
-                            data = new ChatClass(response[i][2], Time(), 0);
+                            data = new ChatClass(userid,response[i][2], Time(), 0);
 //                            data.setChat();
 //                            data.setTime(Time());
                             chatAdapter2.addItem(data);
@@ -208,8 +210,8 @@ public class ChatActivity extends AppCompatActivity {
 
 
                 String text1 = message.getText().toString();
-                ChatClass data = new ChatClass(text1, Time(), 0);
-                chatAdapter2.addItem(data);
+                ChatClass data1 = new ChatClass(userid, text1, Time(), 0);
+                chatAdapter2.addItem(data1);
                 recyclerView_R.setAdapter(chatAdapter2);
                 chatAdapter2.notifyDataSetChanged();
 

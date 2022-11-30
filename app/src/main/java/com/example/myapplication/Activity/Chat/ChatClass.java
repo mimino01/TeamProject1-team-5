@@ -6,7 +6,8 @@ public class ChatClass {
     String time;
     private int viewType;
 
-    public ChatClass(String chat, String time, int viewType){
+    public ChatClass(String name, String chat, String time, int viewType){
+        this.name = name;
         this.chat = chat;
         this.time = time;
         this.viewType = viewType;

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import android.util.Log;
 
 
+
 public class ChatAdapterLeft extends RecyclerView.Adapter<ChatAdapterLeft.ViewHolder> {
     private ArrayList<ChatClass> arrayList = new ArrayList<>();
 
@@ -27,9 +28,8 @@ public class ChatAdapterLeft extends RecyclerView.Adapter<ChatAdapterLeft.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.item, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.item2, parent, false);
         return new ViewHolder(itemView);
 
     }
@@ -45,23 +45,27 @@ public class ChatAdapterLeft extends RecyclerView.Adapter<ChatAdapterLeft.ViewHo
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView dataView;
-        TextView timeView;
+        TextView NameView;
+        TextView ChatView;
+        TextView TimeView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            dataView = itemView.findViewById(R.id.textView);
-            timeView = itemView.findViewById(R.id.timeView);
+            NameView = itemView.findViewById(R.id.nameView);
+            ChatView = itemView.findViewById(R.id.textView);
+            TimeView = itemView.findViewById(R.id.timeView);
         }
-        void onBind(ChatClass data){
-            dataView.setText(data.getChat());
-            timeView.setText(data.getTime());
+
+        void onBind(ChatClass data) {
+            NameView.setText(data.getName());
+            ChatView.setText(data.getChat());
+            TimeView.setText(data.getTime());
         }
     }
 
     public void addItem(ChatClass item){
         arrayList.add(item);
-        Log.d("#######배열에 넣어짐 -->    ",item.chat+item.time);
+        Log.d("#######배열에 넣어짐 -->    ",item.name+item.chat+item.time);
     }
 
 
@@ -80,6 +84,7 @@ public class ChatAdapterLeft extends RecyclerView.Adapter<ChatAdapterLeft.ViewHo
         arrayList.set(position, item);
     }*/
 }
+
 
 
 /*public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ItemViewHolder> {

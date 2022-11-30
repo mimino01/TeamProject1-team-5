@@ -88,7 +88,7 @@ public class ChatTestingActivity extends AppCompatActivity {
                         if (!name.equals(response[i][0])) {
 //                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
 
-                            data = new ChatClass(response[i][2], Time(), 0);
+                            data = new ChatClass(name, response[i][2], Time(), 0);
                           //  data.setChat();
                            // data.setTime(Time());
                             chatAdapter.addItem(data);
@@ -102,7 +102,7 @@ public class ChatTestingActivity extends AppCompatActivity {
 
 
                 String text1 = message.getText().toString();
-                data = new ChatClass(text1, Time(), 0);
+                data = new ChatClass(name, text1, Time(), 0);
 //                data.setChat(text1);
 //                data.setTime(Time());
                 chatAdapter.addItem(data);

@@ -13,6 +13,7 @@ import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
+
 public class ChatAdapterRight extends RecyclerView.Adapter<ChatAdapterRight.ViewHolder> {
     private ArrayList<ChatClass> arrayList = new ArrayList<>();
 
@@ -25,7 +26,7 @@ public class ChatAdapterRight extends RecyclerView.Adapter<ChatAdapterRight.View
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.item2, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.item, parent, false);
         return new ViewHolder(itemView);
 
     }
@@ -41,22 +42,17 @@ public class ChatAdapterRight extends RecyclerView.Adapter<ChatAdapterRight.View
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-
-        TextView NameView;
-        TextView ChatView;
-        TextView TimeView;
+        TextView dataView;
+        TextView timeView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            NameView = (TextView) itemView.findViewById(R.id.nameView);
-            ChatView = (TextView) itemView.findViewById(R.id.textView);
-            TimeView = (TextView) itemView.findViewById(R.id.timeView);
+            dataView = itemView.findViewById(R.id.textView);
+            timeView = itemView.findViewById(R.id.timeView);
         }
-
-        void onBind(ChatClass data) {
-            NameView.setText(data.getName());
-            ChatView.setText(data.getChat());
-            TimeView.setText(data.getTime());
+        void onBind(ChatClass data){
+            dataView.setText(data.getChat());
+            timeView.setText(data.getTime());
         }
     }
 
@@ -81,4 +77,3 @@ public class ChatAdapterRight extends RecyclerView.Adapter<ChatAdapterRight.View
         arrayList.set(position, item);
     }*/
 }
-
