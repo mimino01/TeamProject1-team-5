@@ -44,11 +44,14 @@ public class ChatAdapter_type extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+//        holder.onBind(arrayList.get(position));
         if (holder instanceof LeftViewHolder) {
-            ((LeftViewHolder) holder).NameView.setText(arrayList.get(position).getName());
-            ((LeftViewHolder) holder).ChatView.setText(arrayList.get(position).getChat());
+            ((LeftViewHolder) holder).LeftonBind(arrayList.get(position));
+//            ((LeftViewHolder) holder).NameView.setText(arrayList.get(position).getName());
+//            ((LeftViewHolder) holder).ChatView.setText(arrayList.get(position).getChat());
         } else {
-            ((RightViewHolder) holder).dataView.setText(arrayList.get(position).getChat());
+            ((RightViewHolder) holder).RightonBind(arrayList.get(position));
+//            ((RightViewHolder) holder).dataView.setText(arrayList.get(position).getChat());
         }
     }
 
@@ -73,7 +76,7 @@ public class ChatAdapter_type extends RecyclerView.Adapter<RecyclerView.ViewHold
             TimeView = (TextView) itemView.findViewById(R.id.timeView);
         }
 
-        void onBind(ChatClass data) {
+        void LeftonBind(ChatClass data) {
             NameView.setText(data.getName());
             ChatView.setText(data.getChat());
             TimeView.setText(data.getTime());
@@ -91,7 +94,7 @@ public class ChatAdapter_type extends RecyclerView.Adapter<RecyclerView.ViewHold
             timeView = itemView.findViewById(R.id.timeView);
         }
 
-        void onBind(ChatClass data) {
+        void RightonBind(ChatClass data) {
             dataView.setText(data.getChat());
             timeView.setText(data.getTime());
         }

@@ -32,6 +32,7 @@ public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager2;
     private ChatAdapterLeft chatAdapter1 = new ChatAdapterLeft();
     private ChatAdapterRight chatAdapter2 = new ChatAdapterRight();
+    private ChatAdapter_type chatAdapterMarge = new ChatAdapter_type(); // 합병 어댑터
     private ArrayList<ChatClass> datalist; // 상대방 채팅
     ChatClass data;
 
@@ -162,9 +163,15 @@ public class ChatActivity extends AppCompatActivity {
                 String text = "안녕하십니까";
                 ChatClass data = new ChatClass("신서연",text, Time(), 0);
 
-                chatAdapter1.addItem(data);
-                recyclerView_L.setAdapter(chatAdapter1);
-                chatAdapter1.notifyDataSetChanged();
+                chatAdapterMarge.addItem(data);
+                recyclerView_L.setAdapter(chatAdapterMarge);
+                chatAdapterMarge.notifyDataSetChanged();
+
+//                ChatClass empty = new ChatClass("null", "null", Time(), 0);
+//                chatAdapter2.addItem(empty);
+//                recyclerView_R.setAdapter(chatAdapter2);
+//                chatAdapter2.notifyDataSetChanged();
+
 
 
 //                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
@@ -210,10 +217,10 @@ public class ChatActivity extends AppCompatActivity {
 
 
                 String text1 = message.getText().toString();
-                ChatClass data1 = new ChatClass(userid, text1, Time(), 0);
-                chatAdapter2.addItem(data1);
-                recyclerView_R.setAdapter(chatAdapter2);
-                chatAdapter2.notifyDataSetChanged();
+                ChatClass data1 = new ChatClass(userid, text1, Time(), 1);
+                chatAdapterMarge.addItem(data1);
+                recyclerView_L.setAdapter(chatAdapterMarge);
+                chatAdapterMarge.notifyDataSetChanged();
 
                 sendedData[0] = "chat";
                 sendedData[1] = "addChat";

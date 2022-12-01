@@ -158,15 +158,15 @@
                     android:id="@+id/chatting_Left"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp" />
+                    android:layout_marginStart="10dp"
+                    />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/chatting_Right"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="80dp" />
+                    android:layout_marginLeft="80dp" />
 
             </LinearLayout>
         </LinearLayout>
