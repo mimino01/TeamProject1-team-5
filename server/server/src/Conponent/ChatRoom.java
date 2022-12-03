@@ -17,6 +17,7 @@ public class ChatRoom {
 	private float departureTime;
 	private Double[] coordinate = new Double[2];
 	private float hostRank;
+	private int lastPos = 0;
 
 	private int createTime;
 	
@@ -55,8 +56,10 @@ public class ChatRoom {
 		chatInfo[0] = op.getId();
 		chatInfo[1] = op.getName();
 		chatInfo[2] = chat;
+		chatInfo[3] = String.valueOf(lastPos);
 		chatLog[lastChatNumber] = chatInfo.clone();
 		lastChatNumber++;
+		lastPos++;
 		return true;
 	}
 

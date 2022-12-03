@@ -115,6 +115,9 @@ public class Saver {
 			} else {
 				return room.searchNode(hash.get(data[2])).getChatLog();
 			}
+
+		case "loadAllChat":
+			break;
 			
 		default:
 			break;

@@ -49,9 +49,10 @@ public class Sort {
 
         for (int i = 0; true; i++) {
             if (last < 1) break;
-            if (last - first == 2 * i) {
-
+            if (last - first == 2 * i || last - first == 2 * i - 1) {
+                break;
             }
+
         }
     }
 
