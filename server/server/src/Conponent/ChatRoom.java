@@ -17,6 +17,7 @@ public class ChatRoom {
 	private float departureTime;
 	private Double[] coordinate = new Double[2];
 	private float hostRank;
+	private int lastPos = 0;
 
 	private int createTime;
 	
@@ -55,8 +56,10 @@ public class ChatRoom {
 		chatInfo[0] = op.getId();
 		chatInfo[1] = op.getName();
 		chatInfo[2] = chat;
+		chatInfo[3] = String.valueOf(lastPos);
 		chatLog[lastChatNumber] = chatInfo.clone();
 		lastChatNumber++;
+		lastPos++;
 		return true;
 	}
 
@@ -118,6 +121,12 @@ public class ChatRoom {
 
 	public String[] toArray() {
 		String[] result = new String[]{Arrays.toString(user), Integer.toString(roomId), Integer.toString(lastChatNumber), Arrays.toString(chatInfo), Arrays.deepToString(chatLog), host, Integer.toString(numberOfUser), destination, Float.toString(departureTime), Arrays.toString(coordinate), Integer.toString(createTime)};
+
+		return result;
+	}
+
+	public String[] toArrayByDetailInfo() {
+		String[] result = new String[]{host, destination, String.valueOf(hostRank), String.valueOf(createTime), String.valueOf(departureTime), String.valueOf(coordinate[0]), String.valueOf(coordinate[1])};
 
 		return result;
 	}
