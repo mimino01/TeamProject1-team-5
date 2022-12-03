@@ -137,5 +137,19 @@ public class BoardLinkedList {
 
             return result;
         }
+
+        public String[][] toDeepArrayByinfo() {
+            String[][] result = new String[100][];
+            Node tempNode = this.head;
+            int i = 0;
+
+            while (tempNode != null) {
+                result[i] = tempNode.getData().toArrayByDetailInfo();
+                tempNode = tempNode.link;
+                i++;
+            }
+
+            return result;
+        }
     }
 }

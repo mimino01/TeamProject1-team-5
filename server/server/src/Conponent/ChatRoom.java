@@ -125,6 +125,12 @@ public class ChatRoom {
 		return result;
 	}
 
+	public String[] toArrayByDetailInfo() {
+		String[] result = new String[]{host, destination, String.valueOf(hostRank), String.valueOf(createTime), String.valueOf(departureTime), String.valueOf(coordinate[0]), String.valueOf(coordinate[1])};
+
+		return result;
+	}
+
 	public String[] infoToArray() {
 		String[] result = new String[]{host, destination, String.valueOf(hostRank), String.valueOf(createTime), String.valueOf(departureTime)};
 
