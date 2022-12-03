@@ -29,20 +29,17 @@ import java.util.Date;
 
 public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager1;
-    private LinearLayoutManager linearLayoutManager2;
-//    private ChatAdapterLeft chatAdapter1 = new ChatAdapterLeft();
-//    private ChatAdapterRight chatAdapter2 = new ChatAdapterRight();
     private ChatAdapter_type chatAdapterMarge = new ChatAdapter_type(); // 합병 어댑터
     private ArrayList<ChatClass> datalist; // 상대방 채팅
     ChatClass data;
 
     //레이아웃 연결
+    Button chatserv;
     EditText searchText;
     Button searchButton;
     EditText message;
     Button send;
     RecyclerView recyclerView_L;
-    RecyclerView recyclerView_R;
     TextView Info;
 
     //서버 연결
@@ -139,45 +136,52 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         // 레이아웃과 연결
+        chatserv = findViewById(R.id.Button_chatserv);
         searchText = (EditText) findViewById(R.id.SearchText);
         searchButton = (Button) findViewById(R.id.SearchButton);
         message = (EditText) findViewById(R.id.EditText_chat);
         send = (Button) findViewById(R.id.Button_send);
-//        recyclerView_R = (RecyclerView) findViewById(R.id.chatting_Right);
         recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
-//        recyclerView_R.setHasFixedSize(true);
         recyclerView_L.setHasFixedSize(true);
 
         linearLayoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        linearLayoutManager2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
             /*((LinearLayoutManager) linearLayoutManager).setReverseLayout(true);
             ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
 
-//        recyclerView_R.setLayoutManager(linearLayoutManager2);
         recyclerView_L.setLayoutManager(linearLayoutManager1);
 //
-        //채팅 검색 기능, 근데 이제 임시로 클릭하면 상대방 채팅이 뜨는
-        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
+
+        // 상대방 채팅이 뜨는
+        chatserv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String text = "안녕하십니까";
                 ChatClass data = new ChatClass("신서연",text, Time(), 0);
-
                 chatAdapterMarge.addItem(data);
                 recyclerView_L.setAdapter(chatAdapterMarge);
                 chatAdapterMarge.notifyDataSetChanged();
 
-//                ChatClass empty = new ChatClass("null", "null", Time(), 0);
-//                chatAdapter2.addItem(empty);
-//                recyclerView_R.setAdapter(chatAdapter2);
-//                chatAdapter2.notifyDataSetChanged();
+                sendedData[0] = "chat";
+                sendedData[1] = "addChat";
+                sendedData[2] = userid;
+                sendedData[3] = text;
+                sendedData[4] = "left";    // 임시 왼/오 확인
 
-
-
-//                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
-//                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
+                server = new ServerComponent(server.getServerIp(), sendedData);
+                server.start();
             }
         });
+
+//        //채팅 검색 기능
+//        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
+//            @Override
+//            public void onClick(View view) {
+//
+//
+////                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
+////                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
+//            }
+//        });
 
         send.setOnClickListener(new View.OnClickListener() {
 
@@ -188,7 +192,7 @@ public class ChatActivity extends AppCompatActivity {
                 server.start();
 
                 try {
-                    sleep(100);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -204,8 +208,6 @@ public class ChatActivity extends AppCompatActivity {
 //                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
 
                             data = new ChatClass(userid,response[i][2], Time(), 0);
-//                            data.setChat();
-//                            data.setTime(Time());
                             chatAdapterMarge.addItem(data);
                         }
                     }
