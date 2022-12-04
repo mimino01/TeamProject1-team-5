@@ -45,7 +45,7 @@ public class ChatActivity extends AppCompatActivity {
 
     //서버 연결
     ServerComponent server = new ServerComponent();
-    String userid = null, roomNumber, createOrJoin;
+    String userid = null, roomNumber, createOrJoin, hostName;
     String[] sendedData = new String[5];
     String[] createData = new String[5];
     boolean create = false;
@@ -68,8 +68,7 @@ public class ChatActivity extends AppCompatActivity {
         Log.i(TAG, "ChatActivity - get intent data checker : " + getIntent.getStringExtra("createOrJoin") + getIntent.getStringExtra("userid") + getIntent.getStringExtra("roomCode"));
         createOrJoin = getIntent.getStringExtra("createOrJoin");
         roomNumber = getIntent.getStringExtra("roomCode");
-
-        // 상단에 '목적지 | 시간 ' 표시
+                // 상단에 '목적지 | 시간 ' 표시
         Info = (TextView) findViewById(R.id.TextView_info);
         Info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));
 
@@ -83,15 +82,16 @@ public class ChatActivity extends AppCompatActivity {
             server.start();
         }*/
 
+        hostName = getIntent.getStringExtra("userName");
         if (!create) {
-            if (userid.equals("adminid")) {
+            if (userid.equals("박휘건") || userid.equals("홍길동") || userid.equals("가나다")) {     // 필요없을지도.. 게시물 작성자가 본인의 채팅방에 접근할때의 경우
                 create = true;
 
                 String[] request = new String[]{"chat", "create", userid, "37.22344259294581", "127.18734526333768", "1030", "명지대", "1010"};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
-            } else {
-                String[] request = new String[]{"chat", "addUser", "adminid", "subadminid"};
+            } else {            // 게시물 작성자가 아닌 사용자가 채팅방에 JOIN
+                String[] request = new String[]{"chat", "addUser", hostName, userid};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
             }
@@ -99,7 +99,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 메인으로 이동
         button_main.setOnClickListener(new View.OnClickListener() {
-            @Override
+                                                 @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
                 startActivity(intent);
