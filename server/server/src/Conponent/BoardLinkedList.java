@@ -130,7 +130,7 @@ public class BoardLinkedList {
             int i = 0;
 
             while (tempNode != null) {
-                result[i] = tempNode.getData().infoToArray();
+                result[i] = tempNode.getData().toArrayByDetailInfo();
                 tempNode = tempNode.link;
                 i++;
             }

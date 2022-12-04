@@ -124,7 +124,7 @@ public class Saver {
 
 		case "loadAllChat":
 			System.out.println("processing chat in load all chat");
-			return room.toDeepArrayByinfo();
+			return room.toDeepArray();
 			
 		default:
 			break;
@@ -140,8 +140,8 @@ public class Saver {
 		int roomLength = 0;
 		Sort sortD = new Sort();
 		String[][] copyRoom = room.toDeepArray().clone();
-		copyRoom[0] = new String[]{"안녕","하","세","3","요","ㅇㅈ"};
-		copyRoom[1] = new String[]{"안sdaf","하","세","2","31","fasd"};
+//		copyRoom[0] = new String[]{"안녕","하","세","3","요","ㅇㅈ"};
+//		copyRoom[1] = new String[]{"안sdaf","하","세","2","31","fasd"};
 
 		switch (key) {
 			case "default":
@@ -175,12 +175,25 @@ public class Saver {
 						roomLength++;
 					}
 					System.out.println("Saver.chatRoomSort.DescendingTime - roomLength data : " + roomLength);
-					sortD.ascendingTime(copyRoom, 0, roomLength - 1);
+					sortD.descendingTime(copyRoom, 0, roomLength - 1);
 				}
 				req = copyRoom.clone();
 				break;
 
 			case "Distance":
+				System.out.println("Save.chatRoomSort.Distance - room data : " + Arrays.deepToString(copyRoom));
+				if (copyRoom[0] == null) {
+
+				} else if (copyRoom[1] == null) {
+
+				} else {
+					for (int i = 0; copyRoom[i] != null; i++) {
+						roomLength++;
+					}
+					System.out.println("Saver.chatRoomSort.Distance - roomLength data : " + roomLength);
+					sortD.ascendingTime(copyRoom, 0, roomLength - 1);
+				}
+				req = copyRoom.clone();
 				break;
 
 			case "Rank":

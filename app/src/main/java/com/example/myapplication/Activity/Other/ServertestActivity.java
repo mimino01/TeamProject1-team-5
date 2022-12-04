@@ -38,23 +38,8 @@ public class ServertestActivity extends AppCompatActivity {
             try {
                 data = new String[10];
 
-                data[0] = "chat";
-                data[1] = "loadAllChat";
-
-                server = new ServerComponent(server.getServerIp(),data);
-                server.start();
-
-                Thread.sleep(1000);
-
-                String[][] resData = (String[][]) server.getRes();
-                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add review : " + Arrays.deepToString(resData));
-
-
-
-
-//                data = new String[]{"signUpdate","수정된관리자", "01012341234", "adminid", "adminpw", "man"};
-//                data[0] = "sort";
-//                data[1] = "AscendingTime";
+//                data[0] = "chat";
+//                data[1] = "loadAllChat";
 //
 //                server = new ServerComponent(server.getServerIp(),data);
 //                server.start();
@@ -63,6 +48,23 @@ public class ServertestActivity extends AppCompatActivity {
 //
 //                String[][] resData = (String[][]) server.getRes();
 //                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add review : " + Arrays.deepToString(resData));
+
+
+
+
+//                data = new String[]{"signUpdate","수정된관리자", "01012341234", "adminid", "adminpw", "man"};
+
+
+                data[0] = "sort";
+                data[1] = "DescendingTime";
+
+                server = new ServerComponent(server.getServerIp(),data);
+                server.start();
+
+                Thread.sleep(1000);
+
+                String[][] resData = (String[][]) server.getRes();
+                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add review : " + Arrays.deepToString(resData));
 
 
 

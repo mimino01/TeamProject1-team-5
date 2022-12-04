@@ -44,26 +44,32 @@ public class Sort {
         return room.toDeepArray();
     }
 
+    public static void distance(String[][] array, int first, int last) {
+
+    }
+
     public static void descendingTime(String[][] array, int first, int last) {
         ascendingTime(array, first, last);
 
-        for (int i = 0; true; i++) {
-            if (last < 1) break;
-            if (last - first == 2 * i || last - first == 2 * i - 1) {
-                break;
-            }
-
+        for (int i = 0; i < ((last - first + 1) / 2); i++) {
+            String[] temp = array[i];
+            array[i] = array[last - i];
+            array[last - i] = temp;
         }
     }
 
     public static void ascendingTime(String[][] array, int first, int last) {
+        defaltSort(array, first, last, 3);
+    }
+
+    public static void defaltSort(String[][] array, int first, int last, int type) {
         if (first >= last) {
             return;
         }
 
-        int low = Integer.parseInt(array[first + 1][3]);
-        int high = Integer.parseInt(array[last][3]);
-        int pivot = Integer.parseInt(array[first][3]);
+        int low = Integer.parseInt(array[first + 1][type]);
+        int high = Integer.parseInt(array[last][type]);
+        int pivot = Integer.parseInt(array[first][type]);
         int copyPivot = first;
         int copyFirst = first;
         int copyLast = last;
@@ -99,12 +105,12 @@ public class Sort {
                 array[copyLast] = temp.clone();
                 copyFirst++;
                 copyLast--;
-                low = Integer.parseInt(array[copyFirst + 1][3]);
-                high = Integer.parseInt(array[copyLast][3]);
+                low = Integer.parseInt(array[copyFirst + 1][type]);
+                high = Integer.parseInt(array[copyLast][type]);
             } else if (pivot <= high) {
                 //뒷 노드 한칸 전진
                 copyLast--;
-                high = Integer.parseInt(array[copyLast][3]);
+                high = Integer.parseInt(array[copyLast][type]);
             } else if (pivot > low) {
                 //첫 노드 한칸 전진
                 copyFirst++;
@@ -112,14 +118,14 @@ public class Sort {
             } else if(pivot <= high && pivot > low) {
                 //정렬 필요 없음 (첫 노드, 뒷 노드 한칸 전진)
                 copyLast--;
-                high = Integer.parseInt(array[copyLast][3]);
+                high = Integer.parseInt(array[copyLast][type]);
                 copyFirst++;
-                low = Integer.parseInt(array[copyFirst + 1][3]);
+                low = Integer.parseInt(array[copyFirst + 1][type]);
             } else {
                 System.out.println("Sort Error - Undefined what circumstances - node description : " + Arrays.deepToString(array));
             }
         }
-        ascendingTime(array, first, copyPivot - 1);
-        ascendingTime(array, copyPivot + 1, last);
+        defaltSort(array, first, copyPivot - 1, type);
+        defaltSort(array, copyPivot + 1, last, type);
     }
 }
