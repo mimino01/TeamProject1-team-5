@@ -98,11 +98,19 @@ public class Saver {
 			break;
 
 		case "addUser":
-			temp = room.searchNode(hash.get(data[2]));
-			boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
-			room.insertNode(temp);
-			result[0][0] = Boolean.toString(response);
-			return result;
+			if (hash.get(data[2]).equals(hash.get("dfasfsadvasdvevsdfver"))) {
+				temp = room.searchNode(hash.getByName(data[2]));
+				boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
+				room.insertNode(temp);
+				result[0][0] = Boolean.toString(response);
+				return result;
+			} else {
+				temp = room.searchNode(hash.get(data[2]));
+				boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
+				room.insertNode(temp);
+				result[0][0] = Boolean.toString(response);
+				return result;
+			}
 			
 		case "addChat":
 			System.out.println("processing chat in add");

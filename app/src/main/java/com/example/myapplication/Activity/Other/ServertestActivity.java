@@ -39,7 +39,13 @@ public class ServertestActivity extends AppCompatActivity {
                 data = new String[10];
 
 //                data[0] = "chat";
+<<<<<<< HEAD
 //                data[1] = "loadAllChat";
+=======
+//                data[1] = "addUser";
+//                data[2] = "가나다";
+//                data[3] = "subadminid";
+>>>>>>> 8e8ad662fad4295a5e894a88c4a3a24a0fd99622
 //
 //                server = new ServerComponent(server.getServerIp(),data);
 //                server.start();
@@ -53,10 +59,16 @@ public class ServertestActivity extends AppCompatActivity {
 
 
 //                data = new String[]{"signUpdate","수정된관리자", "01012341234", "adminid", "adminpw", "man"};
+<<<<<<< HEAD
 
 
                 data[0] = "sort";
                 data[1] = "DescendingTime";
+=======
+//
+                data[0] = "req_userdata";
+                data[1] = "ganadaid";
+>>>>>>> 8e8ad662fad4295a5e894a88c4a3a24a0fd99622
 
                 server = new ServerComponent(server.getServerIp(),data);
                 server.start();

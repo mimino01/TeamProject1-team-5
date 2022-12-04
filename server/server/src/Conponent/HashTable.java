@@ -52,6 +52,18 @@ public class HashTable {
 		}
 		return null;
 	}
+
+	Node searchName(LinkedList<Node> list, String name) {
+		if (list == null) {
+			return null;
+		}
+		for (Node node : list) {
+			if (node.value.getName().equals(name)) {
+				return node;
+			}
+		}
+		return null;
+	}
 	
 	public void put(String key, Option value) {
 		int hashcode = getHashCode(key);
@@ -85,6 +97,19 @@ public class HashTable {
 		Node node = searchKey(lsit, key);
 //		if (node != null) System.out.println("HashTable.LinkedList.get - search node by key : " + node.getValue().toString());
 		return node == null? nullValue : node.getValue();
+	}
+
+	public Option getByName(String name) {
+		for (int i = 0; true; i++) {
+			LinkedList<Node> list = data[i];
+
+			Node node = searchName(list, name);
+			if (node != null) {
+				Option nullValue = new Option();
+				nullValue.setId("data not include");
+				return node == null? nullValue : node.getValue();
+			}
+		}
 	}
 
 	public boolean delete(String key) {
