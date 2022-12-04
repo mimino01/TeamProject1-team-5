@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -156,7 +157,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text = "안녕하십니까";
-                ChatClass data = new ChatClass("신서연",text, Time(), 0);
+                ChatClass data = new ChatClass("신서연",text, Time(), 0);  // 채팅 보내는 상대방 이름으로 수정
                 chatAdapterMarge.addItem(data);
                 recyclerView_L.setAdapter(chatAdapterMarge);
                 chatAdapterMarge.notifyDataSetChanged();
@@ -172,16 +173,27 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-//        //채팅 검색 기능
-//        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
-//            @Override
-//            public void onClick(View view) {
+        //채팅 검색 기능
+        searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
+            @Override
+            public void onClick(View view) {
+
+//                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
 //
+//                for(int i=0; response[i].length > i ; i++){
+//                    if(response[i][2] == S_text){
+//                        linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(response[i][2]),100);
+//                    }
+//                    else{
+//                        Toast.makeText(getApplicationContext(), Integer.valueOf(response[i][2]) + "번째 값 검색 실패",Toast.LENGTH_LONG).show();
+//                        break;
+//                    }
+//                }
 //
-////                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
-////                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
-//            }
-//        });
+
+//                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
+            }
+        });
 
         send.setOnClickListener(new View.OnClickListener() {
 
@@ -232,6 +244,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 server = new ServerComponent(server.getServerIp(), sendedData);
                 server.start();
+
             }
         });
     }

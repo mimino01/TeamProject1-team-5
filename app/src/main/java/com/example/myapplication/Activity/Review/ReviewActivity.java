@@ -73,7 +73,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         } catch(Exception e) {
             e.printStackTrace();
-            Log.d(TAG, "ReviewnActivity\n" + e);
+            Log.d(TAG, "ReviewActivity\n" + e);
         }
 }
 
