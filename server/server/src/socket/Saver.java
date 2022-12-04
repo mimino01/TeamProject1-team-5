@@ -106,9 +106,16 @@ public class Saver {
 			
 		case "addChat":
 			System.out.println("processing chat in add");
-			if (room.addChat(hash.get(data[2]), data[3])) {
-				result[0][0] = Boolean.toString(true);
-				return result;
+			if (hash.get(data[2]).equals(hash.get("dadsadasdasdasdasdsadas"))) {
+				if (room.addChat(hash.getByName(data[2]), data[3])) {
+					result[0][0] = Boolean.toString(true);
+					return result;
+				}
+			} else {
+				if (room.addChat(hash.get(data[2]), data[3])) {
+					result[0][0] = Boolean.toString(true);
+					return result;
+				}
 			}
 			break;
 			
