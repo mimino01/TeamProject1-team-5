@@ -90,7 +90,7 @@ public class Saver {
 		switch (key) {
 		case "create":
 			System.out.println("processing chat in create");
-			temp = new ChatRoom(hash.get(data[2]).getName(),data[6],Integer.parseInt(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank());
+			temp = new ChatRoom(hash.get(data[2]).getName(),data[6],Integer.parseInt(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank(), hash.get(data[2]).getGender());
 			if (room.insertNode(temp)) {
 				result[0][0] = Boolean.toString(true);
 				return result;

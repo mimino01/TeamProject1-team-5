@@ -81,8 +81,8 @@ public class ServertestActivity extends AppCompatActivity {
 
 
 //                data = new String[5];
-                data[0] = "review";
-                data[1] = "loadReview";
+                data[0] = "chat";
+                data[1] = "loadAllChat";
                 data[2] = host;
                 server = new ServerComponent(server.getServerIp(),data);
                 server.start();
