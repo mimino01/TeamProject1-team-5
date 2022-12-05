@@ -86,10 +86,9 @@ public class BoardAddActivity extends AppCompatActivity implements OnMapReadyCal
 
             data[0] = "chat";
             data[1] = "create";
-            data[2] = "Park";
+            data[2] = getIntent.getStringExtra("userid");
             data[3] = getIntent.getStringExtra("latitude");
             data[4] = getIntent.getStringExtra("logitude");
-            //int counter = Integer.parseInt(getIntent.getStringExtra("Counter_value"));
 
             add_submit.setOnClickListener(view -> {
 
@@ -109,6 +108,7 @@ public class BoardAddActivity extends AppCompatActivity implements OnMapReadyCal
                     e.printStackTrace();
                 }
 
+                intent.putExtra("userid", data[2]);
                 intent.putExtra("Mark","mark");
                 intent.putExtra("destinations", data[6]);
                 intent.putExtra("times", data[5]);
