@@ -208,6 +208,7 @@ public class Saver {
 				break;
 
 			default:
+				Sort.test();
 				break;
 		}
 
