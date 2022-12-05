@@ -6,7 +6,13 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.graphics.PointF;
+=======
+import android.icu.text.IDNA;
+import android.graphics.PointF;
+import android.icu.text.NumberFormat;
+>>>>>>> fad5da4a15a3dbb804179284fee1751c4e5c2be8
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,19 +47,15 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
     private MapView mapView;
     private static NaverMap naverMap;
-    private Marker marker1,marker2,marker3;
     public static Marker[] markers = new Marker[10];
     long [] timeArray;
     long[] copy_timeArray;
     double[] pointArray;
     double[] copy_pointArray;
+
     String userId;
-
-    Object[] Object_res;
-    String[][][] String_res;
-
     String[][] markingData = new String[10][10];
-    String[][] abc;
+    int marker_length = 0;
 
     ServerComponent servers;
 
@@ -80,54 +82,84 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        markingData[0] = new String[]{"marking", "박휘건", "남", "기흥역", "0930", "5"};
-        markingData[1] = new String[]{"marking", "홍길동", "남", "영통역", "0830", "4"};
-        markingData[2] = new String[]{"marking", "가나다", "여", "명지대역", "1000", "4.5"};
+        // 마킹 데이터 데이터 타입
+        // 0 = marking
+        // 1 = 이름
+        // 2 = 성별
+        // 3 = 목적지
+        // 4 = 출발 시간
+        // 5 = 평점
+        // 6 = 위도
+        // 7 = 경도
+        markingData[0] = new String[]{"marking", "박휘건", "남", "기흥역", "0930", "5",
+                "37.22344259294581", "127.18734526333768"};
+        markingData[1] = new String[]{"marking", "홍길동", "남", "영통역", "0830", "4",
+                "37.224755790256964", "127.18881331477333"};
+        markingData[2] = new String[]{"marking", "가나다", "여", "명지대역", "1000", "4.5",
+                "37.22219444666843", "127.19029421815819"};
 
         Intent getIntent = getIntent();
         String destinations = "";
-        destinations = getIntent.getStringExtra("destinations");
         String times = "";
+
+        destinations = getIntent.getStringExtra("destinations");
         times = getIntent.getStringExtra("times");
-        userId = getIntent.getStringExtra("userid");
-        Log.i(TAG, "BoardActivity - after make marker: " + destinations + " : " + times + " : " + userId);
-        if (destinations != null && times != null) {
-            Log.i(TAG, "BoardActivity - making marker");
 
+        // 로그인 통해서 안들어오고 바로 들어오게 해놔서 바꿔놓음
+        userId = "adminid";
+                /*getIntent.getStringExtra("userid");*/
+        Log.i(TAG, "BoardActivity - data check " + destinations + " : " + times + " : " + userId);
 
-            String[] reqData = new String[5];
-            reqData[0] = "req_userdata";
-            reqData[1] = userId;
+        String[] reqData = new String[5];
+        reqData[0] = "req_userdata";
+        reqData[1] = userId;
 
-            servers = new ServerComponent(servers.getServerIp(),reqData);
-            servers.start();
+        servers = new ServerComponent(servers.getServerIp(), reqData);
+        servers.start();
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            String[][] resData = (String[][]) servers.getRes();
-            Log.i(TAG, "BoardActivity - test server data : " + Arrays.deepToString(resData));
-            String name = resData[0][0];
-            String gender = resData[0][2];
-            if (gender.equals("man")) gender = "남";
-            else gender = "여";
-            markingData[3] = new String[]{"marking", name, gender, destinations, times, "0"};
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        Object_res = new Object[3];
-        String_res = new String[3][][];
-//        for(int i=0; i<3; i++){
-//            servers = new ServerComponent();
-//            servers = new ServerComponent(servers.getServerIp(),markingData[i]);
-//            servers.start();
-//            Object_res[i] = servers.getRes();
-//            String_res[i] = (String[][]) Object_res[i];
-//        }
+        // counter로 현재있는 데이터들의 개수 받아옴, 현재는 서버 미구현으로 안쓰임
+        int counter = 0;
 
-        abc = (String[][]) Object_res[0];
+        // markingdata 개수만큼 counter도 증가함
+        // 현재는 맨 처음 들어올때는 2, boardadd 갔다오면 3됨
+        for(int i =0; i<10; i++) {
+            if(markingData[i][0] != null)
+                counter++;
+        }
+
+
+        // destinations, time이 null이 아닐때 - 최초 호출때는 null이라 호출되지 않고
+        // 이후 지도에 찍고 보드 갔다온 이후로는 둘다 null이 아니라 계속 호출됨
+        if(destinations!= null && times!=null) {
+            Log.i(TAG, "BoardActivity - destinations, time not null, get data");
+
+            String[][] resData = (String[][]) servers.getRes();
+            // 여기도 로그인 안거치고 바로 들어와서 임시값으로 변경 되어 있음
+            String name = "Park";
+                    //resData[0][0];
+            String gender = "man";
+                    //resData[0][2];
+            if (gender.equals("man")) gender = "남";
+            else gender = "여";
+            // 새로운 마킹 데이터 생성, 현재 서버 미구현되어 있어서 위도와 경도는 BoardAddActivity에서 intent로 받아옴
+            // 추가로 현재 markingData가 서버에서 데이터들 받아오지 않아서 BoardAddActivity를 갔다올 때 마다
+            // counter가 3으로 초기화되면서 고정됨(0, 1, 2는 위에서 임의로 만든 값들)
+            // 현재 intent를 사용해서 위도 경도 받아옴
+
+            markingData[counter] = new String[]{"marking", name , gender, destinations, times, "4.5",
+                    getIntent.getStringExtra("ToBoardlat"),
+                    getIntent.getStringExtra("ToBoardlog")};
+            latitude = Double.parseDouble(getIntent.getStringExtra("ToBoardlat"));
+            logitude = Double.parseDouble(getIntent.getStringExtra("ToBoardlog"));
+
+        }
+
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 보드로 이동버튼
@@ -286,6 +318,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 search(text);
             }
         });
+
+
     }
 
 
@@ -326,6 +360,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         );
         naverMap.setCameraPosition(cameraPosition);
 
+        // 맵 클릭시 보드로 넘어가면서 위도 경도 넘기면서 데이터 받는 리스너
         naverMap.setOnMapClickListener(new NaverMap.OnMapClickListener() {
             @Override
             public void onMapClick(@NonNull PointF pointF, @NonNull LatLng latLng) {
@@ -346,35 +381,29 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-        Log.i(TAG, "BoardActivity - mark maker");
+        double temp_lat=0, temp_log=0;
+        /*NumberFormat numberFormat = NumberFormat.getInstance();*/
 
-        marker1 = new Marker();
-        marker1.setPosition(new LatLng(37.22344259294581, 127.18734526333768));
-        marker1.setOnClickListener(this);
-        marker1.setMap(naverMap);
+        Intent getIntent = getIntent();
+        Intent intent = new Intent(getApplicationContext(), BoardAddActivity.class);
 
-        marker2 = new Marker();
-        marker2.setPosition(new LatLng(37.224755790256964, 127.18881331477333));
-        marker2.setOnClickListener(this);
-        marker2.setMap(naverMap);
+        // 여기서 마커 생성
+        // markingData의 첫번째 값이 null이 아니면 temp_marker를 만들고 그 마커를 마커 배열에 넣는 방식
+        // 추가후 marker_length를 늘려줌
+        while(markingData[marker_length][0] != null) {
+            Log.i(TAG, "BoardActivity - markers made from here");
+            Marker temp_marker;
+            temp_marker = new Marker();
 
-        marker3 = new Marker();
-        marker3.setPosition(new LatLng(37.22219444666843, 127.19029421815819));
-        marker3.setOnClickListener(this);
-        marker3.setMap(naverMap);
+            temp_lat = Double.parseDouble(markingData[marker_length][6]);
+            temp_log = Double.parseDouble(markingData[marker_length][7]);
 
-        markers[0] = marker1;
-        markers[1] = marker2;
-        markers[2] = marker3;
+            temp_marker.setPosition(new LatLng(temp_lat, temp_log));
+            temp_marker.setOnClickListener(this);
+            temp_marker.setMap(naverMap);
 
-        Log.i(TAG, "BoardActivity - add markers : " + markers.toString());
-        if (markingData[3][0] != null) {
-            Log.i(TAG, "BoardActivity - add board checker");
-            Object_res[3] = servers.getRes();
-            markers[3] = new Marker();
-            markers[3].setPosition(new LatLng(latitude, logitude));
-            markers[3].setOnClickListener(this);
-            markers[3].setMap(naverMap);
+            markers[marker_length] = temp_marker;
+            marker_length++;
         }
     }
 
@@ -385,7 +414,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             String message = "";
             for (int i = 0; i < markers.length; i++) {
                 if (overlay == markers[i]) {
-                Log.i(TAG, "BoardActivity - make board");
+                Log.i(TAG, "BoardActivity - make message");
                 message = "이름 : " + markingData[i][1] + "\n성별 : " + markingData[i][2] + "\n목적지 : " + markingData[i][3] +
                         "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5];
                 save = i;

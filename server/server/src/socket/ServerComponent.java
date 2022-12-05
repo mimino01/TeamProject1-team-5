@@ -14,13 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-<<<<<<< HEAD
-public class ServerComponent extends Thread {
-    static public String serverIp = "192.168.45.128";
-=======
 public class ServerComponent extends Thread{
     static public String serverIp = "192.168.1.104";
->>>>>>> fad5da4a15a3dbb804179284fee1751c4e5c2be8
     public String[] getRes;
     String host;
     String[] data;

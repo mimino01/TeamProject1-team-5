@@ -1,6 +1,6 @@
 package socket;
 
-import Conponent.*;
+import Component.*;
 
 import java.util.Arrays;
 
@@ -10,6 +10,7 @@ public class Saver {
 	static Option list = new Option();
 	
 	public Saver() {
+<<<<<<< HEAD
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
 		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
 		hash.put("parkid", new Option("박휘건", 01010044321, "parkid", "parkhgpw","man"));
@@ -18,6 +19,10 @@ public class Saver {
 		room.insertNode(new ChatRoom("박휘건", "기흥역", 930, new Double[]{37.22344259294581, 127.18734526333768}, 900, 5));
 		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 920, 4));
 		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4));
+=======
+		hash.put("adminid", new Option("������",01012341234,"adminid","adminpw","man"));
+		hash.put("subadminid", new Option("����������",01012344321,"subadminid","subadminpw","man"));
+>>>>>>> fad5da4a15a3dbb804179284fee1751c4e5c2be8
 	}
 
 	public static boolean signup(Object obj) {
@@ -140,8 +145,13 @@ public class Saver {
 		int roomLength = 0;
 		Sort sortD = new Sort();
 		String[][] copyRoom = room.toDeepArray().clone();
+<<<<<<< HEAD
 //		copyRoom[0] = new String[]{"안녕","하","세","3","요","ㅇㅈ"};
 //		copyRoom[1] = new String[]{"안sdaf","하","세","2","31","fasd"};
+=======
+		copyRoom[0] = new String[]{"","","","3","",""};
+		copyRoom[1] = new String[]{"","","","2","31",""};
+>>>>>>> fad5da4a15a3dbb804179284fee1751c4e5c2be8
 
 		switch (key) {
 			case "default":

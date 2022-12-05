@@ -31,12 +31,12 @@
         <activity android:name=".Activity.TempBoard.TempBoardActivity"/>
         <activity android:name=".Activity.Other.ServertestActivity"/>
         <activity android:name=".Activity.Board.BoardAddActivity"/>
-        <activity android:name=".Activity.Board.BoardActivity"/>
+        <!--<activity android:name=".Activity.Board.BoardActivity"/>-->
         <activity android:name=".Activity.Infomation.InfomationActivity"/>
         <activity android:name=".Activity.EditSign.EditSignActivity"/>
         <activity android:name=".Activity.Other.ChatTestingActivity"/>
 
-        <activity android:name=".Activity.Loading.LoadingActivity"
+        <activity android:name=".Activity.Board.BoardActivity"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
