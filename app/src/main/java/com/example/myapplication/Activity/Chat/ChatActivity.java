@@ -34,6 +34,8 @@ public class ChatActivity extends AppCompatActivity {
     private ArrayList<ChatClass> datalist; // 상대방 채팅
     ChatClass data;
 
+    String[][] lastChatLog;
+
     //레이아웃 연결
     Button chatserv;
     EditText searchText;
@@ -211,6 +213,7 @@ public class ChatActivity extends AppCompatActivity {
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
 
                 String[][] response = (String[][]) server.getRes();
+                lastChatLog = response.clone();
                 if (response[0][0] != null) {
 //                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 1");
 

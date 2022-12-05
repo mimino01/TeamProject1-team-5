@@ -10,25 +10,14 @@ public class Saver {
 	static Option list = new Option();
 	
 	public Saver() {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 손제훈
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
 		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
 		hash.put("parkid", new Option("박휘건", 01010044321, "parkid", "parkhgpw","man"));
 		hash.put("hongid", new Option("홍길동", 01010043421, "hongid", "hongpw","man"));
 		hash.put("ganadaid", new Option("가나다", 01012044321, "ganadaid", "ganadapw","woman"));
-		room.insertNode(new ChatRoom("박휘건", "기흥역", 930, new Double[]{37.22344259294581, 127.18734526333768}, 900, 5));
-		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 920, 4));
-		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4));
-<<<<<<< HEAD
-=======
-=======
-		hash.put("adminid", new Option("������",01012341234,"adminid","adminpw","man"));
-		hash.put("subadminid", new Option("����������",01012344321,"subadminid","subadminpw","man"));
->>>>>>> fad5da4a15a3dbb804179284fee1751c4e5c2be8
->>>>>>> 손제훈
+		room.insertNode(new ChatRoom("박휘건", "기흥역", 930, new Double[]{37.22344259294581, 127.18734526333768}, 900, 5, "man"));
+		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 920, 4, "man"));
+		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4, "man"));
 	}
 
 	public static boolean signup(Object obj) {
@@ -159,16 +148,6 @@ public class Saver {
 		int roomLength = 0;
 		Sort sortD = new Sort();
 		String[][] copyRoom = room.toDeepArray().clone();
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-//		copyRoom[0] = new String[]{"안녕","하","세","3","요","ㅇㅈ"};
-//		copyRoom[1] = new String[]{"안sdaf","하","세","2","31","fasd"};
-=======
-		copyRoom[0] = new String[]{"","","","3","",""};
-		copyRoom[1] = new String[]{"","","","2","31",""};
->>>>>>> fad5da4a15a3dbb804179284fee1751c4e5c2be8
->>>>>>> 손제훈
 
 		switch (key) {
 			case "default":
