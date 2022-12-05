@@ -51,6 +51,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     String[][] markingData = new String[10][10];
     int marker_length = 0;
     int counter = 0;
+    String gender;
 
     ServerComponent servers;
 
@@ -128,9 +129,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
             // 이름과 성별은 resData를 통해 받음 현재는 남자로만 출력됨
             String name = resData[0][0];
-            String gender = resData[0][2];
+            gender = resData[0][2];
             if (gender.equals("man")) gender = "남";
             else gender = "여";
+            set_gender(gender);
 
             String temp_data[];
             temp_data = new String[]{"chat", "loadAllChat"};
@@ -402,6 +404,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         // 메소드 통해서 markingData 받아옴
         markingData = get_marking_data();
+        String temp_gender = get_gender();
+
         while(markingData[marker_length][3] != null) {
             Marker temp_marker;
             temp_marker = new Marker();
@@ -470,5 +474,13 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
     public String[][] get_marking_data(){
         return markingData;
+    }
+
+    public void set_gender(String s){
+        gender = s;
+    }
+
+    public String get_gender(){
+        return gender;
     }
 }
