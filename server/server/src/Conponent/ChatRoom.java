@@ -14,7 +14,7 @@ public class ChatRoom {
 	private String host;
 	private int numberOfUser;
 	private String destination;
-	private float departureTime;
+	private int departureTime;
 	private Double[] coordinate = new Double[2];
 	private float hostRank;
 	private int lastPos = 0;
@@ -26,7 +26,7 @@ public class ChatRoom {
 	}
 
 
-	public ChatRoom(String host, String destination, float departureTime, Double[] coordinate, int createTime, float hostRank) {
+	public ChatRoom(String host, String destination, int departureTime, Double[] coordinate, int createTime, float hostRank) {
 		this.host = host;
 		this.user[0] = host;
 		this.hostRank = hostRank;

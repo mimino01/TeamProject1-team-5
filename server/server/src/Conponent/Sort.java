@@ -157,6 +157,10 @@ public class Sort {
         defaltSort(array, first, last, 1);
     }
 
+    public static void startingTime(String[][] array, int first, int last) {
+        defaltSort(array, first, last, 4);
+    }
+
     public static void defaltSort(String[][] array, int first, int last, int type) {
         if (type == 1) {
             if (first >= last) {
