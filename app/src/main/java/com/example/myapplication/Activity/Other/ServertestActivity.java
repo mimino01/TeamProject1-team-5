@@ -62,8 +62,8 @@ public class ServertestActivity extends AppCompatActivity {
 //                data[1] = "DescendingTime";
 
 //
-                data[0] = "req_userdata";
-                data[1] = "ganadaid";
+                data[0] = "sort";
+                data[1] = "StartingTime";
 
                 server = new ServerComponent(server.getServerIp(),data);
                 server.start();

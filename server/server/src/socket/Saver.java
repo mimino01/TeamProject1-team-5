@@ -90,7 +90,7 @@ public class Saver {
 		switch (key) {
 		case "create":
 			System.out.println("processing chat in create");
-			temp = new ChatRoom(hash.get(data[2]).getName(),data[6],Float.parseFloat(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank());
+			temp = new ChatRoom(hash.get(data[2]).getName(),data[6],Integer.parseInt(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank());
 			if (room.insertNode(temp)) {
 				result[0][0] = Boolean.toString(true);
 				return result;
@@ -205,9 +205,23 @@ public class Saver {
 				break;
 
 			case "StartingTime":
+				System.out.println("Save.chatRoomSort.StartingTime - room data : " + Arrays.deepToString(copyRoom));
+				if (copyRoom[0] == null) {
+
+				} else if (copyRoom[1] == null) {
+
+				} else {
+					for (int i = 0; copyRoom[i] != null; i++) {
+						roomLength++;
+					}
+					System.out.println("Saver.chatRoomSort.StartingTime - roomLength data : " + roomLength);
+					sortD.startingTime(copyRoom, 0, roomLength - 1);
+				}
+				req = copyRoom.clone();
 				break;
 
 			default:
+				Sort.test();
 				break;
 		}
 
