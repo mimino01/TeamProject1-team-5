@@ -33,6 +33,7 @@ public class LoadingActivity extends AppCompatActivity {
             Log.i(TAG, "LoadingActivity - sign on click listener");
 
             Intent intent = new Intent(this, ServertestActivity.class);
+            intent.putExtra("userName", "가나다");
             startActivity(intent);
         });
     }

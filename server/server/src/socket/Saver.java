@@ -219,7 +219,8 @@ public class Saver {
 				break;
 
 			default:
-				Sort.test();
+				System.out.println("Save.chatRoomSort.default - room data : " + Arrays.deepToString(copyRoom));
+				req = copyRoom.clone();
 				break;
 		}
 
@@ -228,12 +229,13 @@ public class Saver {
 	
 	public static String[][] review(Object obj) {
 		String[] res = (String[]) obj;
+
 		String key = res[1];
 		Option user;
 		ReviewItem review;
 		switch (key) {
 		case "addReview":
-			user = hash.get(key);
+			user = hash.get(res[2]);
 			review = new ReviewItem(res[3], res[4]);
 			user.addReview(review);
 			hash.put(key, user);
@@ -242,7 +244,7 @@ public class Saver {
 			return temp;
 
 		case "loadReview":
-			return hash.get(key).getReviewToString();
+			return hash.get(res[2]).getReviewToString();
 			
 		default:
 			break;

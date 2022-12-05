@@ -63,7 +63,8 @@ public class Option {
 	
 	public String[][] getReviewToString () {
 		String[][] data = new String[review.length][5];
-		for (int i = 0; i < review.length; i++) {
+		for (int i = 0; true; i++) {
+			if (review[i] == null) break;
 			data[i] = review[i].toStringArray();
 		}
 		return data;
