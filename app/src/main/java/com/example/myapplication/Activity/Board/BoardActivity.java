@@ -52,8 +52,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     int marker_length = 0;
     int counter = 0;
     String gender;
+    String[][] roomData = null;
 
     ServerComponent servers;
+    ServerComponent roomServer;
 
     ListView listView;
     BoardAdapter boardAdapter;
@@ -87,94 +89,64 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         // 5 = 평점
         // 6 = 위도
         // 7 = 경도
-//        markingData[0] = new String[]{"marking", "박휘건", "남", "기흥역", "0930", "5",
-//                "37.22344259294581", "127.18734526333768"};
-//        markingData[1] = new String[]{"marking", "홍길동", "남", "영통역", "0830", "4",
-//                "37.224755790256964", "127.18881331477333"};
-//        markingData[2] = new String[]{"marking", "가나다", "여", "명지대역", "1000", "4.5",
-//                "37.22219444666843", "127.19029421815819"};
 
         Intent getIntent = getIntent();
         String destinations = "";
         String times = "";
-
-
         destinations = getIntent.getStringExtra("destinations");
         times = getIntent.getStringExtra("times");
+        userId = getIntent.getStringExtra("userid");
 
         String[] reqData = new String[5];
         reqData[0] = "req_userdata";
-        reqData[1] = "adminid";
+        reqData[1] = userId;
 
         // 로그인 통해서 안들어오고 바로 들어오게 해놔서 바꿔놓음
-
         servers = new ServerComponent(servers.getServerIp(), reqData);
         servers.start();
-        userId = getIntent.getStringExtra("userid");
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         String[][] resData = (String[][])servers.getRes();
-        Log.i(TAG, "BoardActivity - server data = " + reqData[0] + " / " + reqData[1]);
+        Log.i(TAG, "BoardActivity - server data = " + Arrays.toString(resData[0]));
 
-        // getRes를 통해 받아오는 데이터들, 서버의 loadAllChat
-        String[][] test = null;
+        // 이름과 성별은 resData를 통해 받음 현재는 남자로만 출력됨
+        gender = resData[0][2];
 
-        if(destinations!= null && times!=null) {
-            Log.i(TAG, "BoardActivity - destinations, time not null, get data");
+        String temp_data[];
+        temp_data = new String[]{"chat", "loadAllChat"};
+        roomServer = new ServerComponent(servers.getServerIp(), temp_data);
+        roomServer.start();
 
-            // 이름과 성별은 resData를 통해 받음 현재는 남자로만 출력됨
-            String name = resData[0][0];
-            gender = resData[0][2];
-            if (gender.equals("man")) gender = "남";
-            else gender = "여";
-            set_gender(gender);
-
-            String temp_data[];
-            temp_data = new String[]{"chat", "loadAllChat"};
-            servers = new ServerComponent(servers.getServerIp(), temp_data);
-            servers.start();
-
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            // loadAllChat을 통해 받은 데이터
-            test = (String[][]) servers.getRes();
-
-            int counter = -1;
-
-            // 서버에서 받은 데이터 묶음의 개수만큼 counter 증가시켜줌
-            // 묶음은 한명의 데이터
-            for(int i=0; i<10;i++) {
-                if(test[i][1] != null){
-                    counter++;
-                }
-            }
-
-           Log.i(TAG,"BoardActivity - counter = " + counter);
-
-            // 마킹 데이터 값과 서버 데이터 값의 순서가 다름 데이터를 맞는데 넣음
-            for(int i=0; i<=counter;i++){
-                markingData[i][0] = "marking";
-                markingData[i][1] = test[i][0];
-                markingData[i][2] = gender;
-                markingData[i][3] = test[i][1];
-                markingData[i][4] = test[i][4];
-                markingData[i][5] = test[i][2];
-                markingData[i][6] = test[i][5];
-                markingData[i][7] = test[i][6];
-            }
-
-            // 아래 OnMap리스너에서 쓰게 메소드로 만들어놓음 내용은 아래에 있음
-            set_marking_data(markingData);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        // loadAllChat을 통해 받은 데이터
+        roomData = (String[][]) roomServer.getRes();
+        Log.i(TAG, "BoardActivity - room data : " + Arrays.deepToString(roomData));
+
+        // 마킹 데이터 값과 서버 데이터 값의 순서가 다름 데이터를 맞는데 넣음
+        for(int i=0; roomData[i][0] == null;i++){
+            if (roomData[i][7] == "man")
+            markingData[i][0] = "marking";
+            markingData[i][1] = roomData[i][0];
+            markingData[i][2] = roomData[i][7];
+            markingData[i][3] = roomData[i][1];
+            markingData[i][4] = roomData[i][4];
+            markingData[i][5] = roomData[i][2];
+            markingData[i][6] = roomData[i][5];
+            markingData[i][7] = roomData[i][6];
+        }
+
+        // 아래 OnMap리스너에서 쓰게 메소드로 만들어놓음 내용은 아래에 있음
+        set_marking_data(markingData);
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 보드로 이동버튼
@@ -456,9 +428,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                             intent.putExtra("userSex",markingData[finalSave][2]);
                             intent.putExtra("destination",markingData[finalSave][3]);
                             intent.putExtra("time",markingData[finalSave][4]);
-                            intent.putExtra("userid", "adminid");
-                            intent.putExtra("roomCode", "0");
-                            intent.putExtra("createOrJoin", "create");
+                            intent.putExtra("userid", userId);
                             startActivity(intent);
                         }
                     })
@@ -474,10 +444,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
     public String[][] get_marking_data(){
         return markingData;
-    }
-
-    public void set_gender(String s){
-        gender = s;
     }
 
     public String get_gender(){

@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 server.start();
 
                 try {
-                    sleep(1000);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
