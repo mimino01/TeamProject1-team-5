@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 server.start();
 
                 try {
-                    sleep(100);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.i(TAG, "login: " + temp[0][0]);
                     if (temp[0][0].equals("true")) {
                         Toast.makeText(getApplicationContext(), "로그인 성공",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(this, ChatTestingActivity.class);
+                        Intent intent = new Intent(this, BoardActivity.class);
                         intent.putExtra("userid", data[1]);
                         startActivity(intent);
                     } else {

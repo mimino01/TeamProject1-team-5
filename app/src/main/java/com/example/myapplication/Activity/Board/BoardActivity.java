@@ -2,6 +2,8 @@ package com.example.myapplication.Activity.Board;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import static java.lang.Thread.sleep;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -36,17 +38,18 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener{
+public class BoardActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener {
 
     private MapView mapView;
     private static NaverMap naverMap;
-    private Marker marker1,marker2,marker3;
+    private Marker marker1, marker2, marker3;
     public static Marker[] markers = new Marker[10];
-    long [] timeArray;
+    long[] timeArray;
     long[] copy_timeArray;
     double[] pointArray;
     double[] copy_pointArray;
     String userId;
+    ServerComponent server = new ServerComponent();
 
     Object[] Object_res;
     String[][][] String_res;
@@ -97,7 +100,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             reqData[0] = "req_userdata";
             reqData[1] = userId;
 
-            servers = new ServerComponent(servers.getServerIp(),reqData);
+            servers = new ServerComponent(servers.getServerIp(), reqData);
             servers.start();
 
             try {
@@ -134,7 +137,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View view) {
                 Intent getIntent = getIntent();
                 Intent intent = new Intent(getApplicationContext(), InfomationActivity.class);
-                intent.putExtra("userid",userId = getIntent.getStringExtra("userid"));
+                intent.putExtra("userid", userId = getIntent.getStringExtra("userid"));
                 startActivity(intent);
             }
         });
@@ -145,7 +148,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View view) {
                 Intent getIntent = getIntent();
                 Intent intent = new Intent(getApplicationContext(), BoardAddActivity.class);
-                intent.putExtra("userid",userId = getIntent.getStringExtra("userid"));
+                intent.putExtra("userid", userId = getIntent.getStringExtra("userid"));
                 startActivity(intent);
             }
         });
@@ -159,25 +162,25 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-        listView = (ListView)findViewById(R.id.board_listView);
+        listView = (ListView) findViewById(R.id.board_listView);
 
         boardArrayList = new ArrayList<BoardClass>();
 
         Log.i(TAG, "BoardActivity - loof checker - markingData checking" + Arrays.deepToString(markingData));
-        for(int i=0; markingData[i][0] != null ;i++) {
+        for (int i = 0; markingData[i][0] != null; i++) {
             Log.i(TAG, "BoardActivity - loof checker" + i);
-                boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
-            }
+            boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
+        }
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
 
-        New_Sort_button=(Button)findViewById(R.id.button_new_sort);     // 최신순 정렬
+        New_Sort_button = (Button) findViewById(R.id.button_new_sort);     // 최신순 정렬
         New_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boardArrayList.clear();
-                for(int i=0; markingData[i][0] != null ;i++) {
-                    boardArrayList.add(0,new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
+                for (int i = 0; markingData[i][0] != null; i++) {
+                    boardArrayList.add(0, new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
@@ -189,7 +192,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
                 boardArrayList.clear();
-                for(int i=0; markingData[i][0] != null ;i++) {
+                for (int i = 0; markingData[i][0] != null; i++) {
                     boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
@@ -199,24 +202,24 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         quickClass = new QuickClass();
         timeArray = new long[boardArrayList.size()];
-        for(int i=0; i<boardArrayList.size();i++){
-            timeArray[i] = (long)boardArrayList.get(i).getTime();
+        for (int i = 0; i < boardArrayList.size(); i++) {
+            timeArray[i] = (long) boardArrayList.get(i).getTime();
         }
 
         copy_timeArray = new long[boardArrayList.size()];
-        for(int i=0; i<boardArrayList.size();i++){
-            copy_timeArray[i] = (long)boardArrayList.get(i).getTime();
+        for (int i = 0; i < boardArrayList.size(); i++) {
+            copy_timeArray[i] = (long) boardArrayList.get(i).getTime();
         }
 
-        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 오래된 정렬
+        Time_Sort_button = (Button) findViewById(R.id.button_time_sort);     // 오래된 정렬
         Time_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 quickClass.long_sort(copy_timeArray);
                 boardArrayList.clear();
-                for(int i=0; i < copy_timeArray.length ;i++) {
+                for (int i = 0; i < copy_timeArray.length; i++) {
                     for (int j = 0; j < timeArray.length; j++) {
-                        if (copy_timeArray[i] == timeArray[j]){
+                        if (copy_timeArray[i] == timeArray[j]) {
                             boardArrayList.add(new BoardClass(markingData[j][1], markingData[j][2], markingData[j][3], Long.parseLong(markingData[j][4]), Double.parseDouble(markingData[j][5])));
                         }
                     }
@@ -227,24 +230,24 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         });
 
         pointArray = new double[boardArrayList.size()];
-        for(int i=0; i<boardArrayList.size();i++){
-            pointArray[i] = (double)boardArrayList.get(i).getManner_point();
+        for (int i = 0; i < boardArrayList.size(); i++) {
+            pointArray[i] = (double) boardArrayList.get(i).getManner_point();
         }
 
         copy_pointArray = new double[boardArrayList.size()];
-        for(int i=0; i<boardArrayList.size();i++){
+        for (int i = 0; i < boardArrayList.size(); i++) {
             copy_pointArray[i] = (double) boardArrayList.get(i).getManner_point();
         }
 
-        Point_sort_button =(Button)findViewById(R.id.button_point_sort2);     // 오래된 정렬
+        Point_sort_button = (Button) findViewById(R.id.button_point_sort2);     // 오래된 정렬
         Point_sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 quickClass.double_sort(copy_pointArray);
                 boardArrayList.clear();
-                for(int i=0; i < copy_pointArray.length ;i++) {
-                    for (int j = 0; j < pointArray.length ; j++) {
-                        if (copy_pointArray[i] == pointArray[j]){
+                for (int i = 0; i < copy_pointArray.length; i++) {
+                    for (int j = 0; j < pointArray.length; j++) {
+                        if (copy_pointArray[i] == pointArray[j]) {
                             boardArrayList.add(new BoardClass(markingData[j][1], markingData[j][2], markingData[j][3], Long.parseLong(markingData[j][4]), Double.parseDouble(markingData[j][5])));
                         }
                     }
@@ -263,7 +266,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         listView.setAdapter(searchAdapter);
 
         editSearch = (EditText) findViewById(R.id.board_searchview);
-
 
 
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
@@ -312,6 +314,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         searchAdapter.notifyDataSetChanged();
 
     }
+
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
         this.naverMap = naverMap;
@@ -362,10 +365,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             String message = "";
             for (int i = 0; i < markers.length; i++) {
                 if (overlay == markers[i]) {
-                Log.i(TAG, "BoardActivity - make board");
-                message = "이름 : " + markingData[i][1] + "\n성별 : " + markingData[i][2] + "\n목적지 : " + markingData[i][3] +
-                        "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5];
-                save = i;
+                    Log.i(TAG, "BoardActivity - make board");
+                    message = "이름 : " + markingData[i][1] + "\n성별 : " + markingData[i][2] + "\n목적지 : " + markingData[i][3] +
+                            "\n출발시간 : " + markingData[i][4] + "\n매너점수 : " + markingData[i][5];
+                    save = i;
                 }
             }
 
@@ -383,9 +386,9 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                            intent.putExtra("userName",markingData[finalSave][1]);
-                            intent.putExtra("userSex",markingData[finalSave][2]);
-                            intent.putExtra("destination",markingData[finalSave][3]);
+                            intent.putExtra("userName", markingData[finalSave][1]);
+                            intent.putExtra("userSex", markingData[finalSave][2]);
+                            intent.putExtra("destination", markingData[finalSave][3]);
                             intent.putExtra("userid", "adminid");
                             intent.putExtra("roomCode", "0");
                             intent.putExtra("createOrJoin", "create");
@@ -398,3 +401,17 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         return true;
     }
 }
+//    @Override
+//    public void onClick(View view) {
+////        String[] request = new String[]{"chat", "loadChat", name};
+//        server = new ServerComponent(server.getServerIp(),request);
+//        server.start();
+//
+//        try {
+//            sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        String[][] response = (String[][]) server.getRes();
+////        if()
+//}
