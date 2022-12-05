@@ -6,13 +6,10 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< HEAD
 import android.graphics.PointF;
-=======
 import android.icu.text.IDNA;
 import android.graphics.PointF;
 import android.icu.text.NumberFormat;
->>>>>>> fad5da4a15a3dbb804179284fee1751c4e5c2be8
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
