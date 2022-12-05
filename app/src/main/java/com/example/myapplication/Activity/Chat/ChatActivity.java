@@ -199,6 +199,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                //여기서부터
                 String[] request = new String[]{"chat", "loadChat", userid};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
@@ -229,6 +230,7 @@ public class ChatActivity extends AppCompatActivity {
 
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: back");
 
+                // 여기까지 채팅 불러오는,. 따라서 while문으로 돌릴것
 
                 String text1 = message.getText().toString();
                 ChatClass data1 = new ChatClass(userid, text1, Time(), 1);
