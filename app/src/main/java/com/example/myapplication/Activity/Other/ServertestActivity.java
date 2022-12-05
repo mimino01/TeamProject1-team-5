@@ -63,7 +63,7 @@ public class ServertestActivity extends AppCompatActivity {
 
 //
                 data[0] = "sort";
-                data[1] = "Destination";
+                data[1] = "StartingTime";
 
                 server = new ServerComponent(server.getServerIp(),data);
                 server.start();
