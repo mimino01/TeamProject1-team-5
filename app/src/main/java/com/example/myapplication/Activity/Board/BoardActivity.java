@@ -128,25 +128,25 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             e.printStackTrace();
         }
 
+        String[] temp = null;
         // loadAllChat을 통해 받은 데이터
         roomData = (String[][]) roomServer.getRes();
         Log.i(TAG, "BoardActivity - room data : " + Arrays.deepToString(roomData));
 
         // 마킹 데이터 값과 서버 데이터 값의 순서가 다름 데이터를 맞는데 넣음
-        for(int i=0; roomData[i][0] == null;i++){
-            if (roomData[i][7] == "man")
-            markingData[i][0] = "marking";
-            markingData[i][1] = roomData[i][0];
-            markingData[i][2] = roomData[i][7];
-            markingData[i][3] = roomData[i][1];
-            markingData[i][4] = roomData[i][4];
-            markingData[i][5] = roomData[i][2];
-            markingData[i][6] = roomData[i][5];
-            markingData[i][7] = roomData[i][6];
+        for(int i=0; !roomData[i].equals(temp);i++){
+            Log.i(TAG, "BoardActivity - room data : " + i);
+            if (roomData[i][7] == gender) {
+                markingData[i][0] = "marking";
+                markingData[i][1] = roomData[i][0];
+                markingData[i][2] = roomData[i][7];
+                markingData[i][3] = roomData[i][1];
+                markingData[i][4] = roomData[i][4];
+                markingData[i][5] = roomData[i][2];
+                markingData[i][6] = roomData[i][5];
+                markingData[i][7] = roomData[i][6];
+            }
         }
-
-        // 아래 OnMap리스너에서 쓰게 메소드로 만들어놓음 내용은 아래에 있음
-        set_marking_data(markingData);
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 보드로 이동버튼
@@ -307,10 +307,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 search(text);
             }
         });
-
-
     }
-
 
     // 검색을 수행하는 메소드
     public void search(String charText) {
@@ -392,8 +389,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             markers[marker_length] = temp_marker;
             marker_length++;
         }
-
-        set_marking_data(markingData);
     }
 
     @Override
@@ -436,10 +431,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         }
         //Toast.makeText(this.getApplicationContext(), "마커가 선택되었습니다", Toast.LENGTH_LONG).show();
         return true;
-    }
-
-    public void set_marking_data(String[][] temp){
-        markingData = temp;
     }
 
     public String[][] get_marking_data(){
