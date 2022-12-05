@@ -69,15 +69,15 @@ public class Sort {
 
         for (int i = 0; i < 100; i++) {
             if (copyFirst + 1 == copyLast) {
-                //노드 1개 남았을때
+               
                 if (pivot >= Integer.parseInt(array[copyFirst + 1][3])) {
-                    //기준점이 앞 노드보다 낮을떄
+                    
                     String[] temp = array[first].clone();
                     array[first] = array[copyFirst + 1].clone();
                     array[copyFirst + 1] = temp.clone();
                     copyPivot = copyFirst + 1;
                 } else {
-                    //기준점이 앞 노드보다 높을때
+                    
                     String[] temp = array[first].clone();
                     array[first] = array[copyFirst].clone();
                     array[copyFirst] = temp.clone();
@@ -85,14 +85,14 @@ public class Sort {
                 }
                 break;
             } else if (copyFirst == copyLast) {
-                //노드 0개 남았을때
+                
                 String[] temp = array[first].clone();
                 array[first] = array[copyFirst].clone();
                 array[copyFirst] = temp.clone();
                 copyPivot = copyFirst;
                 break;
             } else if (pivot >= high && pivot <= low) {
-                //앞 노드와 뒷 노드 스왑
+                
                 String[] temp = array[copyFirst + 1].clone();
                 array[copyFirst + 1] = array[copyLast].clone();
                 array[copyLast] = temp.clone();
@@ -101,15 +101,15 @@ public class Sort {
                 low = Integer.parseInt(array[copyFirst + 1][3]);
                 high = Integer.parseInt(array[copyLast][3]);
             } else if (pivot <= high) {
-                //뒷 노드 한칸 전진
+                
                 copyLast--;
                 high = Integer.parseInt(array[copyLast][3]);
             } else if (pivot > low) {
-                //첫 노드 한칸 전진
+                
                 copyFirst++;
                 low = Integer.parseInt(array[copyFirst + 1][3]);
             } else if(pivot <= high && pivot > low) {
-                //정렬 필요 없음 (첫 노드, 뒷 노드 한칸 전진)
+               
                 copyLast--;
                 high = Integer.parseInt(array[copyLast][3]);
                 copyFirst++;
