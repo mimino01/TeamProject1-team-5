@@ -50,6 +50,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     String userId;
     String[][] markingData = new String[10][10];
     int marker_length = 0;
+    int counter = 0;
+    String gender;
 
     ServerComponent servers;
 
@@ -85,31 +87,30 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         // 5 = 평점
         // 6 = 위도
         // 7 = 경도
-        markingData[0] = new String[]{"marking", "박휘건", "남", "기흥역", "0930", "5",
-                "37.22344259294581", "127.18734526333768"};
-        markingData[1] = new String[]{"marking", "홍길동", "남", "영통역", "0830", "4",
-                "37.224755790256964", "127.18881331477333"};
-        markingData[2] = new String[]{"marking", "가나다", "여", "명지대역", "1000", "4.5",
-                "37.22219444666843", "127.19029421815819"};
+//        markingData[0] = new String[]{"marking", "박휘건", "남", "기흥역", "0930", "5",
+//                "37.22344259294581", "127.18734526333768"};
+//        markingData[1] = new String[]{"marking", "홍길동", "남", "영통역", "0830", "4",
+//                "37.224755790256964", "127.18881331477333"};
+//        markingData[2] = new String[]{"marking", "가나다", "여", "명지대역", "1000", "4.5",
+//                "37.22219444666843", "127.19029421815819"};
 
         Intent getIntent = getIntent();
         String destinations = "";
         String times = "";
 
+
         destinations = getIntent.getStringExtra("destinations");
         times = getIntent.getStringExtra("times");
 
-        // 로그인 통해서 안들어오고 바로 들어오게 해놔서 바꿔놓음
-        userId = "adminid";
-                /*getIntent.getStringExtra("userid");*/
-        Log.i(TAG, "BoardActivity - data check " + destinations + " : " + times + " : " + userId);
-
         String[] reqData = new String[5];
         reqData[0] = "req_userdata";
-        reqData[1] = userId;
+        reqData[1] = "adminid";
+
+        // 로그인 통해서 안들어오고 바로 들어오게 해놔서 바꿔놓음
 
         servers = new ServerComponent(servers.getServerIp(), reqData);
         servers.start();
+        userId = getIntent.getStringExtra("userid");
 
         try {
             Thread.sleep(1000);
@@ -117,43 +118,63 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             e.printStackTrace();
         }
 
-        // counter로 현재있는 데이터들의 개수 받아옴, 현재는 서버 미구현으로 안쓰임
-        int counter = 0;
+        String[][] resData = (String[][])servers.getRes();
+        Log.i(TAG, "BoardActivity - server data = " + reqData[0] + " / " + reqData[1]);
 
-        // markingdata 개수만큼 counter도 증가함
-        // 현재는 맨 처음 들어올때는 2, boardadd 갔다오면 3됨
-        for(int i =0; i<10; i++) {
-            if(markingData[i][0] != null)
-                counter++;
-        }
+        // getRes를 통해 받아오는 데이터들, 서버의 loadAllChat
+        String[][] test = null;
 
-
-        // destinations, time이 null이 아닐때 - 최초 호출때는 null이라 호출되지 않고
-        // 이후 지도에 찍고 보드 갔다온 이후로는 둘다 null이 아니라 계속 호출됨
         if(destinations!= null && times!=null) {
             Log.i(TAG, "BoardActivity - destinations, time not null, get data");
 
-            String[][] resData = (String[][]) servers.getRes();
-            // 여기도 로그인 안거치고 바로 들어와서 임시값으로 변경 되어 있음
-            String name = "Park";
-                    //resData[0][0];
-            String gender = "man";
-                    //resData[0][2];
+            // 이름과 성별은 resData를 통해 받음 현재는 남자로만 출력됨
+            String name = resData[0][0];
+            gender = resData[0][2];
             if (gender.equals("man")) gender = "남";
             else gender = "여";
-            // 새로운 마킹 데이터 생성, 현재 서버 미구현되어 있어서 위도와 경도는 BoardAddActivity에서 intent로 받아옴
-            // 추가로 현재 markingData가 서버에서 데이터들 받아오지 않아서 BoardAddActivity를 갔다올 때 마다
-            // counter가 3으로 초기화되면서 고정됨(0, 1, 2는 위에서 임의로 만든 값들)
-            // 현재 intent를 사용해서 위도 경도 받아옴
+            set_gender(gender);
 
-            markingData[counter] = new String[]{"marking", name , gender, destinations, times, "4.5",
-                    getIntent.getStringExtra("ToBoardlat"),
-                    getIntent.getStringExtra("ToBoardlog")};
-            latitude = Double.parseDouble(getIntent.getStringExtra("ToBoardlat"));
-            logitude = Double.parseDouble(getIntent.getStringExtra("ToBoardlog"));
+            String temp_data[];
+            temp_data = new String[]{"chat", "loadAllChat"};
+            servers = new ServerComponent(servers.getServerIp(), temp_data);
+            servers.start();
 
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // loadAllChat을 통해 받은 데이터
+            test = (String[][]) servers.getRes();
+
+            int counter = -1;
+
+            // 서버에서 받은 데이터 묶음의 개수만큼 counter 증가시켜줌
+            // 묶음은 한명의 데이터
+            for(int i=0; i<10;i++) {
+                if(test[i][1] != null){
+                    counter++;
+                }
+            }
+
+           Log.i(TAG,"BoardActivity - counter = " + counter);
+
+            // 마킹 데이터 값과 서버 데이터 값의 순서가 다름 데이터를 맞는데 넣음
+            for(int i=0; i<=counter;i++){
+                markingData[i][0] = "marking";
+                markingData[i][1] = test[i][0];
+                markingData[i][2] = gender;
+                markingData[i][3] = test[i][1];
+                markingData[i][4] = test[i][4];
+                markingData[i][5] = test[i][2];
+                markingData[i][6] = test[i][5];
+                markingData[i][7] = test[i][6];
+            }
+
+            // 아래 OnMap리스너에서 쓰게 메소드로 만들어놓음 내용은 아래에 있음
+            set_marking_data(markingData);
         }
-
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 보드로 이동버튼
@@ -191,10 +212,12 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         boardArrayList = new ArrayList<BoardClass>();
 
+        Log.i(TAG,"BoardActivity counter = " + counter);
         Log.i(TAG, "BoardActivity - loof checker - markingData checking" + Arrays.deepToString(markingData));
-        for(int i=0; markingData[i][0] != null ;i++) {
-            Log.i(TAG, "BoardActivity - loof checker" + i);
-                boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
+        for(int i=0; markingData[i][3] !=null ;i++) {
+            Log.i(TAG, "BoardActivity - loof checker " + i);
+                boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3],
+                        Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
             }
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
@@ -204,7 +227,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
                 boardArrayList.clear();
-                for(int i=0; markingData[i][0] != null ;i++) {
+                for(int i=0; markingData[i][3] != null ;i++) {
                     boardArrayList.add(0,new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
@@ -217,7 +240,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
                 boardArrayList.clear();
-                for(int i=0; markingData[i][0] != null ;i++) {
+                for(int i=0; markingData[i][3] != null ;i++) {
                     boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
@@ -368,7 +391,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
                 Intent getIntent = getIntent();
                 Intent intent = new Intent(getApplicationContext(), BoardAddActivity.class);
-                intent.putExtra("userid",userId = getIntent.getStringExtra("userid"));
+                intent.putExtra("userid",userId);
                 intent.putExtra("latitude", String.valueOf(latitude));
                 intent.putExtra("logitude", String.valueOf(logitude));
                 startActivity(intent);
@@ -376,16 +399,14 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         });
 
         double temp_lat=0, temp_log=0;
-        /*NumberFormat numberFormat = NumberFormat.getInstance();*/
-
         Intent getIntent = getIntent();
         Intent intent = new Intent(getApplicationContext(), BoardAddActivity.class);
 
-        // 여기서 마커 생성
-        // markingData의 첫번째 값이 null이 아니면 temp_marker를 만들고 그 마커를 마커 배열에 넣는 방식
-        // 추가후 marker_length를 늘려줌
-        while(markingData[marker_length][0] != null) {
-            Log.i(TAG, "BoardActivity - markers made from here");
+        // 메소드 통해서 markingData 받아옴
+        markingData = get_marking_data();
+        String temp_gender = get_gender();
+
+        while(markingData[marker_length][3] != null) {
             Marker temp_marker;
             temp_marker = new Marker();
 
@@ -399,6 +420,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             markers[marker_length] = temp_marker;
             marker_length++;
         }
+
+        set_marking_data(markingData);
     }
 
     @Override
@@ -443,5 +466,21 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         }
         //Toast.makeText(this.getApplicationContext(), "마커가 선택되었습니다", Toast.LENGTH_LONG).show();
         return true;
+    }
+
+    public void set_marking_data(String[][] temp){
+        markingData = temp;
+    }
+
+    public String[][] get_marking_data(){
+        return markingData;
+    }
+
+    public void set_gender(String s){
+        gender = s;
+    }
+
+    public String get_gender(){
+        return gender;
     }
 }
