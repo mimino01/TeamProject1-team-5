@@ -1,6 +1,6 @@
-package socket;
+package socket.socket;
 
-import Conponent.*;
+import Co
 
 import java.util.Arrays;
 
