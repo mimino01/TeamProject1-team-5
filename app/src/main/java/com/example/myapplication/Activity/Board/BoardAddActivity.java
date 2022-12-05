@@ -48,8 +48,7 @@ public class BoardAddActivity extends AppCompatActivity implements OnMapReadyCal
     EditText time_add;
     Button add_submit;
     ServerComponent server;
-    String[] data = new String[30];
-    double lon = 0, lat = 0;
+    String[] data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +89,7 @@ public class BoardAddActivity extends AppCompatActivity implements OnMapReadyCal
             data[2] = "Park";
             data[3] = getIntent.getStringExtra("latitude");
             data[4] = getIntent.getStringExtra("logitude");
+            //int counter = Integer.parseInt(getIntent.getStringExtra("Counter_value"));
 
             add_submit.setOnClickListener(view -> {
 
@@ -102,7 +102,18 @@ public class BoardAddActivity extends AppCompatActivity implements OnMapReadyCal
                         " " + data[2] + " " + data[3] + " " + data[4] + " " + data[5]
                         + " " +data[6] + " " + data[7] );
                 server.start();
-                Log.i(TAG, "returnToMain data sent to server");
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                intent.putExtra("Mark","mark");
+                intent.putExtra("destinations", data[6]);
+                intent.putExtra("times", data[5]);
+                intent.putExtra("ToBoardlat", data[3]);
+                intent.putExtra("ToBoardlog", data[4]);
 
                 startActivity(intent);
                 Log.i(TAG, "returnToMain to main page");

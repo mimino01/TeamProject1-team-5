@@ -33,7 +33,6 @@ public class LoadingActivity extends AppCompatActivity {
             Log.i(TAG, "LoadingActivity - sign on click listener");
 
             Intent intent = new Intent(this, ServertestActivity.class);
-
             startActivity(intent);
         });
     }

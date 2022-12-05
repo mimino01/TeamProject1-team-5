@@ -148,8 +148,6 @@ public class Saver {
 		int roomLength = 0;
 		Sort sortD = new Sort();
 		String[][] copyRoom = room.toDeepArray().clone();
-//		copyRoom[0] = new String[]{"안녕","하","세","3","요","ㅇㅈ"};
-//		copyRoom[1] = new String[]{"안sdaf","하","세","2","31","fasd"};
 
 		switch (key) {
 			case "default":
