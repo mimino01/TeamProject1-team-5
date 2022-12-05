@@ -410,7 +410,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                             intent.putExtra("userSex",markingData[finalSave][2]);
                             intent.putExtra("destination",markingData[finalSave][3]);
                             intent.putExtra("time",markingData[finalSave][4]);
-                            intent.putExtra("userid", "adminid");
+                            intent.putExtra("userid", userId);
                             intent.putExtra("roomCode", "0");
                             intent.putExtra("createOrJoin", "create");
                             startActivity(intent);
