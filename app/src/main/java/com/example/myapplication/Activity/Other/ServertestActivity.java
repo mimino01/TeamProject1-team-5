@@ -81,8 +81,9 @@ public class ServertestActivity extends AppCompatActivity {
 
 
 //                data = new String[5];
-                data[0] = "sort";
-                data[1] = "StartingTime";
+                data[0] = "chat";
+                data[1] = "numberOfPeople";
+                data[2] = "가나다"; //방장 이름 혹은 아이디
                 server = new ServerComponent(server.getServerIp(),data);
                 server.start();
 

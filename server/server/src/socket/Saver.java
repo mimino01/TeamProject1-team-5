@@ -133,6 +133,16 @@ public class Saver {
 		case "loadAllChat":
 			System.out.println("processing chat in load all chat");
 			return room.toDeepArray();
+
+		case "numberOfPeople":
+			System.out.println("processing chat in number of people");
+			if (hash.get(data[2]).equals(hash.get("dfasfsadvasdvevsdfver"))) {
+				temp = room.searchNode(hash.getByName(data[2]));
+			} else {
+				temp = room.searchNode(hash.get(data[2]));
+			}
+			result[0] = temp.getUser();
+			return result;
 			
 		default:
 			break;
