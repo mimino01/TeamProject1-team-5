@@ -4,9 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 
     <application
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -28,12 +31,12 @@
         <activity android:name=".Activity.TempBoard.TempBoardActivity"/>
         <activity android:name=".Activity.Other.ServertestActivity"/>
         <activity android:name=".Activity.Board.BoardAddActivity"/>
-        <activity android:name=".Activity.Board.BoardActivity"/>
+        <!--<activity android:name=".Activity.Board.BoardActivity"/>-->
         <activity android:name=".Activity.Infomation.InfomationActivity"/>
         <activity android:name=".Activity.EditSign.EditSignActivity"/>
         <activity android:name=".Activity.Other.ChatTestingActivity"/>
 
-        <activity android:name=".Activity.Loading.LoadingActivity"
+        <activity android:name=".Activity.Board.BoardActivity"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

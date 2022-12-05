@@ -17,90 +17,94 @@ import java.util.Objects;
 public class ServerComponent extends Thread{
     static public String serverIp = "192.168.60.203";
 
-    public String[] getRes;
-    String host;
-    String[] data;
-    Object res;
-    Socket socket = new Socket();
+//    public Object getServerIp() {}
 
-    public ServerComponent(String host, String[] data) {
-        this.host = host;
-        this.data = data;
-    }
+        public String[] getRes;
+        String host;
+        String[] data;
+        Object res;
+        Socket socket = new Socket();
 
-    public ServerComponent(String host) {
-        this.host = host;
-    }
+        public ServerComponent(String host, String[] data) {
+            this.host = host;
+            this.data = data;
+        }
 
-    public ServerComponent() {
+        public ServerComponent(String host) {
+            this.host = host;
+        }
 
-    }
+        public ServerComponent() {
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ServerComponent that = (ServerComponent) o;
-        return host.equals(that.host) && data.equals(that.data);
-    }
+        }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(host, data);
-    }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ServerComponent that = (ServerComponent) o;
+            return host.equals(that.host) && data.equals(that.data);
+        }
 
-    //Getter Setter
-    public String getHost() {
-        return host;
-    }
+        @Override
+        public int hashCode() {
+            return Objects.hash(host, data);
+        }
 
-    public void setHost(String host) {
-        this.host = host;
-    }
+        //Getter Setter
+        public String getHost() {
+            return host;
+        }
 
-    public String[] getData() {
-        return data;
-    }
+        public void setHost(String host) {
+            this.host = host;
+        }
 
-    public void setData(String[] data) {
-        this.data = data;
-    }
+        public String[] getData() {
+            return data;
+        }
 
-    public static String getServerIp() {
-        return serverIp;
-    }
+        public void setData(String[] data) {
+            this.data = data;
+        }
 
-    public static void setServerIp(String serverIp) {
-        ServerComponent.serverIp = serverIp;
-    }
+        public static String getServerIp() {
+            return serverIp;
+        }
 
-    public Object getRes() {
-        return res;
-    }
 
-    @Override
-    public void run() {
-        try {
-            int port = 8001;
-            socket = new Socket(host, port);
-            ObjectOutputStream outstream = new ObjectOutputStream(socket.getOutputStream());
-            outstream.writeObject(data);
-            outstream.flush();
+        public static void setServerIp(String serverIp) {
+            ServerComponent.serverIp = serverIp;
+        }
 
-            ObjectInputStream instream = new ObjectInputStream(socket.getInputStream());
-            res = instream.readObject();
-            sleep(100);
-            Log.i(TAG, "run: " + Arrays.deepToString((String[][]) res));
+        public Object getRes() {
+            return res;
+        }
 
-            socket.close();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        @Override
+        public void run() {
+            try {
+                int port = 8001;
+                socket = new Socket(host, port);
+                ObjectOutputStream outstream = new ObjectOutputStream(socket.getOutputStream());
+                outstream.writeObject(data);
+                outstream.flush();
+
+                ObjectInputStream instream = new ObjectInputStream(socket.getInputStream());
+                res = instream.readObject();
+                sleep(100);
+                Log.i(TAG, "run: " + Arrays.deepToString((String[][]) res));
+
+                socket.close();
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
-}
+
