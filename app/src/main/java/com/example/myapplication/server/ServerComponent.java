@@ -17,7 +17,6 @@ import java.util.Objects;
 public class ServerComponent extends Thread{
     static public String serverIp = "192.168.60.203";
 
-//    public Object getServerIp() {}
 
         public String[] getRes;
         String host;

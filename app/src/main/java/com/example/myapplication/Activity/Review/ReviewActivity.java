@@ -36,8 +36,9 @@ public class ReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review);
 
         Intent getIntent = getIntent();
+        // 인포 실행 안됨
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView info = findViewById(R.id.TextView_info);
-        info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination"));
+        info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));
 
         try {
             Button button_chat = (Button) findViewById(R.id.R_Button_Chat);  // chat으로 이동
@@ -72,7 +73,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         } catch(Exception e) {
             e.printStackTrace();
-            Log.d(TAG, "ReviewnActivity\n" + e);
+            Log.d(TAG, "ReviewActivity\n" + e);
         }
 }
 
