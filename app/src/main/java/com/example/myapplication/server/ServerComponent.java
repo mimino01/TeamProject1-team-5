@@ -81,15 +81,21 @@ public class ServerComponent extends Thread{
         Object original = res;
         int count = 0;
         while (original == res) {
+            Log.i(TAG, "waiting");
             try {
                 sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             count += 1;
+            if (count > 20) {
+                temp = "null";
+                res = (Object) temp;
+                return res;
+            }
         }
-        System.out.println("delay time is " + count * 0.05 + " second");
-        System.out.println("data is : " + Arrays.deepToString((String[][]) res));
+        Log.i(TAG,"delay time is " + (count * 0.050) + " second");
+        Log.i(TAG,"data is : " + Arrays.deepToString((String[][]) res));
         return res;
     }
 
