@@ -82,13 +82,13 @@ public class ServerComponent extends Thread{
         int count = 0;
         while (original == res) {
             try {
-                sleep(100);
+                sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             count += 1;
         }
-        System.out.println("delay time is " + count * 0.1 + " second");
+        System.out.println("delay time is " + count * 0.05 + " second");
         System.out.println("data is : " + Arrays.deepToString((String[][]) res));
         return res;
     }
