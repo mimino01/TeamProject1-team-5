@@ -33,7 +33,6 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -104,12 +103,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         servers = new ServerComponent(servers.getServerIp(), reqData);
         servers.start();
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         String[][] resData = (String[][])servers.getRes();
         Log.i(TAG, "BoardActivity - server data = " + Arrays.toString(resData[0]));
 
@@ -122,26 +115,13 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         roomServer = new ServerComponent(servers.getServerIp(), temp_data);
         roomServer.start();
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         // loadAllChat을 통해 받은 데이터
         roomData = (String[][]) roomServer.getRes();
         Log.i(TAG, "BoardActivity - room data : " + Arrays.deepToString(roomData));
 
-        // 입력받은 배열의 길이 계산
-        while (true) {
-            if (roomData[marker_length] == null) {
-                break;
-            }
-            marker_length++;
-        }
-
+        String[] nulldata = null;
         // 마킹 데이터 값과 서버 데이터 값의 순서가 다름 데이터를 맞는데 넣음
-        for(int i=0; i < marker_length;i++){
+        for(int i=0; roomData[i] != nulldata ;i++){
             Log.i(TAG, "BoardActivity - room data : " + i);
             if (roomData[i][7].equals(gender)) {
                 markingData[i][0] = "marking";
@@ -154,6 +134,13 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 markingData[i][7] = roomData[i][6];
             }
             Log.i(TAG, "BoardActivity - markingData : " + Arrays.toString(markingData[i]));
+        }
+        // 입력받은 배열의 길이 계산
+        while (true) {
+            if (markingData[marker_length][0] == null) {
+                break;
+            }
+            marker_length++;
         }
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
@@ -382,9 +369,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         // 메소드 통해서 markingData 받아옴
         markingData = get_marking_data();
         String temp_gender = get_gender();
+        Log.i(TAG, "BoardActivity.onMapReady.InfinityLoofData : " + Arrays.deepToString(markingData));
 
         for(int i = 0; i < marker_length; i++) {
-            Log.i(TAG, "BoardActivity.onMapReady.InfinityLoofData");
+//            Log.i(TAG, "BoardActivity.onMapReady.InfinityLoofData");
             Marker temp_marker;
             temp_marker = new Marker();
 

@@ -35,8 +35,7 @@ public class ServertestActivity extends AppCompatActivity {
         tv = findViewById(R.id.textView2);
 
         btn.setOnClickListener(view -> {
-            try {
-                data = new String[10];
+            data = new String[10];
 
 //                data[0] = "chat";
 //                data[1] = "addUser";
@@ -46,12 +45,8 @@ public class ServertestActivity extends AppCompatActivity {
 //                server = new ServerComponent(server.getServerIp(),data);
 //                server.start();
 //
-//                Thread.sleep(1000);
-//
 //                String[][] resData = (String[][]) server.getRes();
 //                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add review : " + Arrays.deepToString(resData));
-
-
 
 
 //                data = new String[]{"signUpdate","수정된관리자", "01012341234", "adminid", "adminpw", "man"};
@@ -62,8 +57,8 @@ public class ServertestActivity extends AppCompatActivity {
 //                data[1] = "DescendingTime";
 
 //
-                Intent getIntent = getIntent();
-                String host = getIntent.getStringExtra("userName");
+            Intent getIntent = getIntent();
+            String host = getIntent.getStringExtra("userName");
 //                data[0] = "review";
 //                data[1] = "addReview";
 //                data[2] = host;
@@ -73,24 +68,19 @@ public class ServertestActivity extends AppCompatActivity {
 //                server = new ServerComponent(server.getServerIp(),data);
 //                server.start();
 //
-//                Thread.sleep(1000);
-//
 //                String[][] resData = (String[][]) server.getRes();
 //                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add review : " + Arrays.deepToString(resData));
 
 
-
 //                data = new String[5];
-                data[0] = "chat";
-                data[1] = "numberOfPeople";
-                data[2] = "가나다"; //방장 이름 혹은 아이디
-                server = new ServerComponent(server.getServerIp(),data);
-                server.start();
+            data[0] = "chat";
+            data[1] = "numberOfPeople";
+            data[2] = "가나다"; //방장 이름 혹은 아이디
+            server = new ServerComponent(server.getServerIp(),data);
+            server.start();
 
-                Thread.sleep(1000);
-
-                String[][] resData = (String[][]) server.getRes();
-                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - server request data: " + Arrays.deepToString(resData));
+            String[][] resData = (String[][]) server.getRes();
+            Log.i(TAG, "ServertestActivity.btn.setOnClickListener - server request data: " + Arrays.deepToString(resData));
 //
 //                data = new String[5];
 //                data[0] = "chat";
@@ -98,8 +88,6 @@ public class ServertestActivity extends AppCompatActivity {
 //                data[2] = "adminid";
 //                server = new ServerComponent(server.getServerIp(),data);
 //                server.start();
-//
-//                Thread.sleep(1000);
 //
 //                resData = (String[][]) server.getRes();
 //                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - chatting room create: " + Arrays.deepToString(resData));
@@ -112,8 +100,6 @@ public class ServertestActivity extends AppCompatActivity {
 //                server = new ServerComponent(server.getServerIp(),data);
 //                server.start();
 //
-//                Thread.sleep(1000);
-//
 //                resData = (String[][]) server.getRes();
 //                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add chat: " + Arrays.deepToString(resData));
 //
@@ -124,14 +110,9 @@ public class ServertestActivity extends AppCompatActivity {
 //                server = new ServerComponent(server.getServerIp(),data);
 //                server.start();
 //
-//                Thread.sleep(1000);
-//
 //                resData = (String[][]) server.getRes();
 //                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - load chat: " + Arrays.deepToString(resData));
 
-            } catch (InterruptedException e) {
-
-            }
         });
     }
 }

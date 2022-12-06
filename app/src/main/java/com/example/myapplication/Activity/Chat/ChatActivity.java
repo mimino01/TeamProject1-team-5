@@ -2,8 +2,6 @@ package com.example.myapplication.Activity.Chat;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -204,12 +202,6 @@ public class ChatActivity extends AppCompatActivity {
                 String[] request = new String[]{"chat", "loadChat", userid};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
-
-                try {
-                    sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
 
                 String[][] response = (String[][]) server.getRes();

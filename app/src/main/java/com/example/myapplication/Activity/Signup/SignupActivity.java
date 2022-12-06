@@ -1,7 +1,5 @@
 package com.example.myapplication.Activity.Signup;
 
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -106,12 +104,6 @@ public class SignupActivity extends AppCompatActivity {
                 //데이터 송신
                 server = new ServerComponent(server.getServerIp(), data);
                 server.start();
-
-                try {
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 
                 //데이터 수신
                 if ((boolean) server.getRes()) {

@@ -2,46 +2,22 @@ package com.example.myapplication.Activity.Board;
 
 import static android.content.ContentValues.TAG;
 
-import static com.example.myapplication.server.ServerComponent.getServerIp;
-import static java.lang.Thread.sleep;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.myapplication.Activity.Chat.ChatActivity;
-import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
-import com.naver.maps.map.util.FusedLocationSource;
-
-
-import java.util.List;
 
 public class BoardAddActivity extends AppCompatActivity implements OnMapReadyCallback {
     EditText destination_add;

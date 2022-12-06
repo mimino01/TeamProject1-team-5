@@ -1,7 +1,6 @@
 package com.example.myapplication.Activity.Review;
 
 import static android.content.ContentValues.TAG;
-import static java.lang.Thread.sleep;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -99,11 +98,6 @@ public class ReviewActivity extends AppCompatActivity {
         server = new ServerComponent(server.getServerIp(),req);
         server.start();
 
-        try {
-            sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Log.i(TAG, "review: " + server.getRes());
         String[][] temp = (String[][]) server.getRes();
         if (temp[0][0].equals("true")) {

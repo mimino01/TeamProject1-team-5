@@ -20,7 +20,8 @@ public class ServerComponent extends Thread{
     public String[] getRes;
     String host;
     String[] data;
-    Object res = "not yet";
+//    Object res = "not yet";
+    Object res;
     Socket socket = new Socket();
 
     public ServerComponent(String host, String[] data) {
@@ -75,9 +76,11 @@ public class ServerComponent extends Thread{
     }
 
     public Object getRes() {
+        String temp = "not yet";
+        res = (Object) temp;
         Object original = res;
         int count = 0;
-        while (original.equals(res)) {
+        while (original == res) {
             try {
                 sleep(100);
             } catch (InterruptedException e) {
@@ -86,6 +89,7 @@ public class ServerComponent extends Thread{
             count += 1;
         }
         System.out.println("delay time is " + count * 0.1 + " second");
+        System.out.println("data is : " + Arrays.deepToString((String[][]) res));
         return res;
     }
 
