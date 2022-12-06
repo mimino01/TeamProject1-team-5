@@ -45,7 +45,9 @@ public class ChatRoom {
 	
 	public boolean addUser(String id, String name) {
 		for (int i = 0; i < MAX_USER; i++) {
-			if (user[i] == null) {
+			if (user[i] == name) {
+				return false;
+			} else if (user[i] == null) {
 				user[i] = name;
 				numberOfUser++;
 				return true;
@@ -63,6 +65,18 @@ public class ChatRoom {
 		lastChatNumber++;
 		lastPos++;
 		return true;
+	}
+
+	public boolean deleteUser(String id, String name) {
+		for (int i = 0; i < numberOfUser; i++) {
+			if (user[i] == null) {
+				return false;
+			} else if (name.equals(user[i])) {
+				user[i] = null;
+				numberOfUser--;
+			}
+		}
+		return false;
 	}
 
 	public boolean findUser(Option op) {

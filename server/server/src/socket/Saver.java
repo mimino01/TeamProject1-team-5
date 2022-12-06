@@ -100,17 +100,13 @@ public class Saver {
 		case "addUser":
 			if (hash.get(data[2]).equals(hash.get("dfasfsadvasdvevsdfver"))) {
 				temp = room.searchNode(hash.getByName(data[2]));
-				boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
-				room.insertNode(temp);
-				result[0][0] = Boolean.toString(response);
-				return result;
 			} else {
 				temp = room.searchNode(hash.get(data[2]));
-				boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
-				room.insertNode(temp);
-				result[0][0] = Boolean.toString(response);
-				return result;
 			}
+			boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
+			room.insertNode(temp);
+			result[0][0] = Boolean.toString(response);
+			return result;
 			
 		case "addChat":
 			System.out.println("processing chat in add");
@@ -142,6 +138,18 @@ public class Saver {
 				temp = room.searchNode(hash.get(data[2]));
 			}
 			result[0] = temp.getUser();
+			return result;
+
+		case "deleteUser":
+			System.out.println("processing chat in delete user");
+			if (hash.get(data[2]).equals(hash.get("dfasfsadvasdvevsdfver"))) {
+				temp = room.searchNode(hash.getByName(data[2]));
+			} else {
+				temp = room.searchNode(hash.get(data[2]));
+			}
+			boolean response = temp.deleteUser(data[3], hash.get(data[3]).getName());
+			room.insertNode(temp);
+			result[0][0] = Boolean.toString(response);
 			return result;
 			
 		default:
