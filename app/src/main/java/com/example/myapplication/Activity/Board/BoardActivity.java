@@ -50,7 +50,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     String userId;
     String[][] markingData = new String[10][10];
     int marker_length = 0;
-    int counter = 0;
     String gender;
     String[][] roomData = null;
 
@@ -116,6 +115,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         // 이름과 성별은 resData를 통해 받음 현재는 남자로만 출력됨
         gender = resData[0][2];
+        Log.i(TAG, "BoardActivity - gender checker : " + gender);
 
         String temp_data[];
         temp_data = new String[]{"chat", "loadAllChat"};
@@ -128,15 +128,22 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             e.printStackTrace();
         }
 
-        String[] temp = null;
         // loadAllChat을 통해 받은 데이터
         roomData = (String[][]) roomServer.getRes();
         Log.i(TAG, "BoardActivity - room data : " + Arrays.deepToString(roomData));
 
+        // 입력받은 배열의 길이 계산
+        while (true) {
+            if (roomData[marker_length] == null) {
+                break;
+            }
+            marker_length++;
+        }
+
         // 마킹 데이터 값과 서버 데이터 값의 순서가 다름 데이터를 맞는데 넣음
-        for(int i=0; !roomData[i].equals(temp);i++){
+        for(int i=0; i < marker_length;i++){
             Log.i(TAG, "BoardActivity - room data : " + i);
-            if (roomData[i][7] == gender) {
+            if (roomData[i][7].equals(gender)) {
                 markingData[i][0] = "marking";
                 markingData[i][1] = roomData[i][0];
                 markingData[i][2] = roomData[i][7];
@@ -146,6 +153,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 markingData[i][6] = roomData[i][5];
                 markingData[i][7] = roomData[i][6];
             }
+            Log.i(TAG, "BoardActivity - markingData : " + Arrays.toString(markingData[i]));
         }
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
@@ -184,7 +192,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         boardArrayList = new ArrayList<BoardClass>();
 
-        Log.i(TAG,"BoardActivity counter = " + counter);
+        markingData = get_marking_data();
+
         Log.i(TAG, "BoardActivity - loof checker - markingData checking" + Arrays.deepToString(markingData));
         for(int i=0; markingData[i][3] !=null ;i++) {
             Log.i(TAG, "BoardActivity - loof checker " + i);
@@ -337,6 +346,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
         this.naverMap = naverMap;
+        Log.i(TAG, "BoardActivity.onMapReady activate");
 
         CameraPosition cameraPosition = new CameraPosition(
                 // 위도 , 경도 순으로 첫 위치 지정 여기서는 명지대 좌표
@@ -368,26 +378,24 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         });
 
         double temp_lat=0, temp_log=0;
-        Intent getIntent = getIntent();
-        Intent intent = new Intent(getApplicationContext(), BoardAddActivity.class);
 
         // 메소드 통해서 markingData 받아옴
         markingData = get_marking_data();
         String temp_gender = get_gender();
 
-        while(markingData[marker_length][3] != null) {
+        for(int i = 0; i < marker_length; i++) {
+            Log.i(TAG, "BoardActivity.onMapReady.InfinityLoofData");
             Marker temp_marker;
             temp_marker = new Marker();
 
-            temp_lat = Double.parseDouble(markingData[marker_length][6]);
-            temp_log = Double.parseDouble(markingData[marker_length][7]);
+            temp_lat = Double.parseDouble(markingData[i][6]);
+            temp_log = Double.parseDouble(markingData[i][7]);
 
             temp_marker.setPosition(new LatLng(temp_lat, temp_log));
             temp_marker.setOnClickListener(this);
             temp_marker.setMap(naverMap);
 
-            markers[marker_length] = temp_marker;
-            marker_length++;
+            markers[i] = temp_marker;
         }
     }
 

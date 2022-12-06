@@ -59,11 +59,11 @@ public class LoginActivity extends AppCompatActivity {
                 server = new ServerComponent(server.getServerIp(),data);
                 server.start();
 
-                try {
-                    sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    sleep(500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 String[][] temp = (String[][]) server.getRes();
                 if (temp == null) {
                     Toast.makeText(getApplicationContext(), "서버가 연결되지 않았습니다.", Toast.LENGTH_LONG).show();

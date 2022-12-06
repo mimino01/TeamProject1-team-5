@@ -13,11 +13,11 @@ public class Saver {
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
 		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
 		hash.put("parkid", new Option("박휘건", 01010044321, "parkid", "parkhgpw","man"));
-		hash.put("hongid", new Option("홍길동", 01010043421, "hongid", "hongpw","man"));
+		hash.put("hongid", new Option("홍길동", 01010043421, "hongid", "hongpw","woman"));
 		hash.put("ganadaid", new Option("가나다", 01012044321, "ganadaid", "ganadapw","woman"));
 		room.insertNode(new ChatRoom("박휘건", "기흥역", 930, new Double[]{37.22344259294581, 127.18734526333768}, 900, 5, "man"));
-		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 920, 4, "man"));
-		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4, "man"));
+		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 820, 4, "man"));
+		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4, "woman"));
 	}
 
 	public static boolean signup(Object obj) {

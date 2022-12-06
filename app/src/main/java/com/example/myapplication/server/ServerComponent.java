@@ -20,7 +20,7 @@ public class ServerComponent extends Thread{
     public String[] getRes;
     String host;
     String[] data;
-    Object res;
+    Object res = "not yet";
     Socket socket = new Socket();
 
     public ServerComponent(String host, String[] data) {
@@ -75,6 +75,17 @@ public class ServerComponent extends Thread{
     }
 
     public Object getRes() {
+        Object original = res;
+        int count = 0;
+        while (original.equals(res)) {
+            try {
+                sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            count += 1;
+        }
+        System.out.println("delay time is " + count * 0.1 + " second");
         return res;
     }
 
