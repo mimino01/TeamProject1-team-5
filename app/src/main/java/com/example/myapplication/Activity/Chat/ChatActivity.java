@@ -130,6 +130,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
+                intent.putExtra("userid", getIntent.getStringExtra("userid"));
                 intent.putExtra("userName", getIntent.getStringExtra("userName"));
                 intent.putExtra("destination", getIntent.getStringExtra("destination"));
                 intent.putExtra("time", getIntent.getStringExtra("time"));

@@ -82,8 +82,8 @@ public class ServerComponent extends Thread {
     }
 
     public Object getRes() {
-        String[][] temp = new String[1][1];
-        temp[0][0] = "not yet";
+        String[][] temp = new String[100][100];
+//        temp[0][0] = "not yet";
         res = (Object) temp;
         Object original = res;
         int count = 0;
@@ -95,7 +95,7 @@ public class ServerComponent extends Thread {
                 e.printStackTrace();
             }
             count += 1;
-            if (count > 20) {
+            if (count > 40) {
                 temp[0][0] = "null";
                 res = (Object) temp;
                 return res;

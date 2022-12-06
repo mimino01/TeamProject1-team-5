@@ -86,6 +86,7 @@ public class Saver {
 		String[][] result = new String[10][10];
 		String[] data = (String[]) obj;
 		String key = data[1];
+		boolean response;
 		ChatRoom temp;
 		switch (key) {
 		case "create":
@@ -103,7 +104,7 @@ public class Saver {
 			} else {
 				temp = room.searchNode(hash.get(data[2]));
 			}
-			boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
+			response = temp.addUser(data[3], hash.get(data[3]).getName());
 			room.insertNode(temp);
 			result[0][0] = Boolean.toString(response);
 			return result;
@@ -147,7 +148,7 @@ public class Saver {
 			} else {
 				temp = room.searchNode(hash.get(data[2]));
 			}
-			boolean response = temp.deleteUser(data[3], hash.get(data[3]).getName());
+			response = temp.deleteUser(data[3], hash.get(data[3]).getName());
 			room.insertNode(temp);
 			result[0][0] = Boolean.toString(response);
 			return result;
