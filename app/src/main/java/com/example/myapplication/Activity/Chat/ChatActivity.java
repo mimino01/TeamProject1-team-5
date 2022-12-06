@@ -120,6 +120,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                intent.putExtra("userid",userid);
                 startActivity(intent);
             }
         });
