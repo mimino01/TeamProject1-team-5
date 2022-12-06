@@ -20,6 +20,8 @@ import com.example.myapplication.Activity.Signup.SignupActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
+import java.util.Arrays;
+
 public class LoginActivity extends AppCompatActivity {
     TextView  login, logup;
     EditText id, password;
@@ -58,7 +60,8 @@ public class LoginActivity extends AppCompatActivity {
                 server.start();
 
                 String[][] temp = (String[][]) server.getRes();
-                if (temp == null) {
+                Log.i(TAG, "login data : " + temp[0][0]);
+                if (temp[0][0].equals("null")) {
                     Toast.makeText(getApplicationContext(), "서버가 연결되지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else {
                     Log.i(TAG, "login: " + temp[0][0]);
