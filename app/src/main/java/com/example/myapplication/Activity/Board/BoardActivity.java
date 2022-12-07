@@ -184,7 +184,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         Log.i(TAG, "BoardActivity - loof checker - markingData checking" + Arrays.deepToString(markingData));
         for(int i=0; markingData[i][3] !=null ;i++) {
             Log.i(TAG, "BoardActivity - loof checker " + i);
-                boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3],
+                boardArrayList.add(new BoardClass(markingData[i][1], genderTranslate(markingData[i][2]), markingData[i][3],
                         Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
             }
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
@@ -395,7 +395,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             for (int i = 0; i < markers.length; i++) {
                 if (overlay == markers[i]) {
                 Log.i(TAG, "BoardActivity - make message");
-                message = "이름 : " + markingData[i][1] + "\n성별 : " + markingData[i][2] + "\n목적지 : " + markingData[i][3] +
+                message = "이름 : " + markingData[i][1] + "\n성별 : " + genderTranslate(markingData[i][2]) + "\n목적지 : " + markingData[i][3] +
                         "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5];
                 save = i;
                 }
@@ -416,7 +416,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
                             intent.putExtra("userName",markingData[finalSave][1]);
-                            intent.putExtra("userSex",markingData[finalSave][2]);
+                            intent.putExtra("userSex",genderTranslate(markingData[finalSave][2]));
                             intent.putExtra("destination",markingData[finalSave][3]);
                             intent.putExtra("time",markingData[finalSave][4]);
                             intent.putExtra("userid", userId);
@@ -435,5 +435,13 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
     public String get_gender(){
         return gender;
+    }
+
+    public String genderTranslate(String eng) {
+        if (eng.equals("man")) {
+            return "남";
+        } else {
+            return "여";
+        }
     }
 }

@@ -45,7 +45,7 @@ public class ChatActivity extends AppCompatActivity {
 
     //서버 연결
     ServerComponent server = new ServerComponent();
-    String userid = null, roomNumber, createOrJoin, hostName;
+    String userid = null, createOrJoin, hostName;
     String[] sendedData = new String[5];
     String[] createData = new String[5];
     boolean create = false;
@@ -67,7 +67,6 @@ public class ChatActivity extends AppCompatActivity {
 
         Log.i(TAG, "ChatActivity - get intent data checker : " + getIntent.getStringExtra("createOrJoin") + getIntent.getStringExtra("userid") + getIntent.getStringExtra("roomCode"));
         createOrJoin = getIntent.getStringExtra("createOrJoin");
-        roomNumber = getIntent.getStringExtra("roomCode");
                 // 상단에 '목적지 | 시간 ' 표시
         Info = (TextView) findViewById(R.id.TextView_info);
         Info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));
