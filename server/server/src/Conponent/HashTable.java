@@ -58,7 +58,7 @@ public class HashTable {
 			return null;
 		}
 		for (Node node : list) {
-			if (node.value.getName().equals(name)) {
+			if (name.equals(node.value.getName())) {
 				return node;
 			}
 		}

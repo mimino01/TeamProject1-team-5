@@ -102,7 +102,7 @@ public class ReviewActivity extends AppCompatActivity {
         server = new ServerComponent(server.getServerIp(),req);
         server.start();
 
-        Log.i(TAG, "review: " + server.getRes());
+        server.getRes();
         String[][] temp = (String[][]) server.getRes();
         Log.i(TAG, "returnToMain: " + Arrays.deepToString(temp));
         if (temp[0][0].equals("true")) {
@@ -111,6 +111,7 @@ public class ReviewActivity extends AppCompatActivity {
             server = new ServerComponent(server.getServerIp(),req);
             server.start();
             Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+            intent.putExtra("userid", userid);
             startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(), "리뷰 작성 실패", Toast.LENGTH_LONG).show();

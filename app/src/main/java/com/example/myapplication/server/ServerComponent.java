@@ -29,10 +29,12 @@ public class ServerComponent extends Thread {
 //    Object res = "not yet";
     Object res;
     Socket socket = new Socket();
+    boolean first = true;
 
     public ServerComponent(String host, String[] data) {
         this.host = host;
         this.data = data;
+        first = true;
     }
 
     public ServerComponent(String host) {
@@ -77,32 +79,31 @@ public class ServerComponent extends Thread {
         return serverIp;
     }
 
-    public static void setServerIp(String serverIp) {
-        ServerComponent.serverIp = serverIp;
-    }
-
     public Object getRes() {
-        String[][] temp = new String[100][100];
+        if (first) {
+            String[][] temp = new String[100][100];
 //        temp[0][0] = "not yet";
-        res = (Object) temp;
-        Object original = res;
-        int count = 0;
-        while (original == res) {
-            Log.i(TAG, "waiting");
-            try {
-                sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            res = (Object) temp;
+            Object original = res;
+            int count = 0;
+            while (original == res) {
+                Log.i(TAG, "waiting");
+                try {
+                    sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                count += 1;
+                if (count > 40) {
+                    temp[0][0] = "null";
+                    res = (Object) temp;
+                    return res;
+                }
             }
-            count += 1;
-            if (count > 40) {
-                temp[0][0] = "null";
-                res = (Object) temp;
-                return res;
-            }
+            Log.i(TAG,"delay time is " + (count * 0.050) + " second");
+            Log.i(TAG,"data is : " + Arrays.deepToString((String[][]) res));
+            first = false;
         }
-        Log.i(TAG,"delay time is " + (count * 0.050) + " second");
-        Log.i(TAG,"data is : " + Arrays.deepToString((String[][]) res));
         return res;
     }
 
