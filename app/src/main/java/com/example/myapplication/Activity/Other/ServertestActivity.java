@@ -62,29 +62,36 @@ public class ServertestActivity extends AppCompatActivity {
 //                data[1] = "DescendingTime";
 
 //
-                data[0] = "sort";
-                data[1] = "StartingTime";
 
-                server = new ServerComponent(server.getServerIp(),data);
-                server.start();
-
-                Thread.sleep(1000);
-
-                String[][] resData = (String[][]) server.getRes();
-                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add review : " + Arrays.deepToString(resData));
-
-
-
-//                data = new String[5];
-//                data[0] = "req_userdata";
-//                data[1] = "adminid";
+                Intent getIntent = getIntent();
+                String host = getIntent.getStringExtra("userName");
+//                data[0] = "review";
+//                data[1] = "addReview";
+//                data[2] = host;
+//                data[3] = "3";
+//                data[4] = "dkssudgktpdy";
+//
 //                server = new ServerComponent(server.getServerIp(),data);
 //                server.start();
 //
 //                Thread.sleep(1000);
 //
 //                String[][] resData = (String[][]) server.getRes();
-//                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - server request data: " + Arrays.deepToString(resData));
+//                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add review : " + Arrays.deepToString(resData));
+
+
+
+//                data = new String[5];
+                data[0] = "review";
+                data[1] = "loadReview";
+                data[2] = host;
+                server = new ServerComponent(server.getServerIp(),data);
+                server.start();
+
+                Thread.sleep(1000);
+
+                String[][] resData = (String[][]) server.getRes();
+                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - server request data: " + Arrays.deepToString(resData));
 //
 //                data = new String[5];
 //                data[0] = "chat";

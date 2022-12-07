@@ -28,6 +28,7 @@ public class ReviewActivity extends AppCompatActivity {
     TextView Rating_Point;
     ServerComponent server;
     String[] data = new String[30];
+    String hostName;
 
 
     @Override
@@ -39,6 +40,7 @@ public class ReviewActivity extends AppCompatActivity {
         // 인포 실행 안됨
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView info = findViewById(R.id.TextView_info);
         info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));
+        hostName = getIntent.getStringExtra("userName");
 
         try {
             Button button_chat = (Button) findViewById(R.id.R_Button_Chat);  // chat으로 이동
@@ -91,7 +93,7 @@ public class ReviewActivity extends AppCompatActivity {
         String[] req = new String[5];
         req[0] = "review";
         req[1] = "addReview";
-        req[2] = "adminid";
+        req[2] = hostName;
         req[3] = Rating_Point.getText().toString();
         req[4] = review.getText().toString();
         server = new ServerComponent(server.getServerIp(),req);

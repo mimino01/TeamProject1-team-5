@@ -15,9 +15,9 @@ public class Saver {
 		hash.put("parkid", new Option("박휘건", 01010044321, "parkid", "parkhgpw","man"));
 		hash.put("hongid", new Option("홍길동", 01010043421, "hongid", "hongpw","man"));
 		hash.put("ganadaid", new Option("가나다", 01012044321, "ganadaid", "ganadapw","woman"));
-		room.insertNode(new ChatRoom("박휘건", "기흥역", 930, new Double[]{37.22344259294581, 127.18734526333768}, 900, 5));
-		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 920, 4));
-		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4));
+		room.insertNode(new ChatRoom("박휘건", "기흥역", 930, new Double[]{37.22344259294581, 127.18734526333768}, 900, 5, "man"));
+		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 920, 4, "man"));
+		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4, "man"));
 	}
 
 	public static boolean signup(Object obj) {
@@ -148,8 +148,6 @@ public class Saver {
 		int roomLength = 0;
 		Sort sortD = new Sort();
 		String[][] copyRoom = room.toDeepArray().clone();
-//		copyRoom[0] = new String[]{"안녕","하","세","3","요","ㅇㅈ"};
-//		copyRoom[1] = new String[]{"안sdaf","하","세","2","31","fasd"};
 
 		switch (key) {
 			case "default":
@@ -221,7 +219,8 @@ public class Saver {
 				break;
 
 			default:
-				Sort.test();
+				System.out.println("Save.chatRoomSort.default - room data : " + Arrays.deepToString(copyRoom));
+				req = copyRoom.clone();
 				break;
 		}
 
@@ -230,20 +229,22 @@ public class Saver {
 	
 	public static String[][] review(Object obj) {
 		String[] res = (String[]) obj;
+
 		String key = res[1];
 		Option user;
 		ReviewItem review;
 		switch (key) {
 		case "addReview":
-			user = hash.get(key);
+			user = hash.get(res[2]);
 			review = new ReviewItem(res[3], res[4]);
 			user.addReview(review);
 			hash.put(key, user);
 			String[][] temp = new String[1][1];
 			temp[0][0] = "true";
 			return temp;
+
 		case "loadReview":
-			return hash.get(key).getReviewToString();				
+			return hash.get(res[2]).getReviewToString();
 			
 		default:
 			break;

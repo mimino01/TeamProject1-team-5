@@ -34,6 +34,8 @@ public class ChatActivity extends AppCompatActivity {
     private ArrayList<ChatClass> datalist; // 상대방 채팅
     ChatClass data;
 
+    String[][] lastChatLog;
+
     //레이아웃 연결
     Button chatserv;
     EditText searchText;
@@ -178,18 +180,18 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
-//
-//                for(int i=0; response[i].length > i ; i++){
-//                    if(response[i][2] == S_text){
-//                        linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(response[i][2]),100);
-//                    }
-//                    else{
-//                        Toast.makeText(getApplicationContext(), Integer.valueOf(response[i][2]) + "번째 값 검색 실패",Toast.LENGTH_LONG).show();
-//                        break;
-//                    }
-//                }
-//
+                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
+
+                for(int i=0; lastChatLog.length > i ; i++){
+                    if(lastChatLog[i][2] == S_text){
+                        linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(lastChatLog[i][3]),100);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), Integer.valueOf(lastChatLog[i][3]) + "번째 값 검색 실패",Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                }
+
 
 //                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
             }
@@ -212,6 +214,7 @@ public class ChatActivity extends AppCompatActivity {
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
 
                 String[][] response = (String[][]) server.getRes();
+                lastChatLog = response.clone();
                 if (response[0][0] != null) {
 //                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 1");
 
