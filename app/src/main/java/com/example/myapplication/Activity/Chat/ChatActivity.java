@@ -2,8 +2,6 @@ package com.example.myapplication.Activity.Chat;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +45,7 @@ public class ChatActivity extends AppCompatActivity {
 
     //서버 연결
     ServerComponent server = new ServerComponent();
-    String userid = null, roomNumber, createOrJoin, hostName;
+    String userid = null, createOrJoin, hostName;
     String[] sendedData = new String[5];
     String[] createData = new String[5];
     boolean create = false;
@@ -69,7 +67,6 @@ public class ChatActivity extends AppCompatActivity {
 
         Log.i(TAG, "ChatActivity - get intent data checker : " + getIntent.getStringExtra("createOrJoin") + getIntent.getStringExtra("userid") + getIntent.getStringExtra("roomCode"));
         createOrJoin = getIntent.getStringExtra("createOrJoin");
-        roomNumber = getIntent.getStringExtra("roomCode");
                 // 상단에 '목적지 | 시간 ' 표시
         Info = (TextView) findViewById(R.id.TextView_info);
         Info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));
@@ -122,6 +119,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                intent.putExtra("userid",userid);
                 startActivity(intent);
             }
         });
@@ -131,6 +129,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
+                intent.putExtra("userid", userid);
                 intent.putExtra("userName", getIntent.getStringExtra("userName"));
                 intent.putExtra("destination", getIntent.getStringExtra("destination"));
                 intent.putExtra("time", getIntent.getStringExtra("time"));
@@ -205,12 +204,6 @@ public class ChatActivity extends AppCompatActivity {
                 String[] request = new String[]{"chat", "loadChat", userid};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
-
-                try {
-                    sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
 
                 String[][] response = (String[][]) server.getRes();

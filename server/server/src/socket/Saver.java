@@ -13,11 +13,11 @@ public class Saver {
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
 		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
 		hash.put("parkid", new Option("박휘건", 01010044321, "parkid", "parkhgpw","man"));
-		hash.put("hongid", new Option("홍길동", 01010043421, "hongid", "hongpw","man"));
+		hash.put("hongid", new Option("홍길동", 01010043421, "hongid", "hongpw","woman"));
 		hash.put("ganadaid", new Option("가나다", 01012044321, "ganadaid", "ganadapw","woman"));
 		room.insertNode(new ChatRoom("박휘건", "기흥역", 930, new Double[]{37.22344259294581, 127.18734526333768}, 900, 5, "man"));
-		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 920, 4, "man"));
-		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4, "man"));
+		room.insertNode(new ChatRoom("홍길동", "영통역", 830, new Double[]{37.224755790256964, 127.18881331477333}, 820, 4, "man"));
+		room.insertNode(new ChatRoom("가나다", "명지대역", 1000, new Double[]{37.22219444666843, 127.19029421815819}, 930, 4, "woman"));
 	}
 
 	public static boolean signup(Object obj) {
@@ -86,11 +86,12 @@ public class Saver {
 		String[][] result = new String[10][10];
 		String[] data = (String[]) obj;
 		String key = data[1];
+		boolean response;
 		ChatRoom temp;
 		switch (key) {
 		case "create":
 			System.out.println("processing chat in create");
-			temp = new ChatRoom(hash.get(data[2]).getName(),data[6],Integer.parseInt(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank());
+			temp = new ChatRoom(hash.get(data[2]).getName(),data[6],Integer.parseInt(data[5]),new Double[]{Double.parseDouble(data[3]),Double.parseDouble(data[4])}, Integer.parseInt(data[7]), hash.get(data[2]).getRank(), hash.get(data[2]).getGender());
 			if (room.insertNode(temp)) {
 				result[0][0] = Boolean.toString(true);
 				return result;
@@ -100,17 +101,13 @@ public class Saver {
 		case "addUser":
 			if (hash.get(data[2]).equals(hash.get("dfasfsadvasdvevsdfver"))) {
 				temp = room.searchNode(hash.getByName(data[2]));
-				boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
-				room.insertNode(temp);
-				result[0][0] = Boolean.toString(response);
-				return result;
 			} else {
 				temp = room.searchNode(hash.get(data[2]));
-				boolean response = temp.addUser(data[3], hash.get(data[3]).getName());
-				room.insertNode(temp);
-				result[0][0] = Boolean.toString(response);
-				return result;
 			}
+			response = temp.addUser(data[3], hash.get(data[3]).getName());
+			room.insertNode(temp);
+			result[0][0] = Boolean.toString(response);
+			return result;
 			
 		case "addChat":
 			System.out.println("processing chat in add");
@@ -133,6 +130,28 @@ public class Saver {
 		case "loadAllChat":
 			System.out.println("processing chat in load all chat");
 			return room.toDeepArray();
+
+		case "numberOfPeople":
+			System.out.println("processing chat in number of people");
+			if (hash.get(data[2]).equals(hash.get("dfasfsadvasdvevsdfver"))) {
+				temp = room.searchNode(hash.getByName(data[2]));
+			} else {
+				temp = room.searchNode(hash.get(data[2]));
+			}
+			result[0] = temp.getUser();
+			return result;
+
+		case "deleteUser":
+			System.out.println("processing chat in delete user");
+			if (hash.get(data[2]).equals(hash.get("dfasfsadvasdvevsdfver"))) {
+				temp = room.searchNode(hash.getByName(data[2]));
+			} else {
+				temp = room.searchNode(hash.get(data[2]));
+			}
+			response = temp.deleteUser(data[3], hash.get(data[3]).getName());
+			room.insertNode(temp);
+			result[0][0] = Boolean.toString(response);
+			return result;
 			
 		default:
 			break;

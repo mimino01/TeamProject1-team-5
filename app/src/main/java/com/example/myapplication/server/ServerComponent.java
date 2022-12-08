@@ -2,8 +2,14 @@ package com.example.myapplication.server;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.nfc.Tag;
 import android.util.Log;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.Activity.Other.MainActivity;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,16 +23,18 @@ import java.util.Objects;
 public class ServerComponent extends Thread{
     static public String serverIp = "192.168.56.1";
 
-
     public String[] getRes;
     String host;
     String[] data;
+//    Object res = "not yet";
     Object res;
     Socket socket = new Socket();
+    boolean first = true;
 
     public ServerComponent(String host, String[] data) {
         this.host = host;
         this.data = data;
+        first = true;
     }
 
     public ServerComponent(String host) {
@@ -71,11 +79,31 @@ public class ServerComponent extends Thread{
         return serverIp;
     }
 
-    public static void setServerIp(String serverIp) {
-        ServerComponent.serverIp = serverIp;
-    }
-
     public Object getRes() {
+        if (first) {
+            String[][] temp = new String[100][100];
+//        temp[0][0] = "not yet";
+            res = (Object) temp;
+            Object original = res;
+            int count = 0;
+            while (original == res) {
+                Log.i(TAG, "waiting");
+                try {
+                    sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                count += 1;
+                if (count > 40) {
+                    temp[0][0] = "null";
+                    res = (Object) temp;
+                    return res;
+                }
+            }
+            Log.i(TAG,"delay time is " + (count * 0.050) + " second");
+            Log.i(TAG,"data is : " + Arrays.deepToString((String[][]) res));
+            first = false;
+        }
         return res;
     }
 

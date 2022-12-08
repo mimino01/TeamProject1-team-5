@@ -1,7 +1,6 @@
 package com.example.myapplication.Activity.Infomation;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-import static java.lang.Thread.sleep;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -48,12 +47,6 @@ public class InfomationActivity extends AppCompatActivity {
 
         server = new ServerComponent(server.getServerIp(),req);
         server.start();
-
-        try {
-            sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         String[][] resData = (String[][]) server.getRes();
         Log.i(TAG, "InfomationActivity.onCreate - check response data : " + Arrays.toString(resData[0]));

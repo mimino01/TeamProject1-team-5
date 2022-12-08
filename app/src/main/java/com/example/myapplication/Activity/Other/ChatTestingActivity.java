@@ -1,8 +1,5 @@
 package com.example.myapplication.Activity.Other;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -71,12 +68,6 @@ public class ChatTestingActivity extends AppCompatActivity {
                 String[] request = new String[]{"chat", "loadChat", name};
                 server = new ServerComponent(server.getServerIp(),request);
                 server.start();
-
-                try {
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
 
                 String[][] response = (String[][]) server.getRes();

@@ -1,7 +1,6 @@
 package com.example.myapplication.Activity.Review;
 
 import static android.content.ContentValues.TAG;
-import static java.lang.Thread.sleep;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +21,8 @@ import com.example.myapplication.Activity.TempBoard.TempBoardActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.server.ServerComponent;
 
+import java.util.Arrays;
+
 public class ReviewActivity extends AppCompatActivity {
     RatingBar Rating_Bar;
     EditText review;
@@ -29,6 +30,7 @@ public class ReviewActivity extends AppCompatActivity {
     ServerComponent server;
     String[] data = new String[30];
     String hostName;
+    String userid;
 
 
     @Override
@@ -41,6 +43,7 @@ public class ReviewActivity extends AppCompatActivity {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView info = findViewById(R.id.TextView_info);
         info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));
         hostName = getIntent.getStringExtra("userName");
+        userid = getIntent.getStringExtra("userid");
 
         try {
             Button button_chat = (Button) findViewById(R.id.R_Button_Chat);  // chat으로 이동
@@ -99,16 +102,16 @@ public class ReviewActivity extends AppCompatActivity {
         server = new ServerComponent(server.getServerIp(),req);
         server.start();
 
-        try {
-            sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Log.i(TAG, "review: " + server.getRes());
+        server.getRes();
         String[][] temp = (String[][]) server.getRes();
+        Log.i(TAG, "returnToMain: " + Arrays.deepToString(temp));
         if (temp[0][0].equals("true")) {
             Toast.makeText(getApplicationContext(), "리뷰 작성 성공",Toast.LENGTH_LONG).show();
+            req = new String[]{"chat", "deleteUser", hostName, userid};
+            server = new ServerComponent(server.getServerIp(),req);
+            server.start();
             Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+            intent.putExtra("userid", userid);
             startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(), "리뷰 작성 실패", Toast.LENGTH_LONG).show();
