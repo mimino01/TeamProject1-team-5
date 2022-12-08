@@ -178,17 +178,17 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        //채팅 검색 기능
+        //채팅 검색 기능 여기요 여기 제훈님
         searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
             @Override
             public void onClick(View view) {
 
                 String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
-                Toast.makeText(getApplicationContext(), "클릭 " + S_text+ " 검색 시작",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), S_text+ " 검색 시작",Toast.LENGTH_SHORT).show();
 
                 for(int i=0; lastChatLog[i][0] != null ; i++){
                     Toast.makeText(getApplicationContext(), i +"번째 반복문 들어왔다",Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), lastChatLog[i][2] + " 와 같은가?",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), lastChatLog[i][2] + " 와 같은가?",Toast.LENGTH_SHORT).show();       // lastChatLog를 삭제해도 안뜨고 막무가내로 종료됨
 
                     if(lastChatLog[i][2].equals(S_text)){
                         Toast.makeText(getApplicationContext(),"검색 성공",Toast.LENGTH_SHORT).show();
