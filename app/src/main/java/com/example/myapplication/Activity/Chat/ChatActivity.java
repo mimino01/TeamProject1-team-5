@@ -2,6 +2,7 @@ package com.example.myapplication.Activity.Chat;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.example.myapplication.server.ServerComponent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class ChatActivity extends AppCompatActivity {
@@ -98,7 +100,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 메인으로 이동
         button_main.setOnClickListener(new View.OnClickListener() {
-                                                 @Override
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
                 startActivity(intent);
@@ -157,20 +159,22 @@ public class ChatActivity extends AppCompatActivity {
         chatserv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "안녕하십니까";
-                ChatClass data = new ChatClass("신서연",text, Time(), 0);  // 채팅 보내는 상대방 이름으로 수정
-                chatAdapterMarge.addItem(data);
-                recyclerView_L.setAdapter(chatAdapterMarge);
-                chatAdapterMarge.notifyDataSetChanged();
 
-                sendedData[0] = "chat";
-                sendedData[1] = "addChat";
-                sendedData[2] = userid;
-                sendedData[3] = text;
-                sendedData[4] = "left";    // 임시 왼/오 확인
+//                String text = "안녕하십니까";
+//                ChatClass data = new ChatClass("신서연",text, Time(), 0);  // 채팅 보내는 상대방 이름으로 수정
+//                chatAdapterMarge.addItem(data);
+//                recyclerView_L.setAdapter(chatAdapterMarge);
+//                chatAdapterMarge.notifyDataSetChanged();
+//
+//                sendedData[0] = "chat";
+//                sendedData[1] = "addChat";
+//                sendedData[2] = userid;
+//                sendedData[3] = text;
+//                sendedData[4] = "left";    // 임시 왼/오 확인
+//
+//                server = new ServerComponent(server.getServerIp(), sendedData);
+//                server.start();
 
-                server = new ServerComponent(server.getServerIp(), sendedData);
-                server.start();
             }
         });
 
@@ -179,19 +183,23 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
-//
-//                for(int i=0; response[i].length > i ; i++){
-//                    if(response[i][2] == S_text){
-//                        linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(response[i][2]),100);
-//                    }
-//                    else{
-//                        Toast.makeText(getApplicationContext(), Integer.valueOf(response[i][2]) + "번째 값 검색 실패",Toast.LENGTH_LONG).show();
-//                        break;
-//                    }
-//                }
-//
+                String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
+                Toast.makeText(getApplicationContext(), "클릭 " + S_text+ " 검색 시작",Toast.LENGTH_SHORT).show();
 
+                for(int i=0; lastChatLog[i][0] != null ; i++){
+                    Toast.makeText(getApplicationContext(), i +"번째 반복문 들어왔다",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), lastChatLog[i][2] + " 와 같은가?",Toast.LENGTH_SHORT).show();
+
+                    if(lastChatLog[i][2].equals(S_text)){
+                        Toast.makeText(getApplicationContext(),"검색 성공",Toast.LENGTH_SHORT).show();
+                        linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(lastChatLog[i][3])+1,100);
+                        break;
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), lastChatLog[i][3] + "번째 값 검색 실패",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                Toast.makeText(getApplicationContext(), "반복문 종료",Toast.LENGTH_SHORT).show();
 //                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
             }
         });
@@ -216,7 +224,7 @@ public class ChatActivity extends AppCompatActivity {
                         if (!userid.equals(response[i][0])) {
 //                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
 
-                            data = new ChatClass(userid,response[i][2], Time(), 0);
+                            data = new ChatClass(userid, response[i][2], Time(), 0);
                             chatAdapterMarge.addItem(data);
                         }
                     }
@@ -255,6 +263,7 @@ public class ChatActivity extends AppCompatActivity {
 
         return Time;
     }
+
 }
 
     // 검색을 수행하는 메소드
