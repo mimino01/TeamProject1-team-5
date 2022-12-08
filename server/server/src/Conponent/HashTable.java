@@ -58,7 +58,7 @@ public class HashTable {
 			return null;
 		}
 		for (Node node : list) {
-			if (name.equals(node.value.getName())) {
+			if (node.value.getName().equals(name)) {
 				return node;
 			}
 		}
@@ -100,7 +100,7 @@ public class HashTable {
 	}
 
 	public Option getByName(String name) {
-		for (int i = 0; i < 40; i++) {
+		for (int i = 0; true; i++) {
 			LinkedList<Node> list = data[i];
 
 			Node node = searchName(list, name);
@@ -110,7 +110,6 @@ public class HashTable {
 				return node == null? nullValue : node.getValue();
 			}
 		}
-		return null;
 	}
 
 	public boolean delete(String key) {

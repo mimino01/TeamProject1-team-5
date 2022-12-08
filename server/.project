@@ -3,7 +3,6 @@
 	<name>server</name>
 	<comment></comment>
 	<projects>
-		<project>Conponent</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>

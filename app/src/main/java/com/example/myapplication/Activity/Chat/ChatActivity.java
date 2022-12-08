@@ -67,7 +67,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Log.i(TAG, "ChatActivity - get intent data checker : " + getIntent.getStringExtra("createOrJoin") + getIntent.getStringExtra("userid") + getIntent.getStringExtra("roomCode"));
         createOrJoin = getIntent.getStringExtra("createOrJoin");
-                // 상단에 '목적지 | 시간 ' 표시
+        // 상단에 '목적지 | 시간 ' 표시
         Info = (TextView) findViewById(R.id.TextView_info);
         Info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));
 
@@ -98,7 +98,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 메인으로 이동
         button_main.setOnClickListener(new View.OnClickListener() {
-                                                 @Override
+            @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
                 startActivity(intent);
@@ -119,7 +119,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
-                intent.putExtra("userid",userid);
+                intent.putExtra("userid", userid);
                 startActivity(intent);
             }
         });
@@ -151,6 +151,36 @@ public class ChatActivity extends AppCompatActivity {
             ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
 
         recyclerView_L.setLayoutManager(linearLayoutManager1);
+
+        while (true) {
+
+            //여기서부터
+            String[] request = new String[]{"chat", "loadChat", userid};
+            server = new ServerComponent(server.getServerIp(), request);
+            server.start();
+//                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
+
+            String[][] response = (String[][]) server.getRes();
+            lastChatLog = response.clone();
+            if (response[0][0] != null) {
+//                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 1");
+
+                for (int i = 0; response[i][0] != null; i++) {
+//                        Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data : " + Arrays.toString(response[i]));
+                    if (!userid.equals(response[i][0])) {
+//                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
+
+                        data = new ChatClass(userid, response[i][2], Time(), 0);
+                        chatAdapterMarge.addItem(data);
+                    }
+                }
+            } else {
+//                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data is null ");
+            }
+
+//                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: back");
+        }
+        // 여기까지 채팅 불러오는,. 따라서 while문으로 돌릴것
 //
 
         // 상대방 채팅이 뜨는
@@ -158,7 +188,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text = "안녕하십니까";
-                ChatClass data = new ChatClass("신서연",text, Time(), 0);  // 채팅 보내는 상대방 이름으로 수정
+                ChatClass data = new ChatClass("신서연", text, Time(), 0);  // 채팅 보내는 상대방 이름으로 수정
                 chatAdapterMarge.addItem(data);
                 recyclerView_L.setAdapter(chatAdapterMarge);
                 chatAdapterMarge.notifyDataSetChanged();
@@ -181,12 +211,11 @@ public class ChatActivity extends AppCompatActivity {
 
                 String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
 
-                for(int i=0; lastChatLog.length > i ; i++){
-                    if(lastChatLog[i][2] == S_text){
-                        linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(lastChatLog[i][3]),100);
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), Integer.valueOf(lastChatLog[i][3]) + "번째 값 검색 실패",Toast.LENGTH_LONG).show();
+                for (int i = 0; lastChatLog.length > i; i++) {
+                    if (lastChatLog[i][2] == S_text) {
+                        linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(lastChatLog[i][3]), 100);
+                    } else {
+                        Toast.makeText(getApplicationContext(), Integer.valueOf(lastChatLog[i][3]) + "번째 값 검색 실패", Toast.LENGTH_LONG).show();
                         break;
                     }
                 }
@@ -200,33 +229,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                //여기서부터
-                String[] request = new String[]{"chat", "loadChat", userid};
-                server = new ServerComponent(server.getServerIp(), request);
-                server.start();
-//                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
-
-                String[][] response = (String[][]) server.getRes();
-                lastChatLog = response.clone();
-                if (response[0][0] != null) {
-//                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 1");
-
-                    for (int i = 0; response[i][0] != null; i++) {
-//                        Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data : " + Arrays.toString(response[i]));
-                        if (!userid.equals(response[i][0])) {
-//                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
-
-                            data = new ChatClass(userid,response[i][2], Time(), 0);
-                            chatAdapterMarge.addItem(data);
-                        }
-                    }
-                } else {
-//                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data is null ");
-                }
-
-//                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: back");
-
-                // 여기까지 채팅 불러오는,. 따라서 while문으로 돌릴것
+                // 서버 연결 있던 곳
 
                 String text1 = message.getText().toString();
                 ChatClass data1 = new ChatClass(userid, text1, Time(), 1);
@@ -247,15 +250,18 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    private String Time() {
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        String Time = dateFormat.format(date);
+        private String Time() {
+            long now = System.currentTimeMillis();
+            Date date = new Date(now);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
+            String time = dateFormat.format(date);
 
-        return Time;
+            return time;
+        }
+
     }
 }
+
 
     // 검색을 수행하는 메소드
 //    public void ChatSearch(String chatText) {
