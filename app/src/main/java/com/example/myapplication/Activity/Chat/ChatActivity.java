@@ -83,13 +83,13 @@ public class ChatActivity extends AppCompatActivity {
 
         hostName = getIntent.getStringExtra("userName");
         if (!create) {
-            if (userid.equals("박휘건") || userid.equals("홍길동") || userid.equals("가나다")) {     // 필요없을지도.. 게시물 작성자가 본인의 채팅방에 접근할때의 경우
+            if (userid.equals(hostName)) {     // 필요없을지도.. 게시물 작성자가 본인의 채팅방에 접근할때의 경우
                 create = true;
 
                 String[] request = new String[]{"chat", "create", userid, "37.22344259294581", "127.18734526333768", "1030", "명지대", "1010"};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
-            } else {            // 게시물 작성자가 아닌 사용자가 채팅방에 JOIN
+            } else {            // 게시물 작성자가 아닌 사용자가 접근 시 채팅방에 JOIN
                 String[] request = new String[]{"chat", "addUser", hostName, userid};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
@@ -200,6 +200,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                //여기서부터
                 String[] request = new String[]{"chat", "loadChat", userid};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
@@ -225,6 +226,7 @@ public class ChatActivity extends AppCompatActivity {
 
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: back");
 
+                // 여기까지 채팅 불러오는,. 따라서 while문으로 돌릴것
 
                 String text1 = message.getText().toString();
                 ChatClass data1 = new ChatClass(userid, text1, Time(), 1);

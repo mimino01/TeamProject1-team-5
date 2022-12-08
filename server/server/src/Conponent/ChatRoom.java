@@ -26,7 +26,6 @@ public class ChatRoom {
 		
 	}
 
-
 	public ChatRoom(String host, String destination, int departureTime, Double[] coordinate, int createTime, float hostRank, String hostGender) {
 		this.host = host;
 		this.user[0] = host;
