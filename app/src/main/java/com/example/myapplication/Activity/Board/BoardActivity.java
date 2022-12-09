@@ -33,6 +33,7 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -51,6 +52,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     int marker_length = 0;
     String gender;
     String[][] roomData = null;
+    int roomData_length = 0;
 
     ServerComponent servers;
     ServerComponent roomServer;
@@ -121,19 +123,23 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         String[] nulldata = null;
         // 마킹 데이터 값과 서버 데이터 값의 순서가 다름 데이터를 맞는데 넣음
+        int mark_counter = 0;
         for(int i=0; roomData[i] != nulldata ;i++){
             Log.i(TAG, "BoardActivity - room data : " + i);
+            Log.i(TAG, "BoardActivity - mark_counter : " + mark_counter);
             if (roomData[i][7].equals(gender)) {
-                markingData[i][0] = "marking";
-                markingData[i][1] = roomData[i][0];
-                markingData[i][2] = roomData[i][7];
-                markingData[i][3] = roomData[i][1];
-                markingData[i][4] = roomData[i][4];
-                markingData[i][5] = roomData[i][2];
-                markingData[i][6] = roomData[i][5];
-                markingData[i][7] = roomData[i][6];
+                markingData[mark_counter][0] = "marking";
+                markingData[mark_counter][1] = roomData[i][0];
+                markingData[mark_counter][2] = roomData[i][7];
+                markingData[mark_counter][3] = roomData[i][1];
+                markingData[mark_counter][4] = roomData[i][4];
+                markingData[mark_counter][5] = roomData[i][2];
+                markingData[mark_counter][6] = roomData[i][5];
+                markingData[mark_counter][7] = roomData[i][6];
+                mark_counter++;
             }
-            Log.i(TAG, "BoardActivity - markingData : " + Arrays.toString(markingData[i]));
+            roomData_length++;
+            Log.i(TAG, "BoardActivity - markingData : " + Arrays.toString(markingData[mark_counter]));
         }
         // 입력받은 배열의 길이 계산
         while (true) {
@@ -194,26 +200,82 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         New_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String[] Ascending_temp = new String[]{"sort", "AscendingTime"};
+                servers = new ServerComponent(servers.getServerIp(), Ascending_temp);
+                servers.start();
+                String[][] ascending_data = (String[][])servers.getRes();
+                String[][] gender_sorted_data = new String[10][10];
+                int ascending_counter = 0;
+
+                for (int j=0; j<roomData_length; j++){
+                    String temp_gender = ascending_data[j][7];
+                    if(temp_gender.equals(gender)) {
+                        gender_sorted_data[ascending_counter] = ascending_data[j];
+                        ascending_counter++;
+                    }
+                }
                 boardArrayList.clear();
-                for(int i=0; markingData[i][3] != null ;i++) {
-                    boardArrayList.add(0,new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
+
+                // 1 = 이름
+                // 2 = 성별
+                // 3 = 도착지
+                // 4 = 시간
+                // 5 = 평점
+                for(int i=0; i<ascending_counter ;i++) {
+                    boardArrayList.add(0,new BoardClass(gender_sorted_data[i][0],
+                            gender_sorted_data[i][7],
+                            gender_sorted_data[i][1], Long.parseLong(gender_sorted_data[i][3]),
+                            Double.parseDouble(gender_sorted_data[i][2])));
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
         });
 
-        Old_Sort_button = (Button) findViewById(R.id.button_old_sort2);
+        Old_Sort_button = (Button) findViewById(R.id.button_old_sort2); // 오래된 순 정렬
         Old_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String[] Ascending_temp = new String[]{"sort", "DescendingTime"};
+                servers = new ServerComponent(servers.getServerIp(), Ascending_temp);
+                servers.start();
+                String[][] ascending_data = (String[][])servers.getRes();
+                String[][] gender_sorted_data = new String[10][10];
+                int ascending_counter = 0;
+
+                for (int j=0; j<roomData_length; j++){
+                    String temp_gender = ascending_data[j][7];
+                    if(temp_gender.equals(gender)) {
+                        gender_sorted_data[ascending_counter] = ascending_data[j];
+                        ascending_counter++;
+                    }
+                }
+
+                Log.i(TAG,"BoardActivity - gender_sorted_data = " + Arrays.toString(gender_sorted_data[0]));
                 boardArrayList.clear();
-                for(int i=0; markingData[i][3] != null ;i++) {
-                    boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
+
+                // 1 = 이름
+                // 2 = 성별
+                // 3 = 도착지
+                // 4 = 시간
+                // 5 = 평점
+                for(int i=0; i<ascending_counter ;i++) {
+                    boardArrayList.add(0,new BoardClass(gender_sorted_data[i][0],
+                            gender_sorted_data[i][7],gender_sorted_data[i][1],
+                            Long.parseLong(gender_sorted_data[i][3]),
+                            Double.parseDouble(gender_sorted_data[i][2])));
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
+
+               /* boardArrayList.clear();
+                for(int i=0; markingData[i][3] != null ;i++) {
+                    boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
+                }
+                boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
+                listView.setAdapter(boardAdapter);*/
         });
 
         quickClass = new QuickClass();
@@ -227,7 +289,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             copy_timeArray[i] = (long)boardArrayList.get(i).getTime();
         }
 
-        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     //
+        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 시간 순으로 정렬ㅁ
         Time_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
