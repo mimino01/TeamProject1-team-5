@@ -196,6 +196,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
 
+        // 서버로부터 모든 데이터 받아옴 이것을 배열에 저장
+        // 저장된 배열로 부터 성별이 같은 데이터들만 종합하여 ~~_sorted_data에 저장
+        // ~~_sorted_data의 정보들로 BoardArrayList의 add메소드를 통해 정보만들어줌
+        // 4가지 정렬 방법 모두 같은 방법 사용함
         New_Sort_button=(Button)findViewById(R.id.button_new_sort);     // 최신순 정렬
         New_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -289,17 +293,35 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             copy_timeArray[i] = (long)boardArrayList.get(i).getTime();
         }
 
-        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 시간 순으로 정렬ㅁ
+        Time_Sort_button =(Button)findViewById(R.id.button_time_sort);     // 시간 순으로 정렬
         Time_Sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 quickClass.long_sort(copy_timeArray);
+
+                String[] time_temp = new String[]{"sort", "StartingTime"};
+                servers = new ServerComponent(servers.getServerIp(), time_temp);
+                servers.start();
+                String[][] StartingTime_data = (String[][])servers.getRes();
+                String[][] time_sorted_data = new String[10][10];
+                int ascending_counter = 0;
+
+                for (int j=0; j<roomData_length; j++){
+                    String temp_gender = StartingTime_data[j][7];
+                    if(temp_gender.equals(gender)) {
+                        time_sorted_data[ascending_counter] = StartingTime_data[j];
+                        ascending_counter++;
+                    }
+                }
+
                 boardArrayList.clear();
                 for(int i=0; i < copy_timeArray.length ;i++) {
                     for (int j = 0; j < timeArray.length; j++) {
                         if (copy_timeArray[i] == timeArray[j]){
-                            boardArrayList.add(new BoardClass(markingData[j][1], markingData[j][2], markingData[j][3], Long.parseLong(markingData[j][4]), Double.parseDouble(markingData[j][5])));
-                        }
+                            boardArrayList.add(0,new BoardClass(time_sorted_data[i][0],
+                                    time_sorted_data[i][7],time_sorted_data[i][1],
+                                    Long.parseLong(time_sorted_data[i][3]),
+                                    Double.parseDouble(time_sorted_data[i][2])));                        }
                     }
                 }
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
@@ -317,7 +339,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             copy_pointArray[i] = (double) boardArrayList.get(i).getManner_point();
         }
 
-        Point_sort_button =(Button)findViewById(R.id.button_point_sort2);     // 오래된 정렬
+        Point_sort_button =(Button)findViewById(R.id.button_point_sort2);     // 매너점수순 정렬
         Point_sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
