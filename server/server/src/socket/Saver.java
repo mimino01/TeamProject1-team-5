@@ -143,10 +143,15 @@ public class Saver {
 
 		case "deleteUser":
 			System.out.println("processing chat in delete user");
+			Option user;
 			if (hash.get(data[2]).equals(hash.get("dfasfsadvasdvevsdfver"))) {
-				temp = room.searchNode(hash.getByName(data[2]));
+				user = hash.getByName(data[2]);
 			} else {
-				temp = room.searchNode(hash.get(data[2]));
+				user = hash.get(data[2]);
+			}
+			temp = room.searchNode(user);
+			if (temp != null) { //여기 해야함
+				room.deleteNode(temp);
 			}
 			response = temp.deleteUser(data[3], hash.get(data[3]).getName());
 			room.insertNode(temp);

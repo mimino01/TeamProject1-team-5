@@ -187,15 +187,18 @@ public class ChatActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), S_text+ " 검색 시작",Toast.LENGTH_SHORT).show();
 
                 for(int i=0; lastChatLog[i][0] != null ; i++){
+                    Log.i(TAG, "Last Chat Log : " + i);
                     Toast.makeText(getApplicationContext(), i +"번째 반복문 들어왔다",Toast.LENGTH_SHORT).show();
                     Toast.makeText(getApplicationContext(), lastChatLog[i][2] + " 와 같은가?",Toast.LENGTH_SHORT).show();       // lastChatLog를 삭제해도 안뜨고 막무가내로 종료됨
 
                     if(lastChatLog[i][2].equals(S_text)){
+                        Log.i(TAG, "Last Chat Log : is true");
                         Toast.makeText(getApplicationContext(),"검색 성공",Toast.LENGTH_SHORT).show();
                         linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(lastChatLog[i][3])+1,100);
                         break;
                     }
                     else{
+                        Log.i(TAG, "Last Chat Log : is false");
                         Toast.makeText(getApplicationContext(), lastChatLog[i][3] + "번째 값 검색 실패",Toast.LENGTH_SHORT).show();
                     }
                 }
