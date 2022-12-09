@@ -1,8 +1,9 @@
 package socket.socket;
 
-import Components.;
+import Conponent.*;
 
 import java.util.Arrays;
+
 
 public class Saver {
 	static HashTable hash = new HashTable(40);

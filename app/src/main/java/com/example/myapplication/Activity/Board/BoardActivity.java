@@ -50,7 +50,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     String userId;
     String[][] markingData = new String[10][10];
     int marker_length = 0;
-    int counter = 0;
+    int counter = -1;
     String gender;
 
     ServerComponent servers;
@@ -148,20 +148,23 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             // loadAllChat을 통해 받은 데이터
             test = (String[][]) servers.getRes();
 
-            int counter = -1;
-
             // 서버에서 받은 데이터 묶음의 개수만큼 counter 증가시켜줌
             // 묶음은 한명의 데이터
+
+            Log.i(TAG,"BoardActivity - before counter = " + counter);
+
+            int temp =0;
             for(int i=0; i<10;i++) {
                 if(test[i][1] != null){
-                    counter++;
+                    Log.i(TAG,"BoardActivity - test data " + test[i][1]);
+                    temp++;
                 }
             }
 
-           Log.i(TAG,"BoardActivity - counter = " + counter);
+           Log.i(TAG,"BoardActivity - after counter = " + counter);
 
             // 마킹 데이터 값과 서버 데이터 값의 순서가 다름 데이터를 맞는데 넣음
-            for(int i=0; i<=counter;i++){
+            for(int i=0; i<=temp;i++){
                 markingData[i][0] = "marking";
                 markingData[i][1] = test[i][0];
                 markingData[i][2] = gender;
@@ -213,7 +216,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         boardArrayList = new ArrayList<BoardClass>();
 
         Log.i(TAG,"BoardActivity counter = " + counter);
-        Log.i(TAG, "BoardActivity - loof checker - markingData checking" + Arrays.deepToString(markingData));
         for(int i=0; markingData[i][3] !=null ;i++) {
             Log.i(TAG, "BoardActivity - loof checker " + i);
                 boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3],
