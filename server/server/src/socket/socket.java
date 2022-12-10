@@ -36,42 +36,42 @@ public class socket {
                 String[][] success = new String[40][40];
                 switch (res[0]) {
 				case "signin":
-					System.out.println("processing sign in");
+					System.out.println("processing sign in\n");
 					success[0][0] = Boolean.toString(process.signin(res));
 					break;
 					
 				case "signup":
-					System.out.println("processing sign up");
+					System.out.println("processing sign up\n");
 					success[0][0] = Boolean.toString(process.signup(res));
 					break;
 
                 case "signOut":
-                    System.out.println("processing sign out");
+                    System.out.println("processing sign out\n");
                     success[0][0] = Boolean.toString(process.signOut(res));
 				    break;
 
                 case "signUpdate":
-                    System.out.println("processing sign updata");
+                    System.out.println("processing sign updata\n");
                     success[0][0] = Boolean.toString(process.update(res));
                     break;
 
 				case "chat":
-					System.out.println("processing chatting");
+					System.out.println("processing chatting\n");
 					success = process.chatting(res);
 					break;
 					
 				case "review":
-					System.out.println("processing review");
+					System.out.println("processing review\n");
 					success = process.review(res);
 					break;
 					
 				case "req_userdata":
-					System.out.println("processing requist userdata");
+					System.out.println("processing requist userdata\n");
 					success[0] = process.reqUserdata(res);
 					break;
 
                 case "sort":
-                    System.out.println("processing sort");
+                    System.out.println("processing sort\n");
                     success = process.chatRoomSort(res);
                     break;
 
