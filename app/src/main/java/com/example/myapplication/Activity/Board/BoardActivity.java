@@ -236,6 +236,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 Log.i(TAG,"BoardActivity\n ");
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
+                
             }
         });
 
