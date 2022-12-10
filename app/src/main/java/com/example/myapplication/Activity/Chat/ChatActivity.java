@@ -2,6 +2,8 @@ package com.example.myapplication.Activity.Chat;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import static java.lang.Thread.sleep;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,10 +33,11 @@ import java.util.Date;
 public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager1;
     private ChatAdapter_type chatAdapterMarge = new ChatAdapter_type(); // 합병 어댑터
-    private ArrayList<ChatClass> datalist; // 상대방 채팅
+    private ArrayList<ChatClass> datalist = new ArrayList<>();
     ChatClass data;
 
     String[][] lastChatLog;
+    int pos = -1;
 
     //레이아웃 연결
     Button chatserv;
@@ -83,6 +86,15 @@ public class ChatActivity extends AppCompatActivity {
             server.start();
         }*/
 
+        recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
+        recyclerView_L.setHasFixedSize(true);
+
+        linearLayoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+            /*((LinearLayoutManager) linearLayoutManager).setReverseLayout(true);
+            ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
+
+        recyclerView_L.setLayoutManager(linearLayoutManager1);
+
         hostName = getIntent.getStringExtra("userName");
         if (!create) {
             if (userid.equals(hostName)) {     // 필요없을지도.. 게시물 작성자가 본인의 채팅방에 접근할때의 경우
@@ -95,8 +107,14 @@ public class ChatActivity extends AppCompatActivity {
                 String[] request = new String[]{"chat", "addUser", hostName, userid};
                 server = new ServerComponent(server.getServerIp(), request);
                 server.start();
+
+                ChatClass d = new ChatClass(userid,  userid + "님이 채팅방에 참가하였습니다.", Time(), 2);
+                chatAdapterMarge.addItem(d);
+                recyclerView_L.setAdapter(chatAdapterMarge);
+                chatAdapterMarge.notifyDataSetChanged();
             }
         }
+
 
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 메인으로 이동
         button_main.setOnClickListener(new View.OnClickListener() {
@@ -140,43 +158,74 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         // 레이아웃과 연결
-        chatserv = findViewById(R.id.Button_chatserv);
+//        chatserv = findViewById(R.id.Button_chatserv);
         searchText = (EditText) findViewById(R.id.SearchText);
         searchButton = (Button) findViewById(R.id.SearchButton);
         message = (EditText) findViewById(R.id.EditText_chat);
         send = (Button) findViewById(R.id.Button_send);
-        recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
-        recyclerView_L.setHasFixedSize(true);
 
-        linearLayoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-            /*((LinearLayoutManager) linearLayoutManager).setReverseLayout(true);
-            ((LinearLayoutManager) linearLayoutManager).setStackFromEnd(true);*/
+//while 문
+//            try {
+//                while (true) {
+//                    sleep(1000);
+//
+//                    //여기서부터
+//                    String[] request = new String[]{"chat", "loadChat", userid};
+//                    server = new ServerComponent(server.getServerIp(), request);
+//                    server.start();
+////                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
+//
+//                    String[][] response = (String[][]) server.getRes();
+//
+//                    lastChatLog = response.clone();
+//                    if (response[0][0] != null) {       // 빈 채팅이 아닐 경우
+////                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 1");
+//
+//                        for (int i = 0; response[i][0] != null; i++) {
+////                        Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data : " + Arrays.toString(response[i]));
+//                            if (!userid.equals(response[i][0])) {
+//                                if (pos == Integer.getInteger(response[i][3])) {
+//                            Log.i(TAG, "ChatActivity - pos test : inside if " + pos);
+//                                    data = new ChatClass(response[i][1], response[i][2], Time(), 0);
+//                                    chatAdapterMarge.addItem(data);
+//                                    pos++;
+//                                }
+//                            }
+//                        }
+//                    } else { // 빈 채팅 일 경우우
+////                   Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data is null ");
+//                    }
+//                }
+//                }catch(InterruptedException e){
+//                    e.printStackTrace();
+////                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: back");
+//            }
+//                // 여기까지 채팅 불러오는,. 따라서 while문으로 돌릴것
 
-        recyclerView_L.setLayoutManager(linearLayoutManager1);
 //
 
         // 상대방 채팅이 뜨는
-        chatserv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-//                String text = "안녕하십니까";
-//                ChatClass data = new ChatClass("신서연",text, Time(), 0);  // 채팅 보내는 상대방 이름으로 수정
-//                chatAdapterMarge.addItem(data);
-//                recyclerView_L.setAdapter(chatAdapterMarge);
-//                chatAdapterMarge.notifyDataSetChanged();
+//        chatserv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
 //
-//                sendedData[0] = "chat";
-//                sendedData[1] = "addChat";
-//                sendedData[2] = userid;
-//                sendedData[3] = text;
-//                sendedData[4] = "left";    // 임시 왼/오 확인
+////                String text = "안녕하십니까";
+////                ChatClass data = new ChatClass("신서연",text, Time(), 0);  // 채팅 보내는 상대방 이름으로 수정
+////                chatAdapterMarge.addItem(data);
+////                recyclerView_L.setAdapter(chatAdapterMarge);
+////                chatAdapterMarge.notifyDataSetChanged();
+////
+////                sendedData[0] = "chat";
+////                sendedData[1] = "addChat";
+////                sendedData[2] = userid;
+////                sendedData[3] = text;
+////                sendedData[4] = "left";    // 임시 왼/오 확인
+////
+////                server = new ServerComponent(server.getServerIp(), sendedData);
+////                server.start();
 //
-//                server = new ServerComponent(server.getServerIp(), sendedData);
-//                server.start();
-
-            }
-        });
+//            }
+//        });
 
         //채팅 검색 기능 여기요 여기 제훈님
         searchButton.setOnClickListener(new View.OnClickListener() {    // 검색 버튼 클릭
@@ -184,12 +233,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String S_text = searchText.getText().toString();    // 검색 텍스트값 변환
-                Toast.makeText(getApplicationContext(), S_text+ " 검색 시작",Toast.LENGTH_SHORT).show();
 
                 for(int i=0; lastChatLog[i][0] != null ; i++){
-                    Toast.makeText(getApplicationContext(), i +"번째 반복문 들어왔다",Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), lastChatLog[i][2] + " 와 같은가?",Toast.LENGTH_SHORT).show();       // lastChatLog를 삭제해도 안뜨고 막무가내로 종료됨
-
                     if(lastChatLog[i][2].equals(S_text)){
                         Toast.makeText(getApplicationContext(),"검색 성공",Toast.LENGTH_SHORT).show();
                         linearLayoutManager1.scrollToPositionWithOffset(Integer.valueOf(lastChatLog[i][3])+1,100);
@@ -199,7 +244,6 @@ public class ChatActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), lastChatLog[i][3] + "번째 값 검색 실패",Toast.LENGTH_SHORT).show();
                     }
                 }
-                Toast.makeText(getApplicationContext(), "반복문 종료",Toast.LENGTH_SHORT).show();
 //                ChatSearch(S_text);                                 // 리사이클러뷰에서 검색텍스트를 탐색하여 해당 위치로 스크롤하는 것까지 실행하는 함수
             }
         });
@@ -208,37 +252,41 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                //여기서부터
+//              원래 채팅 서버연결 있던 곳
                 String[] request = new String[]{"chat", "loadChat", userid};
-                server = new ServerComponent(server.getServerIp(), request);
-                server.start();
+                    server = new ServerComponent(server.getServerIp(), request);
+                    server.start();
 //                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: front");
 
-                String[][] response = (String[][]) server.getRes();
-                lastChatLog = response.clone();
-                if (response[0][0] != null) {
+                    String[][] response = (String[][]) server.getRes();
+
+                    lastChatLog = response.clone();
+                    if (response[0][0] != null) {       // 빈 채팅이 아닐 경우
 //                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 1");
 
-                    for (int i = 0; response[i][0] != null; i++) {
+                        for (int i = 0; response[i][0] != null; i++) {
 //                        Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data : " + Arrays.toString(response[i]));
-                        if (!userid.equals(response[i][0])) {
-//                            Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: inside 2");
-
-                            data = new ChatClass(userid, response[i][2], Time(), 0);
-                            chatAdapterMarge.addItem(data);
+                            if (!userid.equals(response[i][0])) {
+//                                if (pos == Integer.getInteger(response[i][3])) {
+//                            Log.i(TAG, "ChatActivity - pos test : inside if " + pos);
+                                    data = new ChatClass(response[i][1], response[i][2], Time(), 0);
+                                    chatAdapterMarge.addItem(data);
+//                                    pos++;
+//                                }
+                            }
                         }
+                    } else { // 빈 채팅 일 경우
+//                   Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data is null ");
                     }
-                } else {
-//                    Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - response data is null ");
-                }
 
-//                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: back");
 
-                // 여기까지 채팅 불러오는,. 따라서 while문으로 돌릴것
+//                Log.i(TAG, "ChatTestingActivity.onCreate.sendButton.onclick - callback test: back")
 
+                // 전송하면 서버 및 리스트에 채팅 추가
                 String text1 = message.getText().toString();
                 ChatClass data1 = new ChatClass(userid, text1, Time(), 1);
                 chatAdapterMarge.addItem(data1);
+                pos ++;
                 recyclerView_L.setAdapter(chatAdapterMarge);
                 chatAdapterMarge.notifyDataSetChanged();
 
@@ -265,41 +313,3 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 }
-
-    // 검색을 수행하는 메소드
-//    public void ChatSearch(String chatText) {
-//        // chatText와 chatLog에서의 채팅값끼리 비교하여 해당 인덱스값을 포지션으로 하여
-//        // 리사이클러.ScrollToPosition(포지션)으로 이동한다.
-//
-//        //그게 아니라면 리사이클러 전체를 탐색하여 찾고, 포지션은,, 어카지?
-//
-//    }
-//}
-
-    /*public void returnToMain(){  // 채팅, 사용자 정보를 메인으로 전송하는 함수
-        ArrayList chattings = adapter.getList();
-
-        Intent intent = new Intent();
-        intent.putExtra("chattingList", chattings);
-
-        setResult(RESULT_OK, intent);
-        finish();
-    }
-
-    /*private void init() {
-        RecyclerView recyclerView = findViewById(R.id.chatting);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        adapter = new ChatAdapter();
-        recyclerView.setAdapter(adapter);
-    }
-
-    /*private void getData(EditText message) {
-        ChatData data = new ChatData();
-        data.setTitle(message.getText().toString());
-        data.setContent("이름 또는 시간");
-        adapter.addItem(data);
-    }
-   // adapter.notifyDataSetChanged();*/

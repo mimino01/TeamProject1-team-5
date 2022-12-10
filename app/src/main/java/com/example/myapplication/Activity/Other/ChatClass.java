@@ -3,6 +3,7 @@ package com.example.myapplication.Activity.Other;
 public class ChatClass {
     String chat;
     String time;
+    String message;
 
     public String getChat(){
         return chat;
@@ -16,5 +17,7 @@ public class ChatClass {
     public void setTime(String time){
         this.time=time;
     }
+//    public String getMessage(){ return message;}
+//    public void setMessage(String message) {this.message = message;}
 
 }
