@@ -47,7 +47,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     double[] copy_pointArray;
 
     String userId;
-    String[][] markingData = new String[10][10];
+    String[][] markingData = new String[100][100];
     int marker_length = 0;
     String gender;
     String[][] roomData = null;
@@ -170,8 +170,13 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         button_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+//                intent.putExtra("userName",markingData[finalSave][1]);
+//                intent.putExtra("userSex",genderTranslate(markingData[finalSave][2]));
+//                intent.putExtra("destination",markingData[finalSave][3]);
+//                intent.putExtra("time",markingData[finalSave][4]);
+//                intent.putExtra("userid", userId);
+//                startActivity(intent);
             }
         });
 
@@ -391,17 +396,20 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     public boolean onClick(@NonNull Overlay overlay) {
         if (overlay instanceof Marker) {
             int save = 0;
+            String hostName = null;
             String message = "";
             for (int i = 0; i < markers.length; i++) {
                 if (overlay == markers[i]) {
                 Log.i(TAG, "BoardActivity - make message");
                 message = "이름 : " + markingData[i][1] + "\n성별 : " + genderTranslate(markingData[i][2]) + "\n목적지 : " + markingData[i][3] +
                         "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5];
+                hostName = markingData[i][1];
                 save = i;
                 }
             }
 
             int finalSave = save;
+            String finalHostName = hostName;
             new AlertDialog.Builder(this)
                     .setTitle("마커 정보")
                     .setMessage(message)
@@ -414,6 +422,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                     .setNeutralButton(" chat", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            String[] joinData = new String[]{"chat", "addUser", finalHostName, userId};
+                            servers = new ServerComponent(servers.getServerIp(), joinData);
+                            servers.start();
+
                             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
                             intent.putExtra("userName",markingData[finalSave][1]);
                             intent.putExtra("userSex",genderTranslate(markingData[finalSave][2]));
