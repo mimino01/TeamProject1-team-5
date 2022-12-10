@@ -38,8 +38,9 @@ public class ChatActivity extends AppCompatActivity {
     private ChatAdapter_type chatAdapterMarge = new ChatAdapter_type(); // 합병 어댑터
     private ArrayList<ChatClass> datalist = new ArrayList<>();
     private final Handler handler = new Handler();
-    int lastPos = -1;
-    int pos = -1;
+    int lastPos = 0;
+    int pos = 0;
+    String[] userList = new String[]{"","","",""};
 
     //레이아웃 연결
     Button chatserv;
@@ -56,6 +57,7 @@ public class ChatActivity extends AppCompatActivity {
     String[] sendedData = new String[5];
     String[][] chattingData;
     ChatClass data1;
+    ChatClass joinData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,6 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView_L.setLayoutManager(linearLayoutManager1);
 
         hostName = getIntent.getStringExtra("userName");
-
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 메인으로 이동
         button_main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,6 +200,17 @@ public class ChatActivity extends AppCompatActivity {
 
                 chattingData = (String[][]) server.getRes();
                 Log.i(TAG, "ChatActivity.refresh.run - chat load data : " + Arrays.deepToString(chattingData));
+                for (int i = 0; chattingData[0][i] != null; i++) {
+                    if (!chattingData[0][i].equals(userList[i])) {
+                        joinData = new ChatClass(chattingData[0][i], chattingData[0][i] + " 님이 채팅방에 참가하셨습니다.", Time(), 2);
+                        chatAdapterMarge.addItem(joinData);
+                        recyclerView_L.setAdapter(chatAdapterMarge);
+                        chatAdapterMarge.notifyDataSetChanged();
+
+                        userList[i] = chattingData[0][i];
+                    }
+                }
+
                 for (int i = lastPos + 1; chattingData[i][3] != null ; i++) {
                     pos = Integer.parseInt(chattingData[i][3]);
                 }
