@@ -230,7 +230,10 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                             gender_sorted_data[i][7],
                             gender_sorted_data[i][1], Long.parseLong(gender_sorted_data[i][3]),
                             Double.parseDouble(gender_sorted_data[i][2])));
+                    Log.i(TAG,"BoardActivity - ascending data = "+ Arrays.toString(gender_sorted_data[i]));
                 }
+
+                Log.i(TAG,"BoardActivity\n ");
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
@@ -244,19 +247,17 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 String[] Ascending_temp = new String[]{"sort", "DescendingTime"};
                 servers = new ServerComponent(servers.getServerIp(), Ascending_temp);
                 servers.start();
-                String[][] ascending_data = (String[][])servers.getRes();
+                String[][] descending_data = (String[][])servers.getRes();
                 String[][] gender_sorted_data = new String[10][10];
-                int ascending_counter = 0;
+                int descending_counter = 0;
 
                 for (int j=0; j<roomData_length; j++){
-                    String temp_gender = ascending_data[j][7];
+                    String temp_gender = descending_data[j][7];
                     if(temp_gender.equals(gender)) {
-                        gender_sorted_data[ascending_counter] = ascending_data[j];
-                        ascending_counter++;
+                        gender_sorted_data[descending_counter] = descending_data[j];
+                        descending_counter++;
                     }
                 }
-
-                Log.i(TAG,"BoardActivity - gender_sorted_data = " + Arrays.toString(gender_sorted_data[0]));
                 boardArrayList.clear();
 
                 // 1 = 이름
@@ -264,22 +265,20 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 // 3 = 도착지
                 // 4 = 시간
                 // 5 = 평점
-                for(int i=0; i<ascending_counter ;i++) {
+                for(int i=0; i<descending_counter ;i++) {
                     boardArrayList.add(0,new BoardClass(gender_sorted_data[i][0],
                             gender_sorted_data[i][7],gender_sorted_data[i][1],
                             Long.parseLong(gender_sorted_data[i][3]),
                             Double.parseDouble(gender_sorted_data[i][2])));
+                    Log.i(TAG,"BoardActivity - descending data = "+ Arrays.toString(gender_sorted_data[i]));
+
                 }
+                Log.i(TAG,"BoardActivity\n ");
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
 
-               /* boardArrayList.clear();
-                for(int i=0; markingData[i][3] != null ;i++) {
-                    boardArrayList.add(new BoardClass(markingData[i][1], markingData[i][2], markingData[i][3], Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
-                }
-                boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
-                listView.setAdapter(boardAdapter);*/
+
         });
 
         quickClass = new QuickClass();
@@ -304,13 +303,13 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 servers.start();
                 String[][] StartingTime_data = (String[][])servers.getRes();
                 String[][] time_sorted_data = new String[10][10];
-                int ascending_counter = 0;
+                int time_counter = 0;
 
                 for (int j=0; j<roomData_length; j++){
                     String temp_gender = StartingTime_data[j][7];
                     if(temp_gender.equals(gender)) {
-                        time_sorted_data[ascending_counter] = StartingTime_data[j];
-                        ascending_counter++;
+                        time_sorted_data[time_counter] = StartingTime_data[j];
+                        time_counter++;
                     }
                 }
 
@@ -321,9 +320,13 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                             boardArrayList.add(0,new BoardClass(time_sorted_data[i][0],
                                     time_sorted_data[i][7],time_sorted_data[i][1],
                                     Long.parseLong(time_sorted_data[i][3]),
-                                    Double.parseDouble(time_sorted_data[i][2])));                        }
+                                    Double.parseDouble(time_sorted_data[i][2])));
+                            Log.i(TAG,"BoardActivity - time sorted data = " + Arrays.toString(time_sorted_data[i]));
+                        }
                     }
                 }
+
+                Log.i(TAG,"BoardActivity\n ");
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
@@ -339,19 +342,38 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             copy_pointArray[i] = (double) boardArrayList.get(i).getManner_point();
         }
 
-        Point_sort_button =(Button)findViewById(R.id.button_point_sort2);     // 매너점수순 정렬
+        Point_sort_button =(Button)findViewById(R.id.button_point_sort2);     // 매너점수순? 정렬
         Point_sort_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 quickClass.double_sort(copy_pointArray);
-                boardArrayList.clear();
-                for(int i=0; i < copy_pointArray.length ;i++) {
-                    for (int j = 0; j < pointArray.length ; j++) {
-                        if (copy_pointArray[i] == pointArray[j]){
-                            boardArrayList.add(new BoardClass(markingData[j][1], markingData[j][2], markingData[j][3], Long.parseLong(markingData[j][4]), Double.parseDouble(markingData[j][5])));
-                        }
+
+                String[] point_temp = new String[]{"sort", "Destination"};
+                servers = new ServerComponent(servers.getServerIp(), point_temp);
+                servers.start();
+                String[][] Destinations_data = (String[][])servers.getRes();
+                String[][] Destinations_sorted_data = new String[10][10];
+                int Destinations_counter = 0;
+
+                for (int j=0; j<roomData_length; j++){
+                    String temp_gender = Destinations_data[j][7];
+                    if(temp_gender.equals(gender)) {
+                        Destinations_sorted_data[Destinations_counter] = Destinations_data[j];
+                        Destinations_counter++;
                     }
                 }
+
+                boardArrayList.clear();
+                for(int i=0; i < Destinations_counter ;i++) {
+                    boardArrayList.add(0, new BoardClass(Destinations_sorted_data[i][0],
+                            Destinations_sorted_data[i][7], Destinations_sorted_data[i][1],
+                            Long.parseLong(Destinations_sorted_data[i][3]),
+                            Double.parseDouble(Destinations_sorted_data[i][2])));
+                    Log.i(TAG, "BoardActivity - destinations_sorted_data = " +
+                            Arrays.toString(Destinations_sorted_data[i]));
+
+                }
+                Log.i(TAG,"BoardActivity\n ");
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
             }
