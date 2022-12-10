@@ -56,6 +56,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
     double[] copy_pointArray;
 
     String userId;
+    String[] data = new String[30];
+
 
     ServerComponent server = new ServerComponent();
 
@@ -462,18 +464,23 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         //Toast.makeText(this.getApplicationContext(), "마커가 선택되었습니다", Toast.LENGTH_LONG).show();
         return true;
     }
+
+    data[0] = "chat";
+    data[1] = "numberOfpeople";
+    data[2] = "가나다";
+    server = new ServerComponent(server.getServerIp(),data);
+    server.start();
+    int count = 0;
+
+    try {
+        sleep(100);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    String[][] resData = (String[][]) server.getRes();
+    for (int i = 0; i < resData[0].length; i++){
+        if (resData[0][i] != null) {
+            count = i+1;
+        }
+    }
 }
-//    @Override
-//    public void onClick(View view) {
-////        String[] request = new String[]{"chat", "loadChat", name};
-//        server = new ServerComponent(server.getServerIp(),request);
-//        server.start();
-//
-//        try {
-//            sleep(100);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        String[][] response = (String[][]) server.getRes();
-////        if()
-//}

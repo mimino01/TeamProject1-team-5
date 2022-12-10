@@ -197,6 +197,7 @@ public class Sort {
                     break;
                 } else if (copyFirst == copyLast) {
                     //노드 0개 남았을때
+
                     String[] temp = array[first].clone();
                     array[first] = array[copyFirst].clone();
                     array[copyFirst] = temp.clone();
