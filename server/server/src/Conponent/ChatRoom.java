@@ -81,7 +81,7 @@ public class ChatRoom {
 	public boolean findUser(Option op) {
 //		System.out.println("findUser parameter : " + op.toString());
 		for (int i = 0; i < numberOfUser; i++) {
-			if (user[i].equals(op.getName())) {
+			if (op.getName().equals(user[i])) {
 				return true;
 			}
 		}

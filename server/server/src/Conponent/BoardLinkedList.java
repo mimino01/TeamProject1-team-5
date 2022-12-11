@@ -108,6 +108,9 @@ public class BoardLinkedList {
                     tempNode = tempNode.link;
                 }
             }
+            if (tempNode == null) {
+                return new ChatRoom();
+            }
             return tempNode.getData();
         }
 

@@ -119,9 +119,9 @@ public class Saver {
 			
 		case "loadChat":
 			System.out.println("processing chat in load");
-			if (room.searchNode(hash.get(data[2])) == null) {
+			if (room.searchNode(hash.get(data[2])) == new ChatRoom()) {
 				String[][] temp1 = new String[1][1];
-				temp1[0][0] = "user not included";
+				temp1[0][0] = "false";
 				return temp1;
 			} else {
 				return room.searchNode(hash.get(data[2])).getChatLog();

@@ -170,6 +170,15 @@ public class ChatActivity extends AppCompatActivity {
 
                 server = new ServerComponent(server.getServerIp(), sendedData);
                 server.start();
+
+                String[][] temp = (String[][]) server.getRes();
+
+                if (temp[0][0].equals("false")) {
+                    Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                    intent.putExtra("userid",userid);
+                    refreshEnder();
+                    startActivity(intent);
+                }
             }
         });
     }
