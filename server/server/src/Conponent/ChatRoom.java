@@ -8,7 +8,7 @@ public class ChatRoom {
 	final int MAX_USER = 4;
 	String user[] = new String[MAX_USER];
 	private int roomId = -1;
-	private int lastChatNumber = 0;
+	private int lastChatNumber = 1;
 	private String[] chatInfo = new String[MAX_CHATTING_LOG];
 	private String[][] chatLog = new String[MAX_CHATTING_ROOM][MAX_CHATTING_LOG];
 	private String host;
@@ -18,7 +18,7 @@ public class ChatRoom {
 	private int departureTime;
 	private Double[] coordinate = new Double[2];
 	private float hostRank;
-	private int lastPos = 0;
+	private int lastPos = 1;
 
 	private int createTime;
 	
@@ -36,6 +36,7 @@ public class ChatRoom {
 		this.coordinate = coordinate;
 		this.createTime = createTime;
 		this.hostGender = hostGender;
+		this.chatLog[0] = user;
 	}
 
 	public ChatRoom (String host) {

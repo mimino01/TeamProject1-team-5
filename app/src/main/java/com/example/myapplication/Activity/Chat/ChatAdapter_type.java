@@ -34,11 +34,13 @@ public class ChatAdapter_type extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (viewType == ChatViewClass.ViewType.LEFT_CONTENT) {
             itemView = layoutInflater.inflate(R.layout.item2, parent, false);
             return new LeftViewHolder(itemView);
-        } else {
+        } else if (viewType == ChatViewClass.ViewType.RIGHT_CONTENT) {
             itemView = layoutInflater.inflate(R.layout.item, parent, false);
             return new RightViewHolder(itemView);
+        } else {
+            itemView = layoutInflater.inflate(R.layout.item3, parent, false);
+            return new CenterViewHolder(itemView);
         }
-        // else if CENTER_VIEW can Add
     }
 
 
@@ -49,9 +51,11 @@ public class ChatAdapter_type extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((LeftViewHolder) holder).LeftonBind(arrayList.get(position));
 //            ((LeftViewHolder) holder).NameView.setText(arrayList.get(position).getName());
 //            ((LeftViewHolder) holder).ChatView.setText(arrayList.get(position).getChat());
-        } else {
+        } else if (holder instanceof  RightViewHolder){
             ((RightViewHolder) holder).RightonBind(arrayList.get(position));
 //            ((RightViewHolder) holder).dataView.setText(arrayList.get(position).getChat());
+        } else {
+            ((CenterViewHolder) holder).CenteronBind(arrayList.get(position));
         }
     }
 
@@ -97,6 +101,19 @@ public class ChatAdapter_type extends RecyclerView.Adapter<RecyclerView.ViewHold
         void RightonBind(ChatClass data) {
             dataView.setText(data.getChat());
             timeView.setText(data.getTime());
+        }
+    }
+
+    static class CenterViewHolder extends RecyclerView.ViewHolder {
+        TextView joinView;
+
+        public CenterViewHolder(@NonNull View itemView) {
+            super(itemView);
+            joinView = itemView.findViewById(R.id.textView3);
+        }
+
+        void CenteronBind(ChatClass data) {
+            joinView.setText(data.getChat());
         }
     }
 

@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4bcfb0a-7764-4496-956f-10be38cd6a23" name="Changes" comment="" />
+    <list default="true" id="f4bcfb0a-7764-4496-956f-10be38cd6a23" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Timer/TimerActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/res/drawable/bg_gis_result_items3_count.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/res/layout/item3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Board/BoardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Board/BoardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Chat/ChatActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Chat/ChatActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Chat/ChatAdapter_type.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Chat/ChatAdapter_type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Chat/ChatViewClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Chat/ChatViewClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Other/ChatClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Other/ChatClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/server/ServerComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/server/ServerComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/res/layout/activity_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/res/layout/activity_chat.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bin/Conponent/ChatRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/bin/Conponent/ChatRoom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Conponent/ArrayUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Conponent/BitField.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Conponent/BooleanUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Conponent/CharEncoding.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Conponent/ChatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/Conponent/ChatRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Conponent/StringUtils.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2IkMTZOTPdC6AhphZAe87I9tOs2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,7 +44,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "JavaSE-17",
+    "last_opened_file_path": "C:/Users/mimin/Downloads/common-lang3.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -28,5 +63,16 @@
       <updated>1670721139946</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
