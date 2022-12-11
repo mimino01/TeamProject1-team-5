@@ -152,6 +152,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             marker_length++;
         }
 
+        
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 보드로 이동버튼
         button_main.setOnClickListener(new View.OnClickListener() {
@@ -511,8 +512,9 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             for (int i = 0; i < markers.length; i++) {
                 if (overlay == markers[i]) {
                 Log.i(TAG, "BoardActivity - make message");
-                message = "이름 : " + markingData[i][1] + "\n성별 : " + genderTranslate(markingData[i][2]) + "\n목적지 : " + markingData[i][3] +
-                        "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5] + "\n인원수 : " + markingData[i][8];
+                message = "이름 : " + markingData[i][1] + "\n성별 : " + genderTranslate(markingData[i][2]) +
+                        "\n목적지 : " + markingData[i][3] + "\n출발시간 : " +markingData[i][4] +
+                        "\n매너점수 : " + markingData[i][5] + "\n인원수 : " + markingData[i][8];
                 hostName = markingData[i][1];
                 save = i;
                 }
