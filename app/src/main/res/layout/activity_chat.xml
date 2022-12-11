@@ -41,7 +41,7 @@
                 android:background="#B0C2FF"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:text="Main"
+                android:text="미구현"
                 android:textColor="#000000"
                 android:textSize="15dp" />
 
@@ -52,7 +52,7 @@
                 android:background="#B0C2FF"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:text="Board"
+                android:text="미구현"
                 android:textColor="#000000"
                 android:textSize="15dp" />
 
@@ -63,7 +63,7 @@
                 android:background="#B0C2FF"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:text="Chat"
+                android:text="미구현"
                 android:textColor="#000000"
                 android:textSize="15dp" />
 
