@@ -56,12 +56,9 @@ public class EditSignActivity extends AppCompatActivity {
             server = new ServerComponent(server.getServerIp(),req);
             server.start();
 
-            sleep(100);
-
             String[][] DresData = (String[][]) server.getRes();
-            String[] resData = DresData[0];
-            Log.i(TAG, "EditSignActivity.onCreate - check response data : " + Arrays.toString(resData));
-            req = new String[]{"signUpdate", resData[0], resData[1], resData[3], resData[4], resData[2]};
+            Log.i(TAG, "EditSignActivity.onCreate - check response data : " + Arrays.deepToString(DresData));
+            req = new String[]{"signUpdate", DresData[0][0], DresData[0][1], DresData[0][3], DresData[0][4], DresData[0][2]};
 
             genderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override

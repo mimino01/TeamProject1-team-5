@@ -11,7 +11,7 @@ public class Saver {
 	
 	public Saver() {
 		hash.put("adminid", new Option("관리자",01012341234,"adminid","adminpw","man"));
-		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","man"));
+		hash.put("subadminid", new Option("보조관리자",01012344321,"subadminid","subadminpw","woman"));
 		hash.put("parkid", new Option("박휘건", 01010044321, "parkid", "parkhgpw","man"));
 		hash.put("hongid", new Option("홍길동", 01010043421, "hongid", "hongpw","man"));
 		hash.put("ganadaid", new Option("가나다", 01012044321, "ganadaid", "ganadapw","woman"));
