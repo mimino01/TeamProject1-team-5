@@ -185,16 +185,27 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
 
         boardArrayList = new ArrayList<BoardClass>();
 
-        markingData = get_marking_data();
+        // 1 = 이름
+        // 2 = 성별
+        // 3 = 도착지
+        // 4 = 시간
+        // 5 = 평점
+        Log.i(TAG, "BoardActivity - loof checker - markingData checking" +
+                Arrays.deepToString(markingData));
 
-        Log.i(TAG, "BoardActivity - loof checker - markingData checking" + Arrays.deepToString(markingData));
-        for(int i=0; markingData[i][3] !=null ;i++) {
+        boardArrayList.clear();
+        for(int i=0; i<mark_counter ;i++) {
             Log.i(TAG, "BoardActivity - loof checker " + i);
-                boardArrayList.add(new BoardClass(markingData[i][1], genderTranslate(markingData[i][2]), markingData[i][3],
-                        Long.parseLong(markingData[i][4]), Double.parseDouble(markingData[i][5])));
+                boardArrayList.add(0,new BoardClass(markingData[i][1],markingData[i][2],
+                        markingData[i][3], Long.parseLong(markingData[i][4]),
+                        Double.parseDouble(markingData[i][5])));
+                Log.i(TAG,"BoardActivity - initial boardArrayList vaule = " +
+                        Arrays.toString(markingData[i]));
             }
+
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
+        Log.i(TAG,"BoardActivity - intial adapter set");
 
         // 서버로부터 모든 데이터 받아옴 이것을 배열에 저장
         // 저장된 배열로 부터 성별이 같은 데이터들만 종합하여 ~~_sorted_data에 저장
@@ -236,7 +247,6 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 Log.i(TAG,"BoardActivity\n ");
                 boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
                 listView.setAdapter(boardAdapter);
-                
             }
         });
 

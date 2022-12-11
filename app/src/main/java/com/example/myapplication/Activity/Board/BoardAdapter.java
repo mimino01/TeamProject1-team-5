@@ -48,8 +48,6 @@ public class BoardAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.board_item,null);
             username = (TextView)convertView.findViewById(R.id.Username);
@@ -64,7 +62,7 @@ public class BoardAdapter extends BaseAdapter {
         bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "BoardAdapter - Override getView run test");
+                Log.i(TAG, "BoardAdapter - listview method clicked");
 
                 Intent intent = new Intent(context, ChatActivity.class);
                 intent.putExtra("userName",username.getText().toString());
