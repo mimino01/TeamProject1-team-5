@@ -26,12 +26,13 @@ public class BoardClass {
 
     private double manner_point;
 
-    public BoardClass(String username, String userSex, String destination, long time, String userid) {
+    public BoardClass(String username, String userSex, String destination, long time, String userid, double manner_point) {
         this.username = username;
         this.userSex = userSex;
         this.destination = destination;
         this.time = time;
         this.userid = userid;
+        this.manner_point = manner_point;
     }
 
     public String getUsername() {

@@ -197,7 +197,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
         for(int i=0; markingData[i][3] !=null ;i++) {
             Log.i(TAG, "BoardActivity - loof checker " + i);
                 boardArrayList.add(new BoardClass(markingData[i][1], genderTranslate(markingData[i][2]), markingData[i][3],
-                        Long.parseLong(markingData[i][4]), userId));
+                        Long.parseLong(markingData[i][4]), userId, Double.parseDouble(markingData[i][5])));
             }
         boardAdapter = new BoardAdapter(BoardActivity.this, boardArrayList);
         listView.setAdapter(boardAdapter);
@@ -235,7 +235,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                     boardArrayList.add(0,new BoardClass(gender_sorted_data[i][0],
                             genderTranslate(gender_sorted_data[i][7]),
                             gender_sorted_data[i][1], Long.parseLong(gender_sorted_data[i][4]),
-                            userId));
+                            userId, Double.parseDouble(gender_sorted_data[i][2])));
                     Log.i(TAG,"BoardActivity - ascending data = "+ Arrays.toString(gender_sorted_data[i]));
                 }
 
@@ -276,7 +276,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                     boardArrayList.add(0,new BoardClass(gender_sorted_data[i][0],
                             genderTranslate(gender_sorted_data[i][7]),gender_sorted_data[i][1],
                             Long.parseLong(gender_sorted_data[i][4]),
-                            userId));
+                            userId, Double.parseDouble(gender_sorted_data[i][2])));
                     Log.i(TAG,"BoardActivity - descending data = "+ Arrays.toString(gender_sorted_data[i]));
 
                 }
@@ -327,7 +327,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                             boardArrayList.add(0,new BoardClass(time_sorted_data[i][0],
                                     genderTranslate(time_sorted_data[i][7]),time_sorted_data[i][1],
                                     Long.parseLong(time_sorted_data[i][4]),
-                                    userId));
+                                    userId, Double.parseDouble(time_sorted_data[i][2])));
                             Log.i(TAG,"BoardActivity - time sorted data = " + Arrays.toString(time_sorted_data[i]));
                         }
                     }
@@ -375,7 +375,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                     boardArrayList.add(0, new BoardClass(Destinations_sorted_data[i][0],
                             genderTranslate(Destinations_sorted_data[i][7]), Destinations_sorted_data[i][1],
                             Long.parseLong(Destinations_sorted_data[i][4]),
-                            userId));
+                            userId, Double.parseDouble(Destinations_sorted_data[i][2])));
                     Log.i(TAG, "BoardActivity - destinations_sorted_data = " +
                             Arrays.toString(Destinations_sorted_data[i]));
 

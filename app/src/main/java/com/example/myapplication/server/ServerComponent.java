@@ -118,7 +118,6 @@ public class ServerComponent extends Thread {
 
             ObjectInputStream instream = new ObjectInputStream(socket.getInputStream());
             res = instream.readObject();
-            sleep(100);
             Log.i(TAG, "run: " + Arrays.deepToString((String[][]) res));
 
             socket.close();
@@ -127,8 +126,6 @@ public class ServerComponent extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4bcfb0a-7764-4496-956f-10be38cd6a23" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/deploymentTargetDropDown.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Board/BoardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Board/BoardActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Board/BoardAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Board/BoardAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Board/BoardClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/Activity/Board/BoardClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
