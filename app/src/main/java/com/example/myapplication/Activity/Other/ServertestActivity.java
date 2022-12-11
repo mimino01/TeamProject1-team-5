@@ -72,10 +72,10 @@ public class ServertestActivity extends AppCompatActivity {
 //                Log.i(TAG, "ServertestActivity.btn.setOnClickListener - add review : " + Arrays.deepToString(resData));
 
 
-//                data = new String[5];
+//                data = new String[5];[chat, loadAllChat][chat, addUser, 박휘건, adminid]
             data[0] = "chat";
-            data[1] = "numberOfPeople";
-            data[2] = "가나다"; //방장 이름 혹은 아이디
+            data[1] = "loadAllChat";
+//            data = new String[]{"chat","addUser","박휘건","subadminid"};
             server = new ServerComponent(server.getServerIp(),data);
             server.start();
 

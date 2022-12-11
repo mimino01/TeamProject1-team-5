@@ -41,6 +41,9 @@ public class ChatActivity extends AppCompatActivity {
     int lastPos = 0;
     int pos = 0;
     String[] userList = new String[]{"","","",""};
+    String userid = null, createOrJoin, hostName;
+    String[] sendedData = new String[5];
+    String[][] chattingData;
 
     //레이아웃 연결
     Button chatserv;
@@ -53,11 +56,9 @@ public class ChatActivity extends AppCompatActivity {
 
     //서버 연결
     ServerComponent server = new ServerComponent();
-    String userid = null, createOrJoin, hostName;
-    String[] sendedData = new String[5];
-    String[][] chattingData;
     ChatClass data1;
     ChatClass joinData;
+    TimerTask task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                refreshEnder();
                 startActivity(intent);
             }
         });
@@ -97,6 +99,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardAddActivity.class);
+                refreshEnder();
                 startActivity(intent);
             }
         });
@@ -107,6 +110,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
                 intent.putExtra("userid",userid);
+                refreshEnder();
                 startActivity(intent);
             }
         });
@@ -120,6 +124,7 @@ public class ChatActivity extends AppCompatActivity {
                 intent.putExtra("userName", getIntent.getStringExtra("userName"));
                 intent.putExtra("destination", getIntent.getStringExtra("destination"));
                 intent.putExtra("time", getIntent.getStringExtra("time"));
+                refreshEnder();
                 startActivity(intent);
             }
         });
@@ -179,7 +184,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void refreshStarter() {
-        TimerTask task = new TimerTask() {
+        task = new TimerTask() {
             @Override
             public void run() {
 //                Log.i(TAG, "ChatActivity.refreshStarter - starter is start");
@@ -188,6 +193,10 @@ public class ChatActivity extends AppCompatActivity {
         };
         Timer timer = new Timer();
         timer.schedule(task, 0, 1000);
+    }
+
+    public void refreshEnder() {
+        task.cancel();
     }
 
     protected void refresh() {

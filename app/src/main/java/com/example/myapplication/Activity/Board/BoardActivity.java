@@ -136,6 +136,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 markingData[mark_counter][5] = roomData[i][2];
                 markingData[mark_counter][6] = roomData[i][5];
                 markingData[mark_counter][7] = roomData[i][6];
+                markingData[mark_counter][8] = roomData[i][8];
                 mark_counter++;
             }
             roomData_length++;
@@ -509,7 +510,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 if (overlay == markers[i]) {
                 Log.i(TAG, "BoardActivity - make message");
                 message = "이름 : " + markingData[i][1] + "\n성별 : " + genderTranslate(markingData[i][2]) + "\n목적지 : " + markingData[i][3] +
-                        "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5];
+                        "\n출발시간 : " +markingData[i][4] + "\n매너점수 : " + markingData[i][5] + "\n인원수 : " + markingData[i][8];
                 hostName = markingData[i][1];
                 save = i;
                 }

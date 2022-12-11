@@ -24,6 +24,9 @@ public class BoardLinkedList {
         public ChatRoom getData() {
             return this.data;
         }
+        public void setData(ChatRoom data) {
+            this.data = data;
+        }
     }
 
     public static class LinkedList {

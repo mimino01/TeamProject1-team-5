@@ -19,7 +19,6 @@ public class ChatRoom {
 	private Double[] coordinate = new Double[2];
 	private float hostRank;
 	private int lastPos = 1;
-
 	private int createTime;
 	
 	public ChatRoom () {
@@ -142,7 +141,8 @@ public class ChatRoom {
 	}
 
 	public String[] toArrayByDetailInfo() {
-		String[] result = new String[]{host, destination, String.valueOf(hostRank), String.valueOf(createTime), String.valueOf(departureTime), String.valueOf(coordinate[0]), String.valueOf(coordinate[1]), hostGender};
+		String userNum = numberOfUser + "/4";
+		String[] result = new String[]{host, destination, String.valueOf(hostRank), String.valueOf(createTime), String.valueOf(departureTime), String.valueOf(coordinate[0]), String.valueOf(coordinate[1]), hostGender, userNum};
 
 		return result;
 	}

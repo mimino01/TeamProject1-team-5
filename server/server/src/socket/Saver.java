@@ -105,7 +105,7 @@ public class Saver {
 				temp = room.searchNode(hash.get(data[2]));
 			}
 			response = temp.addUser(data[3], hash.get(data[3]).getName());
-			room.insertNode(temp);
+//			room.insertNode(temp);
 			result[0][0] = Boolean.toString(response);
 			return result;
 			
