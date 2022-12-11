@@ -70,8 +70,8 @@ public class ChatActivity extends AppCompatActivity {
         Intent getIntent = getIntent();
         userid = getIntent.getStringExtra("userid");
 
-        Log.i(TAG, "ChatActivity - get intent data checker : " + getIntent.getStringExtra("createOrJoin") + getIntent.getStringExtra("userid") + getIntent.getStringExtra("roomCode"));
-        createOrJoin = getIntent.getStringExtra("createOrJoin");
+        Log.i(TAG, "ChatActivity - get intent data checker : " + getIntent.getStringExtra("userid") + " : " + getIntent.getStringExtra("time"));
+//        createOrJoin = getIntent.getStringExtra("createOrJoin");
                 // 상단에 '목적지 | 시간 ' 표시
         Info = (TextView) findViewById(R.id.TextView_info);
         Info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));

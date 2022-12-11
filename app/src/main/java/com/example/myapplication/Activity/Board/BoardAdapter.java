@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Activity.Chat.ChatActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.server.ServerComponent;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class BoardAdapter extends BaseAdapter {
     TextView username;
     TextView userSex;
     TextView destination;
+    ServerComponent servers = new ServerComponent();
 
     public BoardAdapter(Context context, ArrayList<BoardClass> board_ArrayList) {
         this.context = context;
@@ -65,18 +67,20 @@ public class BoardAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "BoardAdapter - Override getView run test");
+                String[] joinData = new String[]{"chat", "addUser", Board_ArrayList.get(position).getUsername(), Board_ArrayList.get(position).getUserid()};
+                Log.i(TAG, "BoardAdapter.barListener.onclick - input data " + Board_ArrayList.get(position).getTime());
+                servers = new ServerComponent(servers.getServerIp(), joinData);
+                servers.start();
 
                 Intent intent = new Intent(context, ChatActivity.class);
                 intent.putExtra("userName",username.getText().toString());
                 intent.putExtra("userSex",userSex.getText().toString());
                 intent.putExtra("destination",destination.getText().toString());
-                intent.putExtra("userid", "adminid");
-                intent.putExtra("roomCode", "0");
-                intent.putExtra("createOrJoin", "create");
+                intent.putExtra("userid", Board_ArrayList.get(position).getUserid());
+                intent.putExtra("time",String.valueOf(Board_ArrayList.get(position).getTime()));
                 context.startActivity(intent);
             }
         });
-
         return convertView;
     }
 }
