@@ -1,6 +1,7 @@
 package Conponent;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class ChatRoom {
 	final int MAX_CHATTING_ROOM = 100;
@@ -87,7 +88,19 @@ public class ChatRoom {
 		}
 		return false;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof ChatRoom chatRoom)) return false;
+		return roomId == chatRoom.roomId && lastChatNumber == chatRoom.lastChatNumber && numberOfUser == chatRoom.numberOfUser && departureTime == chatRoom.departureTime && Float.compare(chatRoom.hostRank, hostRank) == 0 && lastPos == chatRoom.lastPos && createTime == chatRoom.createTime && Arrays.equals(user, chatRoom.user) && Arrays.equals(chatInfo, chatRoom.chatInfo) && Arrays.equals(chatLog, chatRoom.chatLog) && Objects.equals(host, chatRoom.host) && Objects.equals(hostGender, chatRoom.hostGender) && Objects.equals(destination, chatRoom.destination) && Arrays.equals(coordinate, chatRoom.coordinate);
+	}
+
+	@Override
+	public int hashCode() {
+		return 0;
+	}
+
 	//getter setter
 	public int getRoomId() {
 		return roomId;

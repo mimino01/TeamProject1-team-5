@@ -44,9 +44,11 @@ public class ChatActivity extends AppCompatActivity {
     String userid = null, createOrJoin, hostName;
     String[] sendedData = new String[5];
     String[][] chattingData;
+    ServerComponent servers = new ServerComponent();
 
     //레이아웃 연결
     Button chatserv;
+    Button button_off;
     EditText searchText;
     Button searchButton;
     EditText message;
@@ -75,6 +77,7 @@ public class ChatActivity extends AppCompatActivity {
                 // 상단에 '목적지 | 시간 ' 표시
         Info = (TextView) findViewById(R.id.TextView_info);
         Info.setText(getIntent.getStringExtra("userName") + " | " + getIntent.getStringExtra("destination") + " | " + getIntent.getStringExtra("time"));
+        button_off = (Button) findViewById(R.id.Button_off);
 
         recyclerView_L = (RecyclerView) findViewById(R.id.chatting_Left);
         recyclerView_L.setHasFixedSize(true);
@@ -84,6 +87,21 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView_L.setLayoutManager(linearLayoutManager1);
 
         hostName = getIntent.getStringExtra("userName");
+
+        String[] reqData = new String[5];
+        reqData[0] = "req_userdata";
+        reqData[1] = userid;
+
+        // 로그인 통해서 안들어오고 바로 들어오게 해놔서 바꿔놓음
+        servers = new ServerComponent(servers.getServerIp(), reqData);
+        servers.start();
+
+        String[][] userinfo = (String[][]) servers.getRes();
+
+        if (hostName.equals(userinfo[0][0])) {
+            button_off.setText("방 삭제");
+        }
+
         Button button_main = (Button) findViewById(R.id.Button_Main);    // 메인으로 이동
         button_main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,15 +133,23 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        Button button_off = (Button) findViewById(R.id.Button_off);
         button_off.setOnClickListener(new View.OnClickListener() {      // 리뷰쓰러 가기
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
-                intent.putExtra("userid", userid);
-                intent.putExtra("userName", getIntent.getStringExtra("userName"));
-                intent.putExtra("destination", getIntent.getStringExtra("destination"));
-                intent.putExtra("time", getIntent.getStringExtra("time"));
+                Intent intent;
+                if (button_off.getText().toString().equals("방 삭제")) {
+                    String [] req = new String[]{"chat", "deleteUser", hostName, userid};
+                    server = new ServerComponent(server.getServerIp(),req);
+                    server.start();
+                    intent = new Intent(getApplicationContext(), BoardActivity.class);
+                    intent.putExtra("userid", userid);
+                } else {
+                    intent = new Intent(getApplicationContext(), ReviewActivity.class);
+                    intent.putExtra("userid", userid);
+                    intent.putExtra("userName", getIntent.getStringExtra("userName"));
+                    intent.putExtra("destination", getIntent.getStringExtra("destination"));
+                    intent.putExtra("time", getIntent.getStringExtra("time"));
+                }
                 refreshEnder();
                 startActivity(intent);
             }

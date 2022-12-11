@@ -150,12 +150,13 @@ public class Saver {
 				user = hash.get(data[2]);
 			}
 			temp = room.searchNode(user);
-			if (temp != null) { //여기 해야함
+			if (hash.get(data[3]).getName().equals(data[2])) {
 				room.deleteNode(temp);
+			} else {
+				response = temp.deleteUser(data[3], hash.get(data[3]).getName());
+				room.insertNode(temp);
+				result[0][0] = Boolean.toString(response);
 			}
-			response = temp.deleteUser(data[3], hash.get(data[3]).getName());
-			room.insertNode(temp);
-			result[0][0] = Boolean.toString(response);
 			return result;
 			
 		default:

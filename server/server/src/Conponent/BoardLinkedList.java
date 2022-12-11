@@ -59,17 +59,20 @@ public class BoardLinkedList {
             Node preNode = head;
             Node tempNode = head.link;
 
-            if (data.equals(preNode.getData())) {
+            if (data.getHost().equals(preNode.getData().getHost())) {
                 head = preNode.link;
                 preNode.link = null;
+//                preNode.link.setData(new ChatRoom());
             } else {
                 while (tempNode != null) {
-                    if (data.equals(tempNode.getData())) {
+                    if (data.getHost().equals(tempNode.getData().getHost())) {
                         if (tempNode.link == null) {
                             preNode.link = null;
+//                            tempNode.setData(new ChatRoom());
                         } else {
                             preNode.link = tempNode.link;
                             tempNode.link = null;
+//                            tempNode.link.setData(new ChatRoom());
                         }
                         break;
                     } else {
