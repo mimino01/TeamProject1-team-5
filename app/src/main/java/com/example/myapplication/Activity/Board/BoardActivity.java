@@ -128,6 +128,8 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
             Log.i(TAG, "BoardActivity - room data : " + i);
             Log.i(TAG, "BoardActivity - mark_counter : " + mark_counter);
             if (roomData[i][7].equals(gender)) {
+                Log.i(TAG,"BoardActivity data, mark_counter = " + mark_counter + ", " +
+                        "room data = " + i);
                 markingData[mark_counter][0] = "marking";
                 markingData[mark_counter][1] = roomData[i][0];
                 markingData[mark_counter][2] = roomData[i][7];
@@ -233,7 +235,7 @@ public class BoardActivity extends AppCompatActivity implements OnMapReadyCallba
                 // 5 = 평점
                 for(int i=0; i<ascending_counter ;i++) {
                     boardArrayList.add(0,new BoardClass(gender_sorted_data[i][0],
-                            genderTranslate(gender_sorted_data[i][7]),
+                            gender_sorted_data[i][7],
                             gender_sorted_data[i][1], Long.parseLong(gender_sorted_data[i][3]),
                             Double.parseDouble(gender_sorted_data[i][2])));
                     Log.i(TAG,"BoardActivity - ascending data = "+ Arrays.toString(gender_sorted_data[i]));
